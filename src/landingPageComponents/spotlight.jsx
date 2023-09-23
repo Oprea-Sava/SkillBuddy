@@ -1,8 +1,12 @@
+import SpotlightCard from "./spotlightCard"
+
 function SkillSpotlight() {
 
     return (
         <div id="spotlightContainer">
-            <div className="spotlightCard"></div>
+            <div className="spotlightCard">
+                <SpotlightCard />
+            </div>
         </div>
     )
 }

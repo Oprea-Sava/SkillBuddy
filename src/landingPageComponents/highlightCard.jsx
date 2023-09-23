@@ -8,9 +8,9 @@ function HighlightCard({title,content,desc,url}){
         window.location.href = url;
     }
     return (
-        <div className="cardContainer" onClick={handleClick}>
-            <div className="cardTitle">{title}</div>
-            <div className="content">
+        <div className="hCardContainer" onClick={handleClick}>
+            <div className="hCardTitle">{title}</div>
+            <div className="hContent">
                 <img src={content} alt={desc} />
             </div>
         
