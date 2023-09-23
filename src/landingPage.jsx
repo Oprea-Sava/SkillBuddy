@@ -21,10 +21,12 @@ function CourseHighlights() {
     return (
         <div id="highlightsContainer">
             <h1>Course Highlights</h1>
-            <div className="highlights">
-                <div className="highlightCard"></div>
+            <div>
+                <div className="highlights">
+                    <div className="highlightCard"></div>
+                </div>
+                <button>See More Courses</button>
             </div>
-            <button>See More Courses</button>
         </div>
     )
 }
