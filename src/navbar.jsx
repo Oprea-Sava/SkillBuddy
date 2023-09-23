@@ -1,5 +1,5 @@
-import './navbar.css'
-import './text.css'
+import './css/navbar.css'
+import './css/text.css'
 
 function Navbar() {
 
