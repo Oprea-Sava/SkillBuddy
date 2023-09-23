@@ -1,7 +1,8 @@
 #heroContainer,
 #highlightsContainer,
 #spotlightContainer,
-#callToAction {
+#callToAction,
+#featuresContainer {
   height: 100vh;
   margin: 40px;
   padding: 60px;
@@ -40,4 +41,15 @@
   height: 100%;
   width: 100%;
   border: solid 1px black;
+}
+
+.feature {
+  height: 100%;
+  border: solid 1px black;
+  width: auto;
+  flex: 1;
+}
+
+#featuresContainer {
+  display: flex;
 }
