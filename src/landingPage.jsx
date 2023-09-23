@@ -1,24 +1,5 @@
 import './landingPage.css'
 
-function Navbar() {
-
-    return (
-        <div id="navSection">
-            <div className="logo">
-                <img src="#" alt="logo" />
-            </div>
-            <nav className="navContainer">
-                <button className="home">Home</button>
-                <button className="courses">Courses</button>
-                <button className="skillExchange">Skill Exchange</button>
-                <button className="aboutUs">About Us</button>
-                <button className="contact">Contact</button>
-                <button className="signUp">Sign up</button>
-            </nav>
-        </div>
-    )
-}
-
 function HeroContainer() {
 
     return (
@@ -66,13 +47,4 @@ function CallToAction() {
     )
 }
 
-function Footer() {
-
-    return (
-        <div id="footer">
-
-        </div>
-    )
-}
-
-export { Navbar, HeroContainer, CourseHighlights, SkillSpotlight, CallToAction, Footer }
+export { HeroContainer, CourseHighlights, SkillSpotlight, CallToAction }
