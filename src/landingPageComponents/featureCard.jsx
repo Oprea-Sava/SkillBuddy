@@ -1,17 +1,13 @@
 import React, { useRef, useEffect } from "react";
-const featuresContainer = document.querySelector(".featuresContainer");
 
 
-function useOutsideAlerter(ref) {
+/*function useOutsideAlerter(ref) {
     useEffect(() => {
         function handleClickOutside(event) {
             if (ref.current && !ref.current.contains(event.target)) {
-                {ref.current.style.flex = "1";}
+                detects click outside ref
             }
-            else
-            {
-                {ref.current.style.flex = "4";}
-            }
+            
         }
         
         document.addEventListener("mousedown", handleClickOutside);
@@ -19,19 +15,17 @@ function useOutsideAlerter(ref) {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [ref]);
-}
+}*/
 
-export default function FeatureCard() {
-    const wrapperRef = useRef(null);
-    useOutsideAlerter(wrapperRef);
+export default function FeatureCard({isActive, onShow}) {
     const styles = {
         feature:{
-            flex: 1
+            flex: isActive ? 4 : 1
         }
     };
 
     return (
-        <div ref={wrapperRef} className="feature" style={styles.feature}>
+        <div className="feature" style={styles.feature} onClick={onShow}>
             <div className="featureContent">Content</div>
         </div>
     );
