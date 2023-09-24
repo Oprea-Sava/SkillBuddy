@@ -55,6 +55,21 @@
 }
 
 .sCardContainer {
-  background-color: gray;
+  border: solid 1px black;
   width: 50px;
+}
+
+.spotlightCard {
+  display: flex;
+  height: 100%;
+}
+
+.sCardContainer {
+  height: 100%;
+  flex: 1;
+  transition: all 0.2s ease-in;
+}
+
+.sCardContainer:hover {
+  transform: scale(1.05);
 }

@@ -1,6 +1,7 @@
 function SpotlightCard({title, content, desc, url}){
+    ///const navigate = useNavigate(); use only when the pages are done
     function handleClick(){
-        //swap the design with the key features 
+        window.location.href = url;
     }
 
     return (
