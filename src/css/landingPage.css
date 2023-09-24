@@ -43,15 +43,14 @@
   border: solid 1px black;
 }
 
-.feature {
-  height: 100%;
-  border: solid 1px black;
-  width: auto;
-  flex: 1;
-}
-
 #featuresContainer {
   display: flex;
+}
+
+.feature {
+  height: 80%;
+  border: solid 1px black;
+  flex: 1;
 }
 
 .sCardContainer {

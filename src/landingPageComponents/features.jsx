@@ -1,18 +1,15 @@
+import { useSearchParams } from "react-router-dom"
+import FeatureCard from "./featureCard"
+import { useState } from "react"
+
 function Features () {
+    const [click, handleClick] = useState(false);
+
     return (
         <div id="featuresContainer">
-            <div className="feature">
-                <div className="featureContent">Content</div>
-                <button className="featureBtn">Button</button>
-            </div>
-            <div className="feature">
-                <div className="featureContent">Content</div>
-                <button className="featureBtn">Button</button>
-            </div>
-            <div className="feature">
-                <div className="featureContent">Content</div>
-                <button className="featureBtn">Button</button>
-            </div>
+            <FeatureCard />
+            <FeatureCard />
+            <FeatureCard />
         </div>
     )
 }
