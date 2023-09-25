@@ -20,7 +20,7 @@ import React, { useRef, useEffect } from "react";
 export default function FeatureCard({isActive, onShow}) {
     const styles = {
         feature:{
-            flex: isActive ? 4 : 1
+            flex: isActive ? 6 : 1
         }
     };
 

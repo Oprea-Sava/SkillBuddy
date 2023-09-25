@@ -9,6 +9,7 @@ function Features () {
             <FeatureCard isActive = {active == 0} onShow = {()=>setActive(0)}/>
             <FeatureCard isActive = {active == 1} onShow = {()=>setActive(1)}/>
             <FeatureCard isActive = {active == 2} onShow = {()=>setActive(2)}/>
+            <FeatureCard isActive = {active == 3} onShow = {()=>setActive(3)}/>
         </div>
     )
 }
