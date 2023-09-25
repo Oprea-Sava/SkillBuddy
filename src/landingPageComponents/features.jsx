@@ -1,4 +1,3 @@
-import { useSearchParams } from "react-router-dom"
 import FeatureCard from "./featureCard"
 import { useState } from "react"
 

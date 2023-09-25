@@ -30,14 +30,14 @@
     border:none;
 }
 
-button{
+.signUp{
     transition-property: transform;
     transition-duration: 0.5s;
     transition-timing-function: cubic-bezier( 0.16, 0.63, 0.49, 0.84 );
     transition-delay: 0.01s;
 }
 
-button:hover{
+.signUp:hover{
     transform: translateY(-7px);
 }
 
