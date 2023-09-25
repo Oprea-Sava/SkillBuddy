@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom"
 
-
-
 function HighlightCard({title,content,desc,url}){
     ///const navigate = useNavigate(); use only when the pages are done
     function handleClick(){
@@ -13,7 +11,6 @@ function HighlightCard({title,content,desc,url}){
             <div className="hContent">
                 <img src={content} alt={desc} />
             </div>
-        
         </div>
     )
 }

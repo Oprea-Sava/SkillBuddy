@@ -14,6 +14,9 @@ function Navbar() {
                 <button className="skillExchange text">Skill Exchange</button>
                 <button className="aboutUs text">About Us</button>
                 <button className="contact text">Contact</button>
+                <button className="darkMode">
+                    <img src="./assets/sun.png" alt="" />
+                </button>
                 <button className="signUp text">Sign up</button>
             </nav>
         </div>
