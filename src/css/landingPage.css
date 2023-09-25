@@ -1,7 +1,6 @@
 #heroContainer,
 #highlightsContainer,
 #spotlightContainer,
-#callToAction,
 #featuresContainer {
   height: 100vh;
   margin: 40px;
@@ -71,4 +70,14 @@
 
 .sCardContainer:hover {
   transform: scale(1.05);
+}
+
+#callToAction{
+  height: 40vh;
+  margin: 40px;
+  border: 2px solid black;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }

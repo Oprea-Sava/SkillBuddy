@@ -2,7 +2,7 @@ import FeatureCard from "./featureCard"
 import { useState } from "react"
 
 function Features () {
-    const [active, setActive] = useState(0);
+    const [active, setActive] = useState(3);
 
     return (
         <div id="featuresContainer">
