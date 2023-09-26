@@ -4,6 +4,8 @@
     align-items: center;
 
     height: 10vh;
+    margin-left: 60px;
+    margin-right: 60px;
 }
 
 .logo{
@@ -44,3 +46,12 @@
 .signUp:hover{
     transform: scale(1.15);
 }
+
+/*
+.darkmodeButton{
+    transition-property: transform;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in;
+    transition-delay: 0.01s;
+}
+*/
