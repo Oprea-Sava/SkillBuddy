@@ -4,21 +4,38 @@ function Footer() {
 
     return (
         <div id="footer">
-            <img src="" alt="logo" />
+            <div className="logoFooter">
+                <img src="" alt="logo" />
+            </div>
             <div className="footerColumn">
                 <div className="columnTitle">About us</div>
-                <div className="columnItem">Home</div>
-                <div className="columnItem">Contact us</div>
-                <div className="columnItem">FAQ</div>
+                <div className="columnItems">
+                    <div className="columnItem">Home</div>
+                    <div className="columnItem">Contact us</div>
+                    <div className="columnItem">FAQ</div>
+                </div>
             </div>
             <div className="footerColumn">
                 <div className="columnTitle">Product</div>
-                <div className="columnItem">Course</div>
-                <div className="columnItem">Skill Exchange</div>
-                <div className="columnItem">Placeholder</div>
-                </div>   
+                <div className="columnItems">
+                    <div className="columnItem">Course</div>
+                    <div className="columnItem">Skill Exchange</div>
+                    <div className="columnItem">Placeholder</div>
+                </div>
+            </div>  
+            <div className="footerColumn">
+            <div className="columnTitle">Newsletter</div>
+                <form>
                 
-            </div>
+                    <label htmlFor="email">Sign up for our spam free newsletter</label>
+                    <div className="container">
+                    <input type="email" />
+                    <button>Subscribe</button>
+                    </div>
+                </form>
+            </div> 
+        </div>
+        
     )
 }
 

@@ -1,9 +1,26 @@
 #footer {
   height: 25vh;
   display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
-.footerColumn,
-.columnItems {
+.footerColumn {
   display: flex;
   flex-direction: column;
+  gap: 3rem;
+  flex: 2;
+}
+
+.columnItems,
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.logoFooter {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
