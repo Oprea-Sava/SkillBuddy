@@ -1,0 +1,32 @@
+html[data-theme="light"] {
+  --text: #04030c;
+  --background: #efeafb;
+  --primary: #683bd8;
+  --secondary: #c4b2f0;
+  --accent: #4c23b3;
+}
+
+html[data-theme="dark"] {
+  --text: #f4f3fc;
+  --background: #090415;
+  --primary: #5327c4;
+  --secondary: #210f4d;
+  --accent: #754cdc;
+}
+
+body {
+  background-color: var(--background);
+}
+
+.primary {
+  background-color: var(--primary);
+}
+
+.secondary {
+  background-color: var(--secondary);
+}
+
+.accent {
+  background-color: var(--accent);
+}
+

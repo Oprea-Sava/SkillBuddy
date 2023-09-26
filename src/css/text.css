@@ -9,4 +9,5 @@ h4{
 
 .text{
     font-family: 'Roboto Mono';
+    color: var(--text);
 }

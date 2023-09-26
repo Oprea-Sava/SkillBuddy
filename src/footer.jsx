@@ -1,11 +1,12 @@
 import './css/footer.css'
+import logo from './assets/logo.png'
 
 function Footer() {
 
     return (
         <div id="footer">
             <div className="logoFooter">
-                <img src="" alt="logo" />
+                <img src={logo} alt="logo" />
             </div>
             <div className="footerColumn">
                 <div className="columnTitle">About us</div>
