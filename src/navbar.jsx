@@ -36,7 +36,7 @@ function DarkModeButton(){
     }
 
     return(
-        <div className=" darkmodeButton" onClick={handleClick}>
+        <div className="darkmodeButton" onClick={handleClick}>
             <img src={isDark} alt="color skema" />
         </div>
     )

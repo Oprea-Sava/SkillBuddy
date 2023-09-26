@@ -2,10 +2,11 @@
 #highlightsContainer,
 #spotlightContainer,
 #featuresContainer {
-  height: 100vh;
+  height: 85vh;
   margin: 40px;
   padding: 60px;
   border: 2px solid black;
+  margin-top: 0;
 }
 
 #heroContainer {
@@ -73,9 +74,12 @@
 }
 
 #callToAction{
-  height: 40vh;
+  height: 30vh;
+  width: 70%;
   margin: 40px;
+  margin-left: 15%;
   border: 2px solid black;
+  border-radius:50px;
 
   display: flex;
   justify-content: space-around;
