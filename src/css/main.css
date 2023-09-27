@@ -17,6 +17,9 @@ html[data-theme="dark"] {
 body {
   background-color: var(--background);
 }
+body::-webkit-scrollbar{
+  display: none;
+}
 
 .primary {
   background-color: var(--primary);
