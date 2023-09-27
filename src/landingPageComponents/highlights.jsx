@@ -4,7 +4,7 @@ function CourseHighlights() {
     
     return (
         <div id="highlightsContainer">
-            <h1>Course Highlights</h1>
+            <h1 className="text">Course Highlights</h1>
                 <div className="highlights">
                     <HighlightCard />
                     <HighlightCard />
@@ -13,7 +13,7 @@ function CourseHighlights() {
                     <HighlightCard />
                     <HighlightCard />
                 </div>
-                <button>See More Courses</button>
+                <button className="text secondary">See More Courses</button>
         </div>
     )
 }
