@@ -3,9 +3,9 @@ function CallToAction() {
     return (
         <div id="callToAction">
             <div>
-                <h1>Bigger text <br /> Big text</h1>
+                <h1 className="text">Bigger text <br /> Big text</h1>
             </div>
-            <button>Get Started</button>
+            <button className="text primary">Get Started</button>
         </div>
     )
 }

@@ -2,9 +2,7 @@
 #highlightsContainer,
 #spotlightContainer,
 #featuresContainer {
-  height: 85vh;
-  margin: 40px;
-  padding: 60px;
+  height: 100vh;
   margin-top: 0;
 }
 
@@ -43,11 +41,34 @@
 
 #featuresContainer {
   display: flex;
+  width: 75%;
+  margin-left: 12.5%;
+  gap:20px;
 }
 
 .feature {
-  height: 80%;
+  height: 66%;
   flex: 1;
+  border: 1px solid black;
+  border-radius: 100px;
+
+  display: flex;
+  justify-content: center;
+  align-items: end;
+
+  background: url(../assets/placeholder.png);
+  overflow: hidden;
+  background-position: center;
+
+  transition: all 0.5s cubic-bezier(0.5, 0, 0.5, 1) 0.01s;
+}
+
+.feature:onClick{
+  transform: background-size;
+}
+
+.featureContent{
+  padding-bottom: 40px;
 }
 
 .sCardContainer {

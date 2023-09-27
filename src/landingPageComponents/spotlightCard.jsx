@@ -5,8 +5,8 @@ function SpotlightCard({title, content, desc, url}){
     }
 
     return (
-        <div className="sCardContainer" onClick={handleClick}>
-            <div className="sCardTitle">{title}</div>
+        <div className="secondary sCardContainer" onClick={handleClick}>
+            <div className="text sCardTitle">{title}</div>
             <div className="sContent">
                 <img src={content} alt={desc} />
             </div>
