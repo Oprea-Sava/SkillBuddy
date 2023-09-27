@@ -4,7 +4,7 @@ export default function FeatureCard({ isActive, onShow }) {
     const styles = {
         feature: {
             flex: isActive ? 6 : 1,
-            backgroundSize: isActive ? "contain auto 100%" : "auto 150%"
+            backgroundSize: isActive ? " auto 150%" : "auto 200%"
         }
     };
 

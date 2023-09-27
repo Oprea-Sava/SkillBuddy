@@ -3,6 +3,7 @@
 #spotlightContainer,
 #featuresContainer {
   height: 100vh;
+  height: 100vh;
   margin-top: 0;
 }
 
@@ -43,10 +44,14 @@
   display: flex;
   width: 75%;
   margin-left: 12.5%;
+  gap: 20px;
+  width: 75%;
+  margin-left: 12.5%;
   gap:20px;
 }
 
 .feature {
+  height: 66%;
   height: 66%;
   flex: 1;
   border: 1px solid black;
@@ -68,6 +73,14 @@
 }
 
 .featureContent{
+  padding-bottom: 40px;
+}
+
+.feature:onclick {
+  transform: background-size;
+}
+
+.featureContent {
   padding-bottom: 40px;
 }
 
