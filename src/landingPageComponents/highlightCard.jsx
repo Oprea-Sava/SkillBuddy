@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import placeholder from "../assets/placeholder.png"
 
 function HighlightCard({title,content,desc,url}){
     ///const navigate = useNavigate(); use only when the pages are done
@@ -17,7 +17,7 @@ function HighlightCard({title,content,desc,url}){
 
 HighlightCard.defaultProps = {
     title:"Title",
-    content:"#",
+    content: placeholder,
     desc:"image",
     url:"#"
 }
