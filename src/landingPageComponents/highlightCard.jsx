@@ -17,7 +17,7 @@ function HighlightCard({title,content,desc,url}){
 
 HighlightCard.defaultProps = {
     title:"Title",
-    content: placeholder,
+    content: "#",
     desc:"image",
     url:"#"
 }

@@ -2,7 +2,7 @@
 #highlightsContainer,
 #spotlightContainer,
 #featuresContainer {
-  height: 100vh;
+  height: 110vh;
 }
 
 #heroContainer {
@@ -16,40 +16,17 @@
   margin: 20px;
 }
 
-#highlightsContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-  margin: 40px;
-  padding: 60px;
-  border-radius: 5px 100px 5px 100px;
-}
-
-.highlights {
-  height: 90%;
-  width: 100%;
-  display: grid;
-  place-items: center;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(400px, 1fr));
-}
-
-.hCardContainer {
+.highlights{
   position: relative;
-  border-radius: 20px;
-  overflow: clip;
+  height: 50%;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
-.hCardTitle{
-  position: absolute;
-}
-
-.hContent > img{
-  width: 100%;
+.hCardContainer{
   height: 100%;
-
+  width: 100%;
 }
 
 #featuresContainer {
