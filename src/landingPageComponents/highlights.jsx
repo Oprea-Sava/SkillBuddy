@@ -2,20 +2,24 @@ import placeholder from "../assets/placeholder.png"
 import placeholder2 from "../assets/paceholder2.png"
 import ImageSlider from "../imageSlider.jsx"
 
+
 function CourseHighlights() {
 
-    const slides = [
-        { url: placeholder, title: "" },
-        { url: placeholder2, title: "" },
-        { url: placeholder, title: "" },
-        { url: placeholder2, title: "" },
-        { url: placeholder, title: "" },
+    const images = [
+        { url: placeholder, title: "image1" },
+        { url: placeholder2, title: "image2" },
+        { url: placeholder, title: "image3" },
+        { url: placeholder2, title: "image4" },
+        { url: placeholder, title: "image5" },
+        { url: placeholder2, title: "image6" },
+        { url: placeholder, title: "image7" },
+        { url: placeholder2, title: "image8" }
       ];
 
     return (
         <div id="highlightsContainer">
             <div className="highlights">
-                <ImageSlider slides={slides}/>
+                <ImageSlider images={images}/>
             </div>
         </div>
     )

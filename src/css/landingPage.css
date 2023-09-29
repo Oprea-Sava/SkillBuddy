@@ -17,16 +17,33 @@
 }
 
 .highlights{
-  position: relative;
   height: 50%;
   width: 80%;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left:10%;
+  margin-right:10%;
+  display: flex;
+  align-items: center;
+  background-color: var(--secondary);
+  border-radius: 2rem;
+  overflow: hidden;
+  cursor: grab;
 }
 
-.hCardContainer{
-  height: 100%;
+.item{
+  min-width: 40rem;
+  min-width: 30rem;
+  padding: 40px;
+  pointer-events: none;
+}
+
+.item img{
   width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+}
+
+.innerCarousel{
+  display: flex;
 }
 
 #featuresContainer {
