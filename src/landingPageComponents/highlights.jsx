@@ -11,9 +11,7 @@ function CourseHighlights() {
         { url: placeholder, title: "image3" },
         { url: placeholder2, title: "image4" },
         { url: placeholder, title: "image5" },
-        { url: placeholder2, title: "image6" },
-        { url: placeholder, title: "image7" },
-        { url: placeholder2, title: "image8" }
+        { url: placeholder2, title: "image6" }
       ];
 
     return (
