@@ -1,47 +1,100 @@
-#navSection{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    height: 10vh;
-    margin-left: 60px;
-    margin-right: 60px;
+#navSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+  margin-left: 60px;
+  margin-right: 60px;
 }
 
-.logo{
-    margin-left: 40px;
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  gap: 5px;
 }
 
-.navContainer{
-    margin-right: 30px;
-    display: flex;
-    gap: 20px;
+.logo > div {
+  color: var(--primary);
+  font-weight: bolder;
 }
 
-.navContainer > button{
-    transition-property: transform;
-    transition-duration: 0.5s;
-    transition-timing-function: cubic-bezier( 0.16, 0.63, 0.49, 0.84 );
-    transition-delay: 0.01s;
+.logo > img {
+  height: 9vh;
 }
 
-.navbarButton{
-    background-color: transparent;
-    border:none;
+.navContainer {
+  margin-right: 30px;
+  display: flex;
+  gap: 20px;
 }
 
-.navbarButton:hover{
-    transform: translateY(-7px);
+.navContainer > button,
+.navContainerMenu > button {
+  transition-property: transform;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.16, 0.63, 0.49, 0.84);
+  transition-delay: 0.01s;
 }
 
-.signUp{
-    border:none;
-    margin-left:40px;
-    width: 100px;
-    height: 30px;
-    border-radius: 5px;
+.navContainerMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+  gap: 2rem;
+  position: fixed;
+  top: 0;
+  width: 60vw;
+  height: 100vh;
+  background-color: var(--secondary);
+  transition: all 0.5s ease-in-out;
 }
 
-.signUp:hover{
-    transform: scale(1.15);
+.menu {
+  display: none;
+  position: fixed;
+  right: 5vw;
+}
+
+.navContainerMenu > button {
+  margin: 0;
+}
+
+.logoMenu > img {
+  height: 5rem;
+  margin: 0.5rem;
+}
+
+.navbarButton {
+  background-color: transparent;
+  border: none;
+}
+
+.navbarButton:hover {
+  transform: translateY(-7px);
+}
+
+.signUp {
+  border: none;
+  margin-left: 40px;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.signUp:hover {
+  transform: scale(1.15);
+}
+
+@media screen and (max-width: 993px) {
+  .menu {
+    display: block;
+  }
+  .navContainer {
+    display: none;
+  }
+  .logo > div {
+    display: none;
+  }
 }
