@@ -20,7 +20,7 @@
 }
 
 .logo > img {
-  height: 9vh;
+  height: 5rem;
 }
 
 .navContainer {
@@ -41,7 +41,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 1rem;
+  padding: 0 1rem 1rem 1rem;
   gap: 2rem;
   position: fixed;
   top: 0;
