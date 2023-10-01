@@ -1,7 +1,6 @@
 #heroContainer,
 #highlightsContainer,
-#spotlightContainer,
-#featuresContainer {
+#spotlightContainer {
   height: 110vh;
 }
 
@@ -16,11 +15,11 @@
   margin: 20px;
 }
 
-.highlights{
+.highlights {
   height: 50%;
   width: 80%;
-  margin-left:10%;
-  margin-right:10%;
+  margin-left: 10%;
+  margin-right: 10%;
   display: flex;
   align-items: center;
   background-color: var(--secondary);
@@ -29,54 +28,79 @@
   cursor: grab;
 }
 
-.item{
+.item {
   min-width: 30rem;
   padding: 40px;
   pointer-events: none;
 }
 
-.item img{
+.item img {
   width: 100%;
   height: 100%;
   border-radius: 2rem;
 }
 
-.innerCarousel{
+.innerCarousel {
   display: flex;
 }
 
 #featuresContainer {
   display: flex;
-  width: 75%;
-  margin-left: 12.5%;
+  flex-wrap: wrap;
   gap: 20px;
-  width: 75%;
-  margin-left: 12.5%;
+  justify-content: space-around;
+  padding: 10rem;
+  min-height: 100vh;
 }
 
 .feature {
-  height: 66%;
-  flex: 1;
-  border: 1px solid black;
-  border-radius: 100px;
-
+  height: 300px;
+  width: 300px;
+  border-radius: 30px;
   display: flex;
-  justify-content: center;
-  align-items: end;
-
-  background: url(../assets/placeholder.png);
-  overflow: hidden;
-  background-position: center;
-
-  transition: all 0.5s cubic-bezier(0.5, 0, 0.5, 1) 0.01s;
+  perspective: 1000px;
 }
 
-.feature:onClick{
-  transform: background-size;
+.featureInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
 }
 
-.featureContent{
-  padding-bottom: 40px;
+.feature:hover .featureInner {
+  transform: rotateY(180deg);
+}
+
+.featureFront,
+.featureBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 30px;
+}
+
+.featureFront,
+.featureBack {
+  background-image: linear-gradient(45deg, var(--primary), var(--secondary));
+}
+
+.featureFront img {
+  width: 220px;
+  margin-top: 1rem;
+}
+
+.featureBack {
+  transform: rotateY(180deg);
+}
+
+.featureBack img {
+  width: 140px;
+  margin-top: 1rem;
 }
 
 .sCardContainer {
@@ -108,4 +132,22 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+@media screen and (max-width: 900px) {
+  #featuresContainer {
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+
+  .featureFront {
+    display: none; /* Hide the featureFront element */
+  }
+
+  .featureInner {
+    transform: rotateY(
+      180deg
+    ); /* Rotate the featureInner to show the featureBack */
+  }
 }

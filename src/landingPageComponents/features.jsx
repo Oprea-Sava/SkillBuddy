@@ -1,15 +1,17 @@
 import FeatureCard from "./featureCard"
-import { useState } from "react"
+import Image1 from '../assets/illustration.png'
+import Image2 from '../assets/illustration2.png'
+import Image3 from '../assets/illustration3.png'
+import Image4 from '../assets/illustration4.png'
 
 function Features () {
-    const [active, setActive] = useState(3);
 
     return (
         <div id="featuresContainer">
-            <FeatureCard isActive = {active == 0} onShow = {()=>setActive(0)}/>
-            <FeatureCard isActive = {active == 1} onShow = {()=>setActive(1)}/>
-            <FeatureCard isActive = {active == 2} onShow = {()=>setActive(2)}/>
-            <FeatureCard isActive = {active == 3} onShow = {()=>setActive(3)}/>
+            <FeatureCard src={Image1}/>
+            <FeatureCard src={Image2}/>
+            <FeatureCard src={Image3}/>
+            <FeatureCard src={Image4}/>
         </div>
     )
 }
