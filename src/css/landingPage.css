@@ -1,23 +1,26 @@
-#heroContainer,
 #highlightsContainer,
 #spotlightContainer {
   height: 110vh;
 }
 
 #heroContainer {
+  position: relative;
   display: flex;
+  min-height: 110vh;
   align-items: center;
   justify-content: space-around;
+  padding: 3rem;
 }
 
-.textSide>* {
+.textSide > * {
   margin: 20px;
 }
 
 .imageSide > img {
   object-fit: contain;
-  width: 900px;
-  height: 800px;
+  width: 100%;
+  height: auto;
+  max-width: 1000px;
 }
 
 .heroBig {
@@ -40,8 +43,7 @@
   cursor: grab;
   border-radius: 31px;
   background: #efeafb;
-  box-shadow: inset 28px 28px 99px #b2afb9,
-    inset -28px -28px 99px #ffffff;
+  box-shadow: inset 28px 28px 99px #b2afb9, inset -28px -28px 99px #ffffff;
 }
 
 .item {
@@ -64,9 +66,9 @@
 #featuresContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 30px;
   justify-content: space-around;
-  padding: 10rem;
+  padding: 16%;
   min-height: 100vh;
 }
 
@@ -160,5 +162,13 @@
   .featureInner {
     transform: rotateY(180deg);
     /* Rotate the featureInner to show the featureBack */
+  }
+}
+
+@media screen and (max-width: 1030px) {
+  #heroContainer {
+    flex-wrap: wrap-reverse;
+    align-content: start;
+    min-height: 80vh;
   }
 }
