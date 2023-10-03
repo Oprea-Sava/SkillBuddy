@@ -1,16 +1,21 @@
 import React from "react";
 
-export default function FeatureCard({ isActive, onShow }) {
-    const styles = {
-        feature: {
-            flex: isActive ? 6 : 1,
-            backgroundSize: isActive ? " auto 150%" : "auto 200%"
-        }
-    };
-
+export default function FeatureCard({src}) {
+    
     return (
-        <div className="feature" style={styles.feature} onClick={onShow}>
-            <div className="text featureContent">Content</div>
+        <div className="feature" >
+            <div className="featureInner">
+                <div className="featureFront">
+                    <img src={src}></img>
+                </div>
+                <div className="featureBack">
+                    <img src={src}></img>
+                    <div className="featureContent">
+                        <h2>Text</h2>
+                        <h3>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </h3>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
