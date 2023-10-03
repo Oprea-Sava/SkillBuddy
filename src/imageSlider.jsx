@@ -13,7 +13,7 @@ function ImageSlider({ images }) {
 
   return (
     <div  className="imageSlider">
-      <motion.div ref={carousel} drag="x" dragConstraints={{right: 0, left: -`${images.length * 550 - 1470}`}} className="innerCarousel">
+      <motion.div ref={carousel} drag="x" dragConstraints={{right: 0, left: -1830}} className="innerCarousel">
         {images.map((image) => {
           return (
             <motion.div className="item" key={image.title}>

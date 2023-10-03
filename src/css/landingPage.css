@@ -11,7 +11,7 @@
   justify-content: space-around;
 }
 
-.textSide > * {
+.textSide>* {
   margin: 20px;
 }
 
@@ -22,10 +22,13 @@
   margin-right: 10%;
   display: flex;
   align-items: center;
-  background-color: var(--secondary);
   border-radius: 2rem;
   overflow: hidden;
   cursor: grab;
+  border-radius: 31px;
+  background: #efeafb;
+  box-shadow: inset 28px 28px 99px #b2afb9,
+    inset -28px -28px 99px #ffffff;
 }
 
 .item {
@@ -38,6 +41,7 @@
   width: 100%;
   height: 100%;
   border-radius: 2rem;
+  box-shadow: 10px 10px 30px 10px #c5c2ce;
 }
 
 .innerCarousel {
@@ -142,12 +146,12 @@
   }
 
   .featureFront {
-    display: none; /* Hide the featureFront element */
+    display: none;
+    /* Hide the featureFront element */
   }
 
   .featureInner {
-    transform: rotateY(
-      180deg
-    ); /* Rotate the featureInner to show the featureBack */
+    transform: rotateY(180deg);
+    /* Rotate the featureInner to show the featureBack */
   }
 }
