@@ -6,13 +6,26 @@
 
 #heroContainer {
   display: flex;
-
   align-items: center;
   justify-content: space-around;
 }
 
 .textSide>* {
   margin: 20px;
+}
+
+.imageSide > img {
+  object-fit: contain;
+  width: 900px;
+  height: 800px;
+}
+
+.heroBig {
+  font-size: x-large;
+}
+
+.heroSmall {
+  font-size: large;
 }
 
 .highlights {
@@ -139,12 +152,6 @@
 }
 
 @media screen and (max-width: 900px) {
-  #featuresContainer {
-    align-items: center;
-    flex-wrap: nowrap;
-    flex-direction: column;
-  }
-
   .featureFront {
     display: none;
     /* Hide the featureFront element */
