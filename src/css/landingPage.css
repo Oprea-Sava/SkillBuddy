@@ -4,7 +4,6 @@
 }
 
 #heroContainer {
-  position: relative;
   display: flex;
   min-height: 110vh;
   align-items: center;
