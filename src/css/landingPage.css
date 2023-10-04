@@ -169,5 +169,6 @@
     flex-wrap: wrap-reverse;
     align-content: start;
     min-height: 80vh;
+    gap: 5rem;
   }
 }
