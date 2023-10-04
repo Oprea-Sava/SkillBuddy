@@ -2,11 +2,11 @@ import React from 'react'
 import './css/landingPage.css'
 import HeroContainer from './landingPageComponents/hero'
 import CourseHighlights from './landingPageComponents/highlights'
-import SkillSpotlight from './landingPageComponents/spotlight'
 import CallToAction from './landingPageComponents/callToAction'
 import Navbar from './navbar'
 import Footer from './footer'
 import Features from './landingPageComponents/features'
+import AboutUs from './landingPageComponents/aboutUs'
 
 function LandingPage() {
     return (
@@ -15,7 +15,7 @@ function LandingPage() {
             <HeroContainer />
             <Features/>
             <CourseHighlights />
-            <SkillSpotlight />
+            <AboutUs />
             <CallToAction />
             <Footer/>
         </>

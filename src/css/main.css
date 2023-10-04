@@ -4,14 +4,16 @@ html[data-theme="light"] {
   --primary: #683bd8;
   --secondary: #c4b2f0;
   --accent: #4c23b3;
+  --shadow: #8b8b8b;
 }
 
 html[data-theme="dark"] {
   --text: #f4f3fc;
-  --background: #090415;
-  --primary: #5327c4;
-  --secondary: #210f4d;
+  --background: #0a0516;
+  --primary: #5d30cf;
+  --secondary: #190b38;
   --accent: #754cdc;
+  --shadow: #000000;
 }
 
 body {

@@ -5,7 +5,7 @@ function CallToAction() {
             <div>
                 <h1 className="text">Bigger text <br /> Big text</h1>
             </div>
-            <button className="text primary">Get Started</button>
+            <button className="text secondary ctaButton">Get Started</button>
         </div>
     )
 }
