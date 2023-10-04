@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: space-evenly;
   padding: 1rem 10%;
+  gap:35px;
 }
 .footerColumn {
   display: flex;
@@ -34,8 +35,24 @@ form {
   #footer {
     flex-wrap: wrap;
   }
+}
 
-  #footer:nth-child(3) > * {
+@media screen and (max-width: 534px){
+  .productCollumn{
     align-items: end;
+  }
+
+  .newsletter{
+    align-items: center;
+    padding-top: 60px;
+    gap: 30px;
+  }
+
+  .newsletter>*{
+    align-items: center;
+  }
+
+  .formText{
+    text-align: center;
   }
 }
