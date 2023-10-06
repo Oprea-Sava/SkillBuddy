@@ -157,6 +157,7 @@ form > .container > .sCardContainer {
 #aboutUs {
   min-height: 80vh;
   display: flex;
+  align-items: center;
   padding: 10rem;
 }
 
@@ -168,6 +169,12 @@ form > .container > .sCardContainer {
 
 #aboutUs > * {
   flex: 1;
+}
+
+.aboutUsText{
+  display: flex;
+  flex-direction: column;
+  gap:3rem;
 }
 
 #callToAction {
@@ -225,8 +232,15 @@ form > .container > .sCardContainer {
   }
 
   #aboutUs > img {
-    max-width: none;
+    max-width: 100%;
   }
 
-  /* separate about us and our vision into 2 columns*/
+  .aboutUsText{
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .aboutUsText>*{
+    width: 30%;
+  }  
 }
