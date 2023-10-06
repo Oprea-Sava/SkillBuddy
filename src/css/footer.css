@@ -1,7 +1,6 @@
 #footer {
   min-height: 25vh;
   display: flex;
-  align-items: center;
   justify-content: space-evenly;
   padding: 1rem 10%;
   gap:35px;
@@ -25,6 +24,22 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+input{
+  margin-right: 10px;
+}
+
+.formText{
+  line-height: 25px;
+}
+
+.subscribeButton{
+  border: none;
+  width: 100px;
+  height: 22.5px;
+  border-radius: 5px;
+  margin: 10px 10px 10px 0px;
 }
 
 @media screen and (max-width: 993px) {
@@ -54,5 +69,9 @@ form {
 
   .formText{
     text-align: center;
+  }
+
+  .subscribeButton{
+    margin-left: 15px;
   }
 }

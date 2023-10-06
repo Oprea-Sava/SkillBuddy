@@ -134,7 +134,7 @@
 
 .featureContent {
   padding: 10% 7.5% 7.5% 7.5%;
-}
+}form>.container>
 
 .sCardContainer {
   width: 50px;
@@ -163,6 +163,8 @@
 
 #aboutUs>img{
   max-width: 50%;
+  object-fit: contain;
+  height: auto;
 }
 
 #aboutUs>*{
@@ -176,6 +178,7 @@
 
 .aboutUsText{
   padding: 2rem 2rem 2rem 10rem;
+  width: 50%;
 }
 
 #callToAction {
@@ -221,7 +224,7 @@
     padding: 5rem 0 0 0;
   }
 
-  .textSide {
-    padding: 0 2.25rem 2.25rem 2.25rem;
+  .aboutUsText {
+    padding: 0;
   }
 }

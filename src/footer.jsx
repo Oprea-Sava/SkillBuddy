@@ -27,10 +27,10 @@ function Footer() {
             <div className="text footerColumn newsletter">
                 <div className="columnTitle">Newsletter</div>
                 <form>
-                    <label className="formText" htmlFor="email">Sign up for our spam free newsletter</label>
+                    <label className="formText" htmlFor="email">Sign up for our newsletter</label>
                     <div className="container">
                         <input type="email" />
-                        <button className="text primary">Subscribe</button>
+                        <button className="text primary subscribeButton">Subscribe</button>
                     </div>
                 </form>
             </div>

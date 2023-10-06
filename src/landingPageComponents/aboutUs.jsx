@@ -1,4 +1,4 @@
-import placeholder from "../assets/placeholder.png"
+import placeholder from "../assets/aboutUs.svg"
 
 function AboutUs() {
 
