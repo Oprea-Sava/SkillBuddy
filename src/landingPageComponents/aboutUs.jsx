@@ -5,20 +5,14 @@ function AboutUs() {
     return (
         <div id="aboutUs">
             <img src={placeholder} alt="" />
-            <div>
-                <h2 className="aboutUsTitle text">Title</h2>
                 <div className="aboutUsText text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                    when an unknown printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining essentially
-                    unchanged. It was popularised in the 1960s with the
-                    release of Letraset sheets containing Lorem
-                    Ipsum passages, and more recently with desktop publishing software like
-                    Aldus PageMaker including versions of Lorem Ipsum.
+                About Us < br/>
+At [Your Website Name], we are driven by a simple yet powerful mission: to empower individuals like you to thrive in today's fast-paced world by equipping you with essential life skills and fostering a vibrant community of learners. 
+<br/>
+Our Vision: 
+<br/>
+Our vision is to create a global hub where individuals from all walks of life can access high-quality, interactive courses on a wide range of essential life skills. Whether you're looking to enhance your financial literacy, master time management, or explore the art of cooking, we've got you covered. 
                 </div>
-            </div>
         </div>
     )
 }

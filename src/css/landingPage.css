@@ -18,11 +18,11 @@
   transform: scale(1.05);
 }
 
-.textSide>* {
+.textSide > * {
   margin: 20px;
 }
 
-.imageSide>img {
+.imageSide > img {
   object-fit: contain;
   width: 100%;
   height: auto;
@@ -134,9 +134,8 @@
 
 .featureContent {
   padding: 10% 7.5% 7.5% 7.5%;
-}form>.container>
-
-.sCardContainer {
+}
+form > .container > .sCardContainer {
   width: 50px;
 }
 
@@ -155,30 +154,20 @@
   transform: scale(1.05);
 }
 
-#aboutUs{
+#aboutUs {
   min-height: 80vh;
   display: flex;
   padding: 10rem;
 }
 
-#aboutUs>img{
+#aboutUs > img {
   max-width: 50%;
   object-fit: contain;
   height: auto;
 }
 
-#aboutUs>*{
-  flex:1;
-}
-
-.aboutUsTitle{
-  margin-left: 50%;
-  margin-right: 50%;
-}
-
-.aboutUsText{
-  padding: 2rem 2rem 2rem 10rem;
-  width: 50%;
+#aboutUs > * {
+  flex: 1;
 }
 
 #callToAction {
@@ -227,4 +216,17 @@
   .aboutUsText {
     padding: 0;
   }
+}
+
+@media screen and (max-width: 1400px) {
+  #aboutUs {
+    flex-direction: column;
+    padding: 3rem;
+  }
+
+  #aboutUs > img {
+    max-width: none;
+  }
+
+  /* separate about us and our vision into 2 columns*/
 }
