@@ -10,7 +10,7 @@ html[data-theme="light"] {
 html[data-theme="dark"] {
   --text: #f4f3fc;
   --background: #0a0516;
-  --primary: #5d30cf;
+  --primary: #4520a0;
   --secondary: #190b38;
   --accent: #754cdc;
   --shadow: #000000;

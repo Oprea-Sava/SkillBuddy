@@ -24,7 +24,7 @@ function Navbar() {
         <div id="navSection">
             <div className="logo" >
                 <img src={logo} alt="logo" />
-                <div className='text '>SkillHub</div>
+                <div className='text '>SkillBuddy</div>
             </div>
             <nav className="navContainer">
                 <button className="navbarButton home text">Home</button>
@@ -33,7 +33,7 @@ function Navbar() {
                 <button className="navbarButton aboutUs text">About Us</button>
                 <button className="navbarButton contact text">Contact</button>
                 <DarkModeButton />
-                <button className="primary signUp text">Sign up</button>
+                <button className="secondary signUp text">Sign up</button>
             </nav>
             <div className='menu' onClick={handleNav}>
                 {isOpen ? <AiOutlineClose size={20}/> : <AiOutlineMenu size={20}/>}

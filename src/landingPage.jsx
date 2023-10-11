@@ -6,7 +6,6 @@ import CallToAction from './landingPageComponents/callToAction'
 import Navbar from './navbar'
 import Footer from './footer'
 import Features from './landingPageComponents/features'
-import AboutUs from './landingPageComponents/aboutUs'
 
 function LandingPage() {
     return (
@@ -15,7 +14,6 @@ function LandingPage() {
             <HeroContainer />
             <Features/>
             <CourseHighlights />
-            <AboutUs />
             <CallToAction />
             <Footer/>
         </>
