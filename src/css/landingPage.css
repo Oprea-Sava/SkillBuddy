@@ -50,7 +50,7 @@
 .featuredCourse{
   display: flex;
   justify-content: center;
-  margin: 0 120px 160px 120px;
+  margin: 0 12% 16% 12%;
   gap: 1.5rem;
 }
 
@@ -62,7 +62,7 @@
 }
 
 .featuredCourseDetails{
-  width: 530px;
+  max-width: 530px;
 }
 
 .featuredCourseTitle{
@@ -201,11 +201,32 @@
   background: #683bd8;
 }
 
+@media screen and (max-width:540px){
+  #callToAction>div{
+    font-size: large;
+  }
+}
+
 @media screen and (max-width:769px) {
   .features{
     flex-direction: column;
     align-items: center;
     gap:3rem;
+  }
+
+  .featuredCourse>img{
+    width: 100%;
+    height: 100%;
+  }
+
+  #callToAction{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #callToAction>*{
+    text-align: center;
+    margin: 0;
   }
 }
 
@@ -236,6 +257,13 @@
 
   .aboutUsText {
     padding: 0;
+  }
+}
+
+@media screen and (max-width:1159px){
+  .featuredCourse{
+    flex-direction: column;
+    align-items: center;
   }
 }
 

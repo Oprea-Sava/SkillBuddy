@@ -8,8 +8,8 @@ export default function FeatureCard({src}) {
                 <img src="#" alt="image" />
             </div>
             <div className="textContainer">
-                <div className="featureTitle">Feature</div>
-                <div className="featureContent">asjgfd Ashd  ahsdjh asdhghjas</div>
+                <div className="featureTitle text">Feature</div>
+                <div className="featureContent text">asjgfd Ashd  ahsdjh asdhghjas</div>
             </div>
         </div>
     );

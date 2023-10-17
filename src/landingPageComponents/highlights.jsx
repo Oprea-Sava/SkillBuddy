@@ -18,7 +18,7 @@ function CourseHighlights() {
         <div id="highlightsContainer">
             <div className="featuredCourse">
                 <img src={placeholder2} alt="image" />
-                <div className="featuredCourseDetails">
+                <div className="featuredCourseDetails text">
                     <div className="featuredCourseTitle">
                         <div className="featureCircle"></div>
                         <div>Featured Course</div>
