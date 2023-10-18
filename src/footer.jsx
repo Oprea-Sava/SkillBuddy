@@ -18,7 +18,7 @@ function Footer() {
             </div>
             <div className="text footerColumn productCollumn">
                 <div className="columnTitle">Product</div>
-                <div className="columnItems productCollumn">
+                <div className="columnItems productCollumnItems">
                     <div className="columnItem">Course</div>
                     <div className="columnItem">Placeholder</div>
                     <div className="columnItem">Skill Exchange</div>

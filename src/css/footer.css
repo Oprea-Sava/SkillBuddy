@@ -4,12 +4,14 @@
   justify-content: space-evenly;
   padding: 1rem 10%;
   gap:35px;
+  text-wrap: nowrap;
 }
 .footerColumn {
   display: flex;
   flex-direction: column;
   gap: 3rem;
   flex: 2;
+  justify-content: center;
 }
 
 .columnItems,
@@ -52,14 +54,22 @@ input{
   }
 }
 
-@media screen and (max-width: 534px){
+@media screen and (max-width: 757px){  
+  #footer{
+    padding: 1rem 16%;
+  }
+  
   .productCollumn{
+    align-items: end;
+  }
+  
+  .productCollumnItems{
     align-items: end;
   }
 
   .newsletter{
     align-items: center;
-    padding-top: 60px;
+    padding-top: 20px;
     gap: 30px;
   }
 
