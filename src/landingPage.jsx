@@ -7,6 +7,7 @@ import Navbar from './navbar'
 import Footer from './footer'
 import Features from './landingPageComponents/features'
 
+
 function LandingPage() {
     return (
         <>
