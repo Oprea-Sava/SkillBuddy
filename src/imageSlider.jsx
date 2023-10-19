@@ -1,4 +1,3 @@
-import "./css/landingPage.css"
 import { motion } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 

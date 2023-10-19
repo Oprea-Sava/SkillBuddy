@@ -1,4 +1,5 @@
 import FeatureCard from "./featureCard"
+import "../css/landingPageCss/features.css"
 
 function Features() {
 
