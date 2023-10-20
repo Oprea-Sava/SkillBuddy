@@ -30,6 +30,11 @@
     border-radius: 50%;
 }
 
+.iconContainer>*{
+    width: 30px;
+    height: 30px;
+}
+
 .textContainer {
     gap: 1.5rem;
     display: flex;
