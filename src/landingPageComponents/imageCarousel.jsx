@@ -2,8 +2,7 @@
 import "../css/imageCarousel.css";
 import Glider from 'react-glider';
 import 'glider-js/glider.min.css';
-import image1 from "../assets/placeholder.png"
-import image2 from "../assets/paceholder2.png"
+
 
 function ImageCarousel() {
     return(
@@ -19,28 +18,36 @@ function ImageCarousel() {
             {
               breakpoint: 775,
               settings: {
-                slidesToShow: "3",
+                slidesToShow: 3,
               },
             },
             {
               breakpoint:1050,
               settings:{
-                slidesToShow:"4",
+                slidesToShow:3,
               },
             }
           ]}>
-            <div className="carouselImage"><img src={image1}></img></div>
-            <div className="carouselImage"><img src={image2}></img></div>
-            <div className="carouselImage"><img src={image1}></img></div>
-            <div className="carouselImage"><img src={image2}></img></div>
-            <div className="carouselImage"><img src={image1}></img></div>
-            <div className="carouselImage"><img src={image2}></img></div>
-            <div className="carouselImage"><img src={image1}></img></div>
-            <div className="carouselImage"><img src={image2}></img></div>
-            <div className="carouselImage"><img src={image1}></img></div>
-            <div className="carouselImage"><img src={image2}></img></div>
-            <div className="carouselImage"><img src={image1}></img></div>
-            <div className="carouselImage"><img src={image2}></img></div>
+        <div className="slide slideGap" >
+          <div className="carouselImage"></div>
+          <div className="carouselText">Empty Slide 1</div>
+        </div>
+        <div className="slide slideGap">
+          <div className="carouselImage"></div>
+          <div className="carouselText">Empty Slide 2</div>
+        </div>
+        <div className="slide slideGap">
+          <div className="carouselImage"></div>
+          <div className="carouselText">Empty Slide 3</div>
+        </div>
+        <div className="slide slideGap">
+          <div className="carouselImage"></div>
+          <div className="carouselText">Empty Slide 4</div>
+        </div>
+        <div className="slide slideGap">
+          <div className="carouselImage"></div>
+          <div className="carouselText">Empty Slide 5</div>
+        </div>
          </Glider>
     </div>
     )

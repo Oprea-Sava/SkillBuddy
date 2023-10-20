@@ -13,3 +13,23 @@
   object-fit: contain;
   height: 100%;
 }
+
+.slide {
+  background-color: var(--accent);
+  height: 420px !important;
+  border-radius: 28px;
+}
+
+.carouselImage {
+  background-color: var(--secondary);
+  height: 290px;
+  border-radius: 28px;
+}
+
+.slideGap {
+  margin-right: 56px;
+}
+
+.slide:last-child {
+  margin-right: 0;
+}
