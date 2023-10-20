@@ -1,7 +1,6 @@
 #footer {
   min-height: 25vh;
   display: flex;
-  justify-content: space-evenly;
   padding: 1rem 10%;
   gap:35px;
   text-wrap: nowrap;
