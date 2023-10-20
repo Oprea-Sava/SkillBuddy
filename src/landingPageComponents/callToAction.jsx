@@ -1,3 +1,5 @@
+import "../css/landingPageCss/callToAction.css"
+
 function CallToAction() {
 
     return (

@@ -1,15 +1,15 @@
-import React from "react";
+import React, { Component } from "react";
 
-export default function FeatureCard({src}) {
-    
+export default function FeatureCard( {Component, Feature, Description} ) {
+
     return (
         <div className="feature" >
             <div className="iconContainer">
-                <img src="#" alt="image" />
+                {Component}
             </div>
             <div className="textContainer">
-                <div className="featureTitle text">Feature</div>
-                <div className="featureContent text">asjgfd Ashd  ahsdjh asdhghjas</div>
+                <div className="featureTitle text">{Feature}</div>
+                <div className="featureContent text">{Description}</div>
             </div>
         </div>
     );

@@ -1,5 +1,4 @@
 import React from 'react'
-import './css/landingPage.css'
 import HeroContainer from './landingPageComponents/hero'
 import CourseHighlights from './landingPageComponents/highlights'
 import CallToAction from './landingPageComponents/callToAction'

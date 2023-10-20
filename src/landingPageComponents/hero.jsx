@@ -1,4 +1,6 @@
 import hero from '../assets/hero.svg'
+import "../css/landingPageCss/hero.css"
+
 function HeroContainer() {
 
     return (

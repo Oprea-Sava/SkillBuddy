@@ -1,7 +1,7 @@
 import placeholder from "../assets/placeholder.png"
 import placeholder2 from "../assets/paceholder2.png"
 import ImageCarousel from "./imageCarousel"
-
+import "../css/landingPageCss/highlights.css"
 
 function CourseHighlights() {
 
