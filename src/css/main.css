@@ -5,6 +5,8 @@ html[data-theme="light"] {
   --secondary: #c4b2f0;
   --accent: #4c23b3;
   --shadow: #8b8b8b;
+  --top: url("../assets/separators/layered-waves-haikei.svg");
+  --bottom: url("../assets/separators/layered-waves-haikei2.svg");
 }
 
 html[data-theme="dark"] {
@@ -14,12 +16,14 @@ html[data-theme="dark"] {
   --secondary: #190b38;
   --accent: #754cdc;
   --shadow: #000000;
+  --top: url("../assets/separators/layered-waves-haikei3.svg");
+  --bottom: url("../assets/separators/layered-waves-haikei4.svg");
 }
 
 body {
   background-color: var(--background);
 }
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
   display: none;
 }
 
@@ -35,7 +39,7 @@ body::-webkit-scrollbar{
   background-color: var(--accent);
 }
 
-.separator{
+.separator {
   aspect-ratio: 900/100;
   width: 100%;
   background-repeat: no-repeat;
@@ -43,10 +47,10 @@ body::-webkit-scrollbar{
   background-size: cover;
 }
 
-.top{
-  background-image: url(../assets/separators/layered-waves-haikei.svg);
+.top {
+  background-image: var(--top);
 }
 
-.bottom{
-  background-image: url(../assets/separators/layered-waves-haikei2.svg);
+.bottom {
+  background-image: var(--bottom);
 }
