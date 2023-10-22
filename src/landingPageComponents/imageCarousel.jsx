@@ -16,17 +16,22 @@ function ImageCarousel() {
          slidesToScroll={1}
          responsive={[
             {
-              breakpoint: 775,
+              breakpoint: 768,
               settings: {
-                slidesToShow: 3,
+                slidesToShow: 1,
               },
             },
             {
-              breakpoint:1050,
+              breakpoint:1025,
               settings:{
-                slidesToShow:3,
+                slidesToShow: "auto",
+                slidesToScroll: 1,
+                itemWidth:450,
+                exactWidth: 450,
+                duration: 1,
               },
-            }
+            },
+          
           ]}>
         <div className="slide slideGap" >
           <div className="carouselImage"></div>

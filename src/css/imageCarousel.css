@@ -2,6 +2,7 @@
   height: 50vh;
   width: 70%;
   margin-left: 15%;
+  padding-bottom: 10rem;
 }
 
 .carousel {
@@ -16,7 +17,6 @@
 
 .slide {
   background-color: var(--accent);
-  height: 420px !important;
   border-radius: 28px;
 }
 
@@ -26,10 +26,16 @@
   border-radius: 28px;
 }
 
-.slideGap {
-  margin-right: 56px;
+.carouselText {
+  height: 130px;
 }
 
-.slide:last-child {
-  margin-right: 0;
+.slideGap {
+  margin: 0 28px 0 28px;
+}
+
+@media screen and (max-width: 568px) {
+  .carouselText {
+    display: none;
+  }
 }

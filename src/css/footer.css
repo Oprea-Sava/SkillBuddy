@@ -2,7 +2,7 @@
   min-height: 25vh;
   display: flex;
   padding: 1rem 10%;
-  gap:35px;
+  gap: 35px;
   text-wrap: nowrap;
 }
 .footerColumn {
@@ -27,15 +27,15 @@ form {
   align-items: center;
 }
 
-input{
+input {
   margin-right: 10px;
 }
 
-.formText{
+.formText {
   line-height: 25px;
 }
 
-.subscribeButton{
+.subscribeButton {
   border: none;
   width: 100px;
   height: 22.5px;
@@ -53,34 +53,61 @@ input{
   }
 }
 
-@media screen and (max-width: 757px){  
-  #footer{
+@media screen and (max-width: 757px) {
+  #footer {
     padding: 1rem 16%;
   }
-  
-  .productCollumn{
-    align-items: end;
-  }
-  
-  .productCollumnItems{
+
+  .productCollumn {
     align-items: end;
   }
 
-  .newsletter{
+  .productCollumnItems {
+    align-items: end;
+  }
+
+  .newsletter {
     align-items: center;
     padding-top: 20px;
     gap: 30px;
   }
 
-  .newsletter>*{
+  .newsletter > * {
     align-items: center;
   }
 
-  .formText{
+  .formText {
     text-align: center;
   }
 
-  .subscribeButton{
+  .subscribeButton {
     margin-left: 15px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .emailContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .productCollumn,
+  .productCollumnItems,
+  .newsletter,
+  form {
+    align-items: start !important;
+  }
+
+  .subscribeButton {
+    margin-left: 0;
+  }
+
+  .emailContainer {
+    flex-direction: row;
+    align-items: center;
   }
 }
