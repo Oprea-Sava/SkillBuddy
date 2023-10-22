@@ -35,3 +35,18 @@ body::-webkit-scrollbar{
   background-color: var(--accent);
 }
 
+.separator{
+  aspect-ratio: 900/100;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.top{
+  background-image: url(../assets/separators/layered-waves-haikei.svg);
+}
+
+.bottom{
+  background-image: url(../assets/separators/layered-waves-haikei2.svg);
+}

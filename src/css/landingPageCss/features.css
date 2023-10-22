@@ -1,5 +1,5 @@
 #featuresContainer {
-    min-height: 120vh;
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     gap: 6rem;

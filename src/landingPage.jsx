@@ -6,14 +6,16 @@ import Navbar from './navbar'
 import Footer from './footer'
 import Features from './landingPageComponents/features'
 
-
 function LandingPage() {
     return (
         <>
             <Navbar/>
             <HeroContainer />
+            <div className='separator top'></div>
             <Features/>
+            <div className='separator bottom'></div>
             <CourseHighlights />
+            <div className='separator top'></div>
             <CallToAction />
             <Footer/>
         </>

@@ -1,11 +1,12 @@
 #highlightsContainer {
-  min-height: 110vh;
+  min-height: 100vh;
+  background-color: var(--primary);
 }
 
 .featuredCourse {
   display: flex;
   justify-content: center;
-  margin: 0 12% 16% 12%;
+  padding: 12% 12% 3% 12%;
   gap: 1.5rem;
 }
 
