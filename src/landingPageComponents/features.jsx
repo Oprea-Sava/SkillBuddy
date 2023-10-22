@@ -8,11 +8,11 @@ function Features() {
 
     return (
         <div id="featuresContainer">
-            <h1>Features</h1>
+            <div className="text titleText">Features</div>
             <div className="features">
-                <FeatureCard Component={<FaRegLightbulb/>} Feature={""} Description={""}/>
-                <FeatureCard Component={<FaEarthAmericas/>}  Feature={""} Description={""}/>
-                <FeatureCard Component={<SlWallet/>}  Feature={""} Description={""}/>
+                <FeatureCard Component={<FaRegLightbulb/>} Feature={"Creativity"} Description={"You can do whatever you want"}/>
+                <FeatureCard Component={<FaEarthAmericas/>}  Feature={"Worldwide"} Description={"Mr. 305 Mr. Worldwide"}/>
+                <FeatureCard Component={<SlWallet/>}  Feature={"Free"} Description={"Almost free"}/>
             </div>
         </div>
     )

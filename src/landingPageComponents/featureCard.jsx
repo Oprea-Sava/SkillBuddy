@@ -8,7 +8,7 @@ export default function FeatureCard( {Component, Feature, Description} ) {
                 {Component}
             </div>
             <div className="textContainer">
-                <div className="featureTitle text">{Feature}</div>
+                <div className="featureTitle text subtitleText">{Feature}</div>
                 <div className="featureContent text">{Description}</div>
             </div>
         </div>

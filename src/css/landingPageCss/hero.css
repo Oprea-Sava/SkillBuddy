@@ -4,7 +4,7 @@
   min-height: 110vh;
   align-items: center;
   justify-content: space-around;
-  padding: 0 0 5rem 0;
+  padding-bottom: 5rem;
 }
 
 .heroButton {
@@ -17,6 +17,10 @@
 
 .heroButton:hover {
   transform: scale(1.05);
+}
+
+.textSide{
+  margin-left: 70px;
 }
 
 .textSide>* {
