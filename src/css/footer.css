@@ -98,16 +98,12 @@ input {
   .productCollumn,
   .productCollumnItems,
   .newsletter,
+  .emailContainer,
   form {
     align-items: start !important;
   }
 
   .subscribeButton {
     margin-left: 0;
-  }
-
-  .emailContainer {
-    flex-direction: row;
-    align-items: center;
   }
 }

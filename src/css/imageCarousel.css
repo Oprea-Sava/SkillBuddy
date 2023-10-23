@@ -1,12 +1,14 @@
 .container {
   height: 50vh;
-  width: 70%;
-  margin-left: 15%;
+  margin: 5% 10% 0 10%;
   padding-bottom: 10rem;
 }
 
 .carousel {
-  width: 100%;
+  height: 100%;
+}
+
+.splide__track {
   height: 100%;
 }
 
@@ -18,6 +20,8 @@
 .slide {
   background-color: var(--accent);
   border-radius: 28px;
+  height: 100%;
+  width: 360px;
 }
 
 .carouselImage {
@@ -35,7 +39,11 @@
 }
 
 @media screen and (max-width: 568px) {
-  .carouselText {
+  .slide {
+    width: 100% !important;
+  }
+
+  .splide__arrows {
     display: none;
   }
 }
