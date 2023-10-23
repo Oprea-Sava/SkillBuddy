@@ -1,61 +1,61 @@
 
 import "../css/imageCarousel.css";
-import Glider from 'react-glider';
-import 'glider-js/glider.min.css';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css';
 
 
 function ImageCarousel() {
     return(
-     <div className="container">
-         <Glider 
-         className="carousel" 
-         draggable
-         hasArrows
-         hasDots
-         slidesToShow={1}
-         slidesToScroll={1}
-         responsive={[
-            {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: 1,
-              },
-            },
-            {
-              breakpoint:1025,
-              settings:{
-                slidesToShow: "auto",
-                slidesToScroll: 1,
-                itemWidth:450,
-                exactWidth: 450,
-                duration: 1,
-              },
-            },
-          
-          ]}>
-        <div className="slide slideGap" >
-          <div className="carouselImage"></div>
-          <div className="carouselText">Empty Slide 1</div>
-        </div>
-        <div className="slide slideGap">
-          <div className="carouselImage"></div>
-          <div className="carouselText">Empty Slide 2</div>
-        </div>
-        <div className="slide slideGap">
-          <div className="carouselImage"></div>
-          <div className="carouselText">Empty Slide 3</div>
-        </div>
-        <div className="slide slideGap">
-          <div className="carouselImage"></div>
-          <div className="carouselText">Empty Slide 4</div>
-        </div>
-        <div className="slide slideGap">
-          <div className="carouselImage"></div>
-          <div className="carouselText">Empty Slide 5</div>
-        </div>
-         </Glider>
-    </div>
+      <div className="container">
+      <Splide className="carousel" aria-label="My Favorite Images"
+      options={{
+        type: 'loop',
+        perPage: 3,
+        perMove: 1,
+        gap: '56px',
+        fixedWidth:'360px',
+        autoplay: 'true',
+        interval: 2000,
+        speed:1000,
+        focus:'center',
+        trimSpace:'false',
+        breakpoints: {
+          568:{
+            perPage:1,
+            direction:"ttb",
+            height:'50vh',
+            paginationDirection:'ttb',
+            snap:'true'
+          }
+        }
+      }
+      }>
+        <SplideSlide className="slide">
+         <img src="#" alt="Image 1"/>
+        </SplideSlide>
+        <SplideSlide className="slide">
+         <img src="#" alt="Image 2"/>
+        </SplideSlide>
+        <SplideSlide className="slide">
+         <img src="#" alt="Image 3"/>
+        </SplideSlide>
+        <SplideSlide className="slide">
+         <img src="#" alt="Image 4"/>
+        </SplideSlide>
+        <SplideSlide className="slide">
+         <img src="#" alt="Image 5"/>
+        </SplideSlide>
+        <SplideSlide className="slide">
+         <img src="#" alt="Image 6"/>
+        </SplideSlide>
+        <SplideSlide className="slide">
+         <img src="#" alt="Image 7"/>
+        </SplideSlide>
+      </Splide>
+      </div>
     )
 }
+
+
 
 export default ImageCarousel;
