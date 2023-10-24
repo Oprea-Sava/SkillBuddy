@@ -1,9 +1,9 @@
 import placeholder from "../assets/placeholder.png"
 import placeholder2 from "../assets/paceholder2.png"
 import ImageCarousel from "./imageCarousel"
-import "../css/landingPageCss/highlights.css"
+import "../css/landingPageCss/hook.css"
 
-function CourseHighlights() {
+function Hook() {
 
 
     return (
@@ -31,4 +31,4 @@ function CourseHighlights() {
     )
 }
 
-export default CourseHighlights
+export default Hook

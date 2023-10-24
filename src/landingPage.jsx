@@ -1,6 +1,6 @@
 import React from 'react'
 import HeroContainer from './landingPageComponents/hero'
-import CourseHighlights from './landingPageComponents/highlights'
+import Hook from './landingPageComponents/hook'
 import CallToAction from './landingPageComponents/callToAction'
 import Navbar from './navbar'
 import Footer from './footer'
@@ -14,7 +14,7 @@ function LandingPage() {
             <div className='separator top'></div>
             <Features/>
             <div className='separator bottom'></div>
-            <CourseHighlights />
+            <Hook />
             <div className='separator top'></div>
             <CallToAction />
             <Footer/>
