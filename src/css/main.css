@@ -4,8 +4,8 @@ html[data-theme="light"] {
   --primary: #683bd8;
   --secondary: #c4b2f0;
   --accent: #4c23b3;
-  --shadow: #8b8b8b;
-  --special: #f2e5ff;
+  --shadow: #969696;
+  --special: #190b38;
   --top: url("../assets/separators/layered-waves-haikei.svg");
   --bottom: url("../assets/separators/layered-waves-haikei2.svg");
 }
@@ -17,7 +17,7 @@ html[data-theme="dark"] {
   --secondary: #190b38;
   --accent: #754cdc;
   --shadow: #000000;
-  --special: #1c0049;
+  --special: #c4b2f0;
   --top: url("../assets/separators/layered-waves-haikei3.svg");
   --bottom: url("../assets/separators/layered-waves-haikei4.svg");
 }
