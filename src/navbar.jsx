@@ -2,7 +2,8 @@ import './css/navbar.css'
 import './css/text.css'
 import darkModeImage from './assets/moon.png'
 import lightModeImage from './assets/sun.png'
-import logo from './assets/logo.png'
+import logo from './assets/logo.svg'
+import logoText from './assets/logoText1.png'
 import { useState } from 'react'
 import {AiOutlineClose, AiOutlineMenu} from "react-icons/ai"
 
@@ -21,9 +22,9 @@ function Navbar() {
 
     return (
         <div id="navSection">
-            <div className="logo" >
-                <img src={logo} alt="logo" />
-                <div className='text '>SkillBuddy</div>
+            <div className="logoContainer" >
+                <img className="logo" src={logo} alt="logo" />
+                <img className="logoText" src={logoText} alt="SkillBuddy"/>
             </div>
             <nav className="navContainer">
                 <button className="navbarButton home text">Home</button>
@@ -35,7 +36,7 @@ function Navbar() {
                 <button className="secondary signUp text">Sign up</button>
             </nav>
             <div className='menu' onClick={handleNav}>
-                {isOpen ? <AiOutlineClose size={20}/> : <AiOutlineMenu size={20}/>}
+                {isOpen ? <AiOutlineClose size={30}/> : <AiOutlineMenu size={30}/>}
             </div>
             <nav className="navContainerMenu" style={menuStyle}>
                 <div className="logoMenu">

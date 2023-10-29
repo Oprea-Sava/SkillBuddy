@@ -1,7 +1,6 @@
 #heroContainer {
   background-color: var(--primary);
   display: flex;
-  min-height: 110vh;
   align-items: center;
   justify-content: space-around;
   padding-bottom: 5rem;
@@ -19,11 +18,11 @@
   transform: scale(1.05);
 }
 
-.textSide{
+.textSide {
   margin-left: 70px;
 }
 
-.textSide>* {
+.textSide > * {
   margin: 20px;
 }
 
@@ -31,7 +30,7 @@
   margin-right: 120px;
 }
 
-.imageSide>img {
+.imageSide > img {
   object-fit: contain;
   width: 100%;
   height: auto;
@@ -56,7 +55,7 @@
     padding: 4rem 0 3rem 0;
   }
 
-  .textSide{
+  .textSide {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -64,11 +63,11 @@
     margin-left: 0;
   }
 
-  .heroBig{
+  .heroBig {
     font-size: 32px;
   }
 
-  .imageSide{
+  .imageSide {
     margin-right: 0;
     padding: 0 2rem 0 2rem;
   }
