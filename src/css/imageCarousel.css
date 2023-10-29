@@ -39,11 +39,16 @@
 }
 
 @media screen and (max-width: 568px) {
-  .slide {
+  .slide.slide {
     width: 100% !important;
+    height: 350px !important;
   }
 
   .splide__arrows {
+    display: none;
+  }
+
+  .splide__pagination.splide__pagination {
     display: none;
   }
 }
