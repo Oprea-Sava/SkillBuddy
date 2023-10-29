@@ -2,7 +2,6 @@ import './css/navbar.css'
 import './css/text.css'
 import darkModeImage from './assets/moon.png'
 import lightModeImage from './assets/sun.png'
-import logoAndText from './assets/logoAndText.png'
 import logo from './assets/logo.png'
 import { useState } from 'react'
 import {AiOutlineClose, AiOutlineMenu} from "react-icons/ai"
@@ -70,7 +69,7 @@ function DarkModeButton(){
 
     return(
         <div className="darkmodeButton" onClick={handleClick}>
-            <img src={isDark} alt="color skema" />
+            <img src={isDark} alt="color" />
         </div>
     )
 }

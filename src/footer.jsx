@@ -1,8 +1,7 @@
-import './css/footer.css'
-import logo from './assets/logo.png'
+import "./css/footer.css";
+import logo from "./assets/logo.png";
 
 function Footer() {
-
     return (
         <div id="footer">
             <div className="logoFooter">
@@ -27,16 +26,19 @@ function Footer() {
             <div className="text footerColumn newsletter">
                 <div className="columnTitle">Newsletter</div>
                 <form>
-                    <label className="formText" htmlFor="email">Sign up for our newsletter</label>
+                    <label className="formText" htmlFor="email">
+                        Sign up for our newsletter
+                    </label>
                     <div className="emailContainer">
                         <input type="email" />
-                        <button className="text primary subscribeButton">Subscribe</button>
+                        <button className="text primary subscribeButton">
+                            Subscribe
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
-
-    )
+    );
 }
 
-export default Footer
+export default Footer;
