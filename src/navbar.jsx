@@ -36,7 +36,7 @@ function Navbar() {
                 <button className="secondary signUp text">Sign up</button>
             </nav>
             <div className='menu' onClick={handleNav}>
-                {isOpen ? <AiOutlineClose size={30}/> : <AiOutlineMenu size={30}/>}
+                {isOpen ? <AiOutlineClose size={20}/> : <AiOutlineMenu size={20}/>}
             </div>
             <nav className="navContainerMenu" style={menuStyle}>
                 <div className="logoMenu">

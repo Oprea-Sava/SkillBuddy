@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 8vh;
+  height: 50px;
   padding: 0px 60px 0 60px;
   background-color: var(--background);
 }
@@ -27,7 +27,8 @@
 
 .logo,
 .logoMenu > img {
-  height: 7vh;
+  height: 7vw;
+  min-height: 50px;
 }
 
 .logoMenu {
@@ -48,7 +49,7 @@
   gap: 2rem;
   position: fixed;
   top: 0;
-  width: 60vw;
+  width: 50vw;
   height: 100vh;
   background-color: var(--accent);
   transition: left 0.5s ease-in-out;
@@ -83,14 +84,6 @@
   }
 
   .navContainer {
-    display: none;
-  }
-
-  .logo {
-    display: block;
-  }
-
-  .logoText {
     display: none;
   }
 
