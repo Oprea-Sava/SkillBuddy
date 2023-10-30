@@ -24,7 +24,7 @@ function ImageCarousel() {
           568:{
             perPage:1,
             direction:"ttb",
-            height:'45vh',
+            height:'360px', // needs adjusments
             paginationDirection:'ttb',
             snap:'true'
           }
