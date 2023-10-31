@@ -10,22 +10,22 @@ function Sidebar() {
 					<img src={placeholder} alt="" />
 					<div className="username text">Username</div>
 				</div>
-				<div className="navigator text">
+				<div className="navigator">
 					<div>
 						<div className="clusterName text">Dashboard</div>
 						<div className="buttonCluster">
-							<button>Dashboard</button>
-							<button>My Profile</button>
-							<button>Enrolled ourses</button>
-							<button>Saved Courses</button>
+							<button className="text">Dashboard</button>
+							<button className="text">My Profile</button>
+							<button className="text">Enrolled ourses</button>
+							<button className="text">Saved Courses</button>
 						</div>
 					</div>
 					<div>
 						<div className="clusterName text">Account settings</div>
 						<div className="buttonCluster">
-							<button>Edit Profile</button>
-							<button>Change Password</button>
-							<button>Log Out</button>
+							<button className="text">Edit Profile</button>
+							<button className="text">Change Password</button>
+							<button className="text">Log Out</button>
 						</div>
 					</div>
 				</div>

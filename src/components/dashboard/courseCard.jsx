@@ -4,7 +4,6 @@ function CourseCard() {
     return(
         <>
             <div className="courseCard">
-
             </div>
         </>
     );

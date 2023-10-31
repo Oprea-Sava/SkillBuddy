@@ -1,4 +1,4 @@
-#courses{
+#courses {
     flex: 3;
 }
 
@@ -20,28 +20,30 @@
     justify-content: space-around;
 }
 
-.boldText{
+.coursesNumber {
     font-size: 1.25rem;
     font-weight: 600;
 }
 
-.courses{
+.courses {
     display: flex;
     flex-direction: column;
     gap: 40px;
 }
 
-.coursesContainer{
+.courses>*:first-child {
+    font-weight: 600;
+}
+
+.coursesContainer {
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
 }
 
-.courseCard{
+.courseCard {
     background-color: var(--primary);
     width: 300px;
     height: 400px;
     border-radius: 30px;
 }
-
-
