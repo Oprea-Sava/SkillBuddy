@@ -1,4 +1,11 @@
-.profile{
+#dashboardBody{
+    display: flex;
+    justify-content: center;
+    padding: 100px 100px 50px 100px;
+    gap: 50px;
+}
+
+.profile {
     background-color: var(--primary);
     width: 225px;
     height: 225px;
@@ -11,12 +18,12 @@
     align-items: center;
 }
 
-.profile>img{
+.profile>img {
     height: 75px;
     border-radius: 50%;
 }
 
-.navigator{
+.navigator {
     background-color: var(--secondary);
     width: 215px;
     border-radius: 20px;
@@ -26,30 +33,30 @@
     flex-direction: column;
 }
 
-.navigator>*:last-child{
+.navigator>*:last-child {
     padding-bottom: 30px;
 }
 
-.clusterName{
+.clusterName {
     font-size: 1.25rem;
     text-wrap: nowrap;
     padding-bottom: 30px;
 }
 
-.buttonCluster{
+.buttonCluster {
     display: flex;
     flex-direction: column;
     align-items: start;
     gap: 10px;
 }
 
-.buttonCluster>button{
+.buttonCluster>button {
     background-color: transparent;
     border: none;
     padding-left: 0;
     font-size: 1rem;
 }
 
-.buttonCluster>button:hover{
+.buttonCluster>button:hover {
     color: var(--accent);
 }

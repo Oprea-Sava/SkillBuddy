@@ -1,0 +1,47 @@
+#courses{
+    flex: 3;
+}
+
+.courseType {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding-bottom: 75px;
+}
+
+.courseType>* {
+    background-color: var(--secondary);
+    height: 85px;
+    width: 250px;
+    border-radius: 20px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.boldText{
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.courses{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.coursesContainer{
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+.courseCard{
+    background-color: var(--primary);
+    width: 300px;
+    height: 400px;
+    border-radius: 30px;
+}
+
+

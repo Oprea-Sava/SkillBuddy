@@ -27,11 +27,11 @@ function Navbar() {
                 <img className="logoText" src={logoText} alt="SkillBuddy"/>
             </div>
             <nav className="navContainer">
-                <button className="navbarButton home text">Home</button>
-                <button className="navbarButton courses text">Courses</button>
-                <button className="navbarButton skillExchange text">Skill Exchange</button>
-                <button className="navbarButton aboutUs text">About Us</button>
-                <button className="navbarButton contact text">Contact</button>
+                <button className="navbarButton text">Home</button>
+                <button className="navbarButton text">Courses</button>
+                <button className="navbarButton text">Skill Exchange</button>
+                <button className="navbarButton text">About Us</button>
+                <button className="navbarButton text">Contact</button>
                 <DarkModeButton />
                 <button className="secondary signUp text">Sign up</button>
             </nav>
