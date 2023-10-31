@@ -47,17 +47,17 @@
     height: 82.5%;
   }
 
-  .details{
-    margin-left:5%;
+  .details {
+    margin-left: 5%;
   }
 }
 
-@media screen and (max-width: 825px){
-  .hookStatement{
+@media screen and (max-width: 825px) {
+  .hookStatement {
     font-size: 1.75rem;
   }
 
-  .hookReason{
+  .hookReason {
     font-size: 0.9rem;
   }
 
@@ -66,13 +66,12 @@
   }
 }
 
-@media screen and (max-width: 600px){
-  .hookStatement{
+@media screen and (max-width: 600px) {
+  .hookStatement {
     font-size: 1.5rem;
   }
 
-  .hookReason{
+  .hookReason {
     font-size: 0.75rem;
   }
 }
-

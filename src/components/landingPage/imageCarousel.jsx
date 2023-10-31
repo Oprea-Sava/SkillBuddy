@@ -13,6 +13,7 @@ function ImageCarousel() {
         perMove: 1,
         gap: '56px',
         fixedWidth:'360px',
+        fixedHeight:'400px',
         autoplay: 'true',
         interval: 2000,
         speed:1000,
@@ -22,7 +23,7 @@ function ImageCarousel() {
           568:{
             perPage:1,
             direction:"ttb",
-            height:'50vh',
+            height:'360px', // needs adjusments
             paginationDirection:'ttb',
             snap:'true'
           }

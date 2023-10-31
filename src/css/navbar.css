@@ -2,63 +2,72 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 10vh;
+  height: 50px;
   padding: 0px 60px 0 60px;
-  background-color: var(--primary);
+  background-color: var(--background);
 }
 
-.logo {
+.logoContainer {
   display: flex;
   align-items: center;
   font-size: 24px;
   gap: 5px;
+  height: 100%;
 }
 
-.logo>div {
-  color: var(--text);
-  font-weight: bolder;
+.logo {
+  display: none;
 }
 
-.logo>img {
-  height: 5rem;
+.logoText {
+  height: auto;
+  max-width: 30%;
+  min-width: 200px;
+}
+
+.logo,
+.logoMenu > img {
+  height: 7vw;
+  min-height: 50px;
+}
+
+.logoMenu {
+  padding: 2rem 0 0 0;
 }
 
 .navContainer {
   margin-right: 30px;
   display: flex;
   gap: 20px;
-
 }
 
 .navContainerMenu {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0 1rem 1rem 1rem;
+  padding: 0rem 1rem 1rem 1rem;
   gap: 2rem;
   position: fixed;
   top: 0;
-  width: 60vw;
+  width: 50vw;
   height: 100vh;
-  background-color: var(--primary);
+  background-color: var(--accent);
+  transition: left 0.5s ease-in-out;
 }
 
 .menu {
   display: none;
 }
 
-.navContainerMenu>button {
+.navContainerMenu > button {
   margin: 0;
-}
-
-.logoMenu>img {
-  height: 5rem;
-  margin: 0.5rem;
 }
 
 .navbarButton {
   background-color: transparent;
   border: none;
+  font-size: 16px;
+  text-wrap: nowrap;
 }
 
 .signUp {
@@ -78,16 +87,12 @@
     display: none;
   }
 
-  .logo>div {
-    display: none;
-  }
-
   #navSection {
-    padding: 1rem 2rem 0 2rem
+    padding: 1rem 2rem 0 2rem;
   }
 }
 
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: 1106px) {
   .navbarButton {
     font-size: 12px;
   }
