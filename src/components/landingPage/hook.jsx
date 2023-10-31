@@ -1,7 +1,6 @@
-import placeholder from "../assets/placeholder.png";
-import placeholder2 from "../assets/paceholder2.png";
+import placeholder2 from "../../assets/paceholder2.png";
 import ImageCarousel from "./imageCarousel";
-import "../css/landingPageCss/hook.css";
+import "../../css/landingPage/hook.css";
 
 function Hook() {
     return (

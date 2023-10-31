@@ -1,5 +1,4 @@
-
-import "../css/imageCarousel.css";
+import "../../css/landingPage/imageCarousel.css";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 

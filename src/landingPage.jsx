@@ -1,10 +1,10 @@
 import React from 'react'
-import HeroContainer from './landingPageComponents/hero'
-import Hook from './landingPageComponents/hook'
-import CallToAction from './landingPageComponents/callToAction'
+import HeroContainer from './components/landingPage/hero'
+import Hook from './components/landingPage/hook'
+import CallToAction from './components/landingPage/callToAction'
 import Navbar from './navbar'
 import Footer from './footer'
-import Features from './landingPageComponents/features'
+import Features from './components/landingPage/features'
 
 function LandingPage() {
     return (

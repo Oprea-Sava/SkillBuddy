@@ -1,4 +1,4 @@
-import "../css/landingPageCss/callToAction.css"
+import "../../css/landingPage/callToAction.css"
 
 function CallToAction() {
 

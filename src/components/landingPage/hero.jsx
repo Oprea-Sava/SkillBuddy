@@ -1,5 +1,5 @@
-import hero from '../assets/hero.svg'
-import "../css/landingPageCss/hero.css"
+import hero from '../../assets/hero.svg'
+import "../../css/landingPage/hero.css"
 
 function HeroContainer() {
 

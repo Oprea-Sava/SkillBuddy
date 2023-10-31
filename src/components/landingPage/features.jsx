@@ -1,5 +1,5 @@
 import FeatureCard from "./featureCard"
-import "../css/landingPageCss/features.css"
+import "../../css/landingPage/features.css"
 import { FaRegLightbulb } from "react-icons/fa6"
 import { FaEarthAmericas } from "react-icons/fa6"
 import { SlWallet } from "react-icons/sl"
