@@ -5,6 +5,7 @@ import './css/reset.css'
 import './css/main.css'
 import LandingPage from './landingPage'
 import Dashboard from './dashboard';
+import Courses from './components/dashboard/courses';
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard />
+    element: <Dashboard />,
   }
 ]);
 

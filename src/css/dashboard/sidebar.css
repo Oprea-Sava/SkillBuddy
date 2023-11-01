@@ -1,8 +1,4 @@
-#dashboardBody{
-    display: flex;
-    justify-content: center;
-    padding: 100px 100px 50px 100px;
-    gap: 50px;
+#sidebar{
 }
 
 .profile {
@@ -59,4 +55,10 @@
 
 .buttonCluster>button:hover {
     color: var(--accent);
+}
+
+@media screen and (max-width:760px) {
+      #sidebar{
+        align-self: center;
+      }
 }
