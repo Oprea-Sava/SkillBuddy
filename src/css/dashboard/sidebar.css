@@ -1,8 +1,5 @@
-#sidebar{
-}
-
 .profile {
-    background-color: var(--primary);
+    background-color: var(--accent);
     width: 225px;
     height: 225px;
     border-radius: 20px;
@@ -21,12 +18,15 @@
 
 .navigator {
     background-color: var(--secondary);
-    width: 215px;
+    width: 225px;
     border-radius: 20px;
     gap: 30px;
-    padding: 20px 0 0 10px;
     display: flex;
     flex-direction: column;
+}
+
+.navigator>*{
+    margin: 20px 0 0 20px;
 }
 
 .navigator>*:last-child {
@@ -60,5 +60,14 @@
 @media screen and (max-width:760px) {
       #sidebar{
         align-self: center;
+        width: 100%;
       }
+
+      .profile{
+        width: 100%;
+      }
+
+      .navigator{
+        width: 100%;
+      }     
 }

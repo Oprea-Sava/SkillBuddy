@@ -4,6 +4,7 @@ import Navbar from "./navbar";
 import Footer from "./footer";
 import Sidebar from "./components/dashboard/sidebar";
 import Courses from "./components/dashboard/courses";
+import MyProfile from "./components/dashboard/myProfile";
 
 function Dashboard() {
 	const name = 1;
@@ -13,13 +14,8 @@ function Dashboard() {
 			<Navbar />
 			<div id="dashboardBody">
 				<Sidebar />
-				{name === "popeye" ? (
-					<SomePage />
-				) : name === "spinach" ? (
-					<OtherPage />
-				) : (
-					<Courses />
-				)}
+				{/* <Courses /> */}
+				<MyProfile />
 			</div>
 			<Footer />
 		</>

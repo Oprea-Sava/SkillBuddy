@@ -8,15 +8,15 @@ function Courses() {
 			<div id="courses">
 				<div className="courseType text">
 					<div>
-						Enrollerd Courses
+						<div>Enrollerd Courses</div>
 						<div className="coursesNumber">1</div>
 					</div>
 					<div>
-						Active Courses
+						<div>Active Courses</div>
 						<div className="coursesNumber">1</div>
 					</div>
 					<div>
-						Finished Courses
+						<div>Finished Courses</div>
 						<div className="coursesNumber">1</div>
 					</div>
 				</div>
