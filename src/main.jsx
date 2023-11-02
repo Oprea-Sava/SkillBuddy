@@ -6,6 +6,7 @@ import './css/main.css'
 import LandingPage from './landingPage'
 import Dashboard from './dashboard';
 import Courses from './components/dashboard/courses';
+import SignIn from './signIn';
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,11 @@ const router = createBrowserRouter([
   {
     path: "dashboard",
     element: <Dashboard />,
-  }
+  },
+  {
+    path: "signin",
+    element: <SignIn />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
