@@ -7,6 +7,7 @@ import LandingPage from './landingPage'
 import Dashboard from './dashboard';
 import Courses from './components/dashboard/courses';
 import SignIn from './signIn';
+import SignUp from './signUp';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "signin",
     element: <SignIn />,
+  },
+  {
+    path: "signup",
+    element: <SignUp/>,
   },
 ]);
 

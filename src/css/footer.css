@@ -14,7 +14,7 @@
 }
 
 .columnItems,
-form {
+.newsletterForm {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -99,7 +99,7 @@ input {
   .productCollumnItems,
   .newsletter,
   .emailContainer,
-  form {
+  .newsletterForm {
     align-items: start !important;
   }
 

@@ -31,7 +31,9 @@ export default function SignIn(){
                     <div className="formGroupCheck__si">
                         <div className="remember__si">
                             <input type="checkbox" className="formCheck__si"/>
-                            <label className="rememberLabel__si">Remember Me</label>
+                            <label className="rememberLabel__si">
+                                Remember Me
+                            </label>
                         </div>
                         <div className="forgot__si">
                             <span>
