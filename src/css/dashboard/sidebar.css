@@ -1,3 +1,12 @@
+#sidebarParent{
+    position: relative;
+}
+
+#sidebar{
+    position: sticky;
+    top:30px;
+}
+
 .profile {
     background-color: var(--accent);
     width: 225px;
@@ -51,10 +60,6 @@
     border: none;
     padding-left: 0;
     font-size: 1rem;
-}
-
-.buttonCluster>button:hover {
-    color: var(--accent);
 }
 
 @media screen and (max-width:760px) {

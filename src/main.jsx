@@ -6,6 +6,7 @@ import './css/main.css'
 import LandingPage from './landingPage'
 import Dashboard from './dashboard';
 import Courses from './components/dashboard/courses';
+import MyProfile from './components/dashboard/myProfile';
 import SignIn from './signIn';
 
 const router = createBrowserRouter([
@@ -16,6 +17,11 @@ const router = createBrowserRouter([
   {
     path: "dashboard",
     element: <Dashboard />,
+    children: [
+      { index: true, element: <Courses /> },
+      { path: "courses", element: <Courses /> },
+      { path: "myprofile", element: <MyProfile /> },
+    ],
   },
   {
     path: "signin",
