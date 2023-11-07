@@ -83,6 +83,7 @@
   font-weight: 400;
   font-size: 15px;
   margin: 0;
+  width: 100%;
 }
 
 .formInput__su:focus {
@@ -92,7 +93,7 @@
 .formName__su {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 5%;
   width: 100%;
 }
 
