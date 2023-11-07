@@ -25,7 +25,7 @@ function Footer() {
             </div>
             <div className="text footerColumn newsletter">
                 <div className="columnTitle">Newsletter</div>
-                <form>
+                <form className="newsletterForm">
                     <label className="formText" htmlFor="email">
                         Sign up for our newsletter
                     </label>

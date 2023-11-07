@@ -8,6 +8,7 @@ import Dashboard from './dashboard';
 import Courses from './components/dashboard/courses';
 import MyProfile from './components/dashboard/myProfile';
 import SignIn from './signIn';
+import SignUp from './signUp';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "signin",
     element: <SignIn />,
+  },
+  {
+    path: "signup",
+    element: <SignUp/>,
   },
 ]);
 
