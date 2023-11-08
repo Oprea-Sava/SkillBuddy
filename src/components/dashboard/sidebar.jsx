@@ -7,7 +7,7 @@ function Sidebar() {
 	const dashboardButtons = [
 		{ text: "Dasboard", path: "/dashboard/courses", index: 0 },
 		{ text: "My Profile", path: "/dashboard/myprofile", index: 1 },
-		{ text: "Enrolled Courses", path: "/dashboard/enrolledcourses", index: 2 },
+		{ text: "Your Courses", path: "/dashboard/usercourses", index: 2 },
 		{ text: "Saved Courses", path: "/dashboard/savedcourses", index: 3 },
 	];
 	
@@ -25,12 +25,12 @@ function Sidebar() {
 
 	useEffect(() => {
 		dashboardButtons.map((button) => {
-			if (button.path == pathname) {
+			if (button.path == pathname.slice(0, button.path.length)) {
 				posIndex = button.index;
 			}
 		});
 		accountButtons.map((button) => {
-			if (button.path == pathname) {
+			if (button.path == pathname.slice(0, button.path.length)) {
 				posIndex = button.index;
 			}
 		});
