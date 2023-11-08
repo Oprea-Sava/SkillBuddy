@@ -14,25 +14,28 @@ function Sidebar() {
 	const accountButtons = [
 		{ text: "Edit Profile", path: "/dashboard/editprofile", index: 4 },
 		{ text: "Change Password", path: "/dashboard/changepassword", index: 5 },
-		{ text: "Log Out", path: "/dashboard/myprofile", index: 6 },
+		{ text: "Log Out", path: "/signin", index: 6 },
 	];
 
 	const navigate = useNavigate();
-	const {pathname} = useLocation();
-	let posIndex = 0, index = 0;
+	const { pathname } = useLocation();
+	let posIndex = 0;
 
-	dashboardButtons.map((button) => {
-		if(button.path == pathname){
-			posIndex = button.index;
-		}
-	});
-	accountButtons.map((button) => {
-		if(button.path == pathname){
-			posIndex = button.index;
-		}
-	});
-	
 	const [isActive, setIsActive] = useState(posIndex);
+
+	useEffect(() => {
+		dashboardButtons.map((button) => {
+			if (button.path == pathname) {
+				posIndex = button.index;
+			}
+		});
+		accountButtons.map((button) => {
+			if (button.path == pathname) {
+				posIndex = button.index;
+			}
+		});
+		setIsActive(posIndex);
+	}, [pathname]);
 
 	function handleClick(whereTo) {
 		navigate(whereTo);
@@ -81,14 +84,14 @@ function Sidebar() {
 							{accountButtons.map((button, index) => (
 								<button
 									className="text"
-									key={index}
+									key={index + 4}
 									onClick={() => {
 										handleClick(button.path);
-										resetColor(index);
+										resetColor(index + 4);
 									}}
 									style={{
 										color:
-											isActive === index
+											isActive === (index + 4)
 												? "var(--accent)"
 												: "",
 									}}
