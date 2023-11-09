@@ -1,18 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../css/dashboard/userCourses.css";
-import { Outlet } from "react-router-dom";
+import Courses from "./courses";
 
 function UserCourses() {
+	const [option, setOption] = useState("Enrolled Courses");
+
 	return (
 		<>
 			<div id="userCourses">
 				<div className="courseTypeSelection">
-					<button>Enrolled Courses</button>
-					<button>Active Courses</button>
-					<button>Completed Courses</button>
+					<button
+						className="enrolledCourses"
+						onClick={() => {
+							setOption("Enrolled Courses");
+						}}
+					>
+						Enrolled Courses
+					</button>
+					<button
+						className="activeCourses"
+						onClick={() => {
+							setOption("Active Courses");
+						}}
+					>
+						Active Courses
+					</button>
+					<button
+						className="completedCourses"
+						onClick={() => {
+							setOption("Completed Courses");
+						}}
+					>
+						Completed Courses
+					</button>
 				</div>
-				
-				<Outlet />
+
+				<Courses courseType={option} />
 			</div>
 		</>
 	);

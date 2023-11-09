@@ -5,12 +5,12 @@ import "./css/reset.css";
 import "./css/main.css";
 import LandingPage from "./landingPage";
 import Dashboard from "./dashboard";
-import Courses from "./components/dashboard/courses";
+import Overview from "./components/dashboard/overview";
 import MyProfile from "./components/dashboard/myProfile";
 import SignIn from "./signIn";
 import SignUp from "./signUp";
 import UserCourses from "./components/dashboard/userCourses";
-import SavedCourses from "./components/dashboard/savedCourses";
+import SavedCourses from "./components/dashboard/savedCourses"
 
 const router = createBrowserRouter([
 	{
@@ -21,18 +21,10 @@ const router = createBrowserRouter([
 		path: "dashboard",
 		element: <Dashboard />,
 		children: [
-			{ index: true, element: <Courses /> },
-			{ path: "courses", element: <Courses /> },
+			{ index: true, element: <Overview /> },
+			{ path: "courses", element: <Overview /> },
 			{ path: "myprofile", element: <MyProfile /> },
-			{
-				path: "usercourses",
-				element: <UserCourses />,
-				children: [
-					{ index: true, element: <UserCourses /> },
-					{ path: "activecourses", element: <UserCourses /> },
-					{ path: "completedcourses", element: <UserCourses /> },
-				],
-			},
+			{ path: "usercourses", element: <UserCourses /> },
 			{ path: "savedcourses", element: <SavedCourses /> },
 		],
 	},
