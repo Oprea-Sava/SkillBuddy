@@ -1,0 +1,41 @@
+.errorMessage{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 4rem;
+    padding:0 30px 0 30px;
+}
+
+.bigPrompt{
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.midPrompt{
+    font-size: 1.75rem;
+    font-weight: 400;
+}
+
+.smallPrompt{
+    font-size: 1.25rem;
+    font-weight: 300;
+    font-style: italic;
+    color: rgb(77, 77, 77);
+}
+
+.easterEgg{
+    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.easterEgg>img{
+    width: 300px;
+    border-radius: 20px;
+}
+

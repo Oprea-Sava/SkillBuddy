@@ -5,16 +5,17 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 function Sidebar() {
 	const dashboardButtons = [
-		{ text: "Dasboard", path: "/dashboard/courses", index: 0 },
-		{ text: "My Profile", path: "/dashboard/myprofile", index: 1 },
-		{ text: "Your Courses", path: "/dashboard/usercourses", index: 2 },
-		{ text: "Saved Courses", path: "/dashboard/savedcourses", index: 3 },
+		{ text: "Dasboard", path: "/dashboard/courses"},
+		{ text: "My Profile", path: "/dashboard/myprofile"},
+		{ text: "Your Courses", path: "/dashboard/usercourses"},
+		{ text: "Wishlist", path: "/dashboard/wishlist"},
+		{ text: "Purchase History", path: "/dashboard/purchasehistory"},
 	];
 	
 	const accountButtons = [
-		{ text: "Edit Profile", path: "/dashboard/editprofile", index: 4 },
-		{ text: "Change Password", path: "/dashboard/changepassword", index: 5 },
-		{ text: "Log Out", path: "/signin", index: 6 },
+		{ text: "Edit Profile", path: "/dashboard/editprofile"},
+		{ text: "Change Password", path: "/dashboard/changepassword"},
+		{ text: "Log Out", path: "/signin"},
 	];
 
 	const navigate = useNavigate();
@@ -24,14 +25,14 @@ function Sidebar() {
 	const [isActive, setIsActive] = useState(posIndex);
 
 	useEffect(() => {
-		dashboardButtons.map((button) => {
+		dashboardButtons.map((button, index) => {
 			if (button.path == pathname.slice(0, button.path.length)) {
-				posIndex = button.index;
+				posIndex = index;
 			}
 		});
-		accountButtons.map((button) => {
+		accountButtons.map((button, index) => {
 			if (button.path == pathname.slice(0, button.path.length)) {
-				posIndex = button.index;
+				posIndex = index + dashboardButtons.length;
 			}
 		});
 		setIsActive(posIndex);
@@ -48,7 +49,7 @@ function Sidebar() {
 	}
 
 	return (
-		<div id="sidebarParent">
+		<div id="sidebarWrapper">
 			<div id="sidebar">
 				<div className="profile">
 					<img src={placeholder} alt="" />
@@ -84,14 +85,14 @@ function Sidebar() {
 							{accountButtons.map((button, index) => (
 								<button
 									className="text"
-									key={index + 4}
+									key={index + dashboardButtons.length}
 									onClick={() => {
 										handleClick(button.path);
-										resetColor(index + 4);
+										resetColor(index + dashboardButtons.length);
 									}}
 									style={{
 										color:
-											isActive === (index + 4)
+											isActive === (index + dashboardButtons.length)
 												? "var(--accent)"
 												: "",
 									}}

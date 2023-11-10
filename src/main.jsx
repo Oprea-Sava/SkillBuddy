@@ -10,12 +10,14 @@ import MyProfile from "./components/dashboard/myProfile";
 import SignIn from "./signIn";
 import SignUp from "./signUp";
 import UserCourses from "./components/dashboard/userCourses";
-import SavedCourses from "./components/dashboard/savedCourses"
+import Wishlist from "./components/dashboard/wishlist";
+import ErrorPage from "./errorPage";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <LandingPage />,
+		errorElement: < ErrorPage/>,
 	},
 	{
 		path: "dashboard",
@@ -25,7 +27,11 @@ const router = createBrowserRouter([
 			{ path: "courses", element: <Overview /> },
 			{ path: "myprofile", element: <MyProfile /> },
 			{ path: "usercourses", element: <UserCourses /> },
-			{ path: "savedcourses", element: <SavedCourses /> },
+			{ path: "wishlist", element: <Wishlist /> },
+			{ path: "purchasehistory", element: <></> },
+			{ path: "editprofile", element: <></> },
+			{ path: "changepassword", element: <></> },
+			
 		],
 	},
 	{

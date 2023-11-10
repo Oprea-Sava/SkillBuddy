@@ -10,7 +10,7 @@ function UserCourses() {
 			<div id="userCourses">
 				<div className="courseTypeSelection">
 					<button
-						className="enrolledCourses"
+						className="enrolledCourses text"
 						onClick={() => {
 							setOption("Enrolled Courses");
 						}}
@@ -18,7 +18,7 @@ function UserCourses() {
 						Enrolled Courses
 					</button>
 					<button
-						className="activeCourses"
+						className="activeCourses text"
 						onClick={() => {
 							setOption("Active Courses");
 						}}
@@ -26,7 +26,7 @@ function UserCourses() {
 						Active Courses
 					</button>
 					<button
-						className="completedCourses"
+						className="completedCourses text"
 						onClick={() => {
 							setOption("Completed Courses");
 						}}
