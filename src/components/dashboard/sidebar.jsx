@@ -9,7 +9,7 @@ function Sidebar() {
 		{ text: "My Profile", path: "/dashboard/myprofile"},
 		{ text: "Your Courses", path: "/dashboard/usercourses"},
 		{ text: "Wishlist", path: "/dashboard/wishlist"},
-		{ text: "Purchase History", path: "/dashboard/purchasehistory"},
+		{ text: "Order History", path: "/dashboard/orderhistory"},
 	];
 	
 	const accountButtons = [

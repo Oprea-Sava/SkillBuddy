@@ -1,0 +1,42 @@
+#orderHistory{
+    border: solid black 2px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.orderHistoryTitle{
+    display: flex;
+    align-items: center;
+    height: 75px;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.orderHistoryDetails{
+    display: flex;
+    flex-direction: column;
+    min-height: 80%;
+}
+
+.dateSelection{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 75px;
+}
+
+.dateButtons{
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    gap: 30px;
+}
+
+.dateButtons>*{
+    height: 55px;
+    width: 125px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--secondary);
+}
