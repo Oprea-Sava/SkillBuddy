@@ -1,5 +1,5 @@
 #orderHistory{
-    border: solid black 2px;
+    background-color: var(--secondary);
     border-radius: 10px;
     padding: 20px;
 }
@@ -16,7 +16,6 @@
 .orderHistoryDetails{
     display: flex;
     flex-direction: column;
-    min-height: 80%;
 }
 
 .dateSelection{
@@ -24,6 +23,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 75px;
+    gap: 30px
 }
 
 .dateButtons{
@@ -38,5 +38,49 @@
     width: 125px;
     border-radius: 10px;
     border: none;
-    background-color: var(--secondary);
+    background-color: var(--primary);
+}
+
+.orderTableColumnTitle{
+   text-wrap: nowrap;
+}
+
+.orderTable{
+    border: 2px solid black;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+}
+
+.orderTable>*{
+    display: flex;
+    align-items: center;
+    min-height: 100px;
+    padding: 10px;
+}
+
+.orderId{
+    padding-left: 20px;
+}
+
+.courseName{
+    grid-column: span 4;
+    max-width: none;
+}
+
+.date{
+    grid-column: span 2;
+}
+
+.status{
+    text-wrap: nowrap;
+}
+
+.downloadButtonWrapper{
+    justify-content: center;
+}
+
+.downloadButton{
+    height: 50px;
+    width: 50px;
 }
