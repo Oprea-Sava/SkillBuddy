@@ -50,12 +50,13 @@
     border-radius: 10px;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
+    grid-auto-rows: 1fr 2fr;
 }
 
 .orderTable>*{
     display: flex;
     align-items: center;
-    min-height: 100px;
+    min-height: 75px;
     padding: 10px;
 }
 

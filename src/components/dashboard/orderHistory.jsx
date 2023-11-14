@@ -10,7 +10,7 @@ function OrderHisory() {
 			price: "Price",
 			status: "Status",
 		},
-	]
+	];
 
 	const orders = [
 		{
@@ -61,39 +61,41 @@ function OrderHisory() {
 						</div>
 					</div>
 
-					<div className="orderTableContainer">
-						<div className="orderTable text">
-							{orderInfo.map((info) => (
-								<>
+					<div className="orderTable text">
+						{orderInfo.map((info) => (
+							<>
 								<div className="orderId orderTableColumnTitle">
-										{info.orderId}
-									</div>
-									<div className="courseName orderTableColumnTitle">
-										{info.courseName}
-									</div>
-									<div className="date orderTableColumnTitle">{info.date}</div>
-									<div className="price orderTableColumnTitle">{info.price}</div>
-									<div className="status orderTableColumnTitle">{info.status}</div>
-									<div></div>
-								</>
-							))}
-							{orders.map((order) => (
-								<>
-									<div className="orderId">
-										{order.orderId}
-									</div>
-									<div className="courseName">
-										{order.courseName}
-									</div>
-									<div className="date">{order.date}</div>
-									<div className="price">{order.price}</div>
-									<div className="status">{order.status}</div>
-									<div className="downloadButtonWrapper">
-										<button className="downloadButton"></button>
-									</div>
-								</>
-							))}
-						</div>
+									{info.orderId}
+								</div>
+								<div className="courseName orderTableColumnTitle">
+									{info.courseName}
+								</div>
+								<div className="date orderTableColumnTitle">
+									{info.date}
+								</div>
+								<div className="price orderTableColumnTitle">
+									{info.price}
+								</div>
+								<div className="status orderTableColumnTitle">
+									{info.status}
+								</div>
+								<div></div>
+							</>
+						))}
+						{orders.map((order) => (
+							<>
+								<div className="orderId">{order.orderId}</div>
+								<div className="courseName">
+									{order.courseName}
+								</div>
+								<div className="date">{order.date}</div>
+								<div className="price">{order.price}</div>
+								<div className="status">{order.status}</div>
+								<div className="downloadButtonWrapper">
+									<button className="downloadButton"></button>
+								</div>
+							</>
+						))}
 					</div>
 				</div>
 			</div>
