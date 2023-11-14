@@ -55,9 +55,6 @@
     .profileInfoContainer{
         display: flex;
         flex-direction: column;
-    }
-
-    .profileInfoContainer{
         min-width: 0;
     }
 }
