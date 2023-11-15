@@ -11,7 +11,7 @@ const TestComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/test');
+        const response = await fetch('http://localhost:5000/api/test');
         console.log(response.url)
 
         if (!response.ok) {
