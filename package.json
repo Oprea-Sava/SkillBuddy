@@ -1,31 +1,25 @@
 {
   "name": "skillhub",
+  "version": "1.0.0",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "start": "concurrently --kill-others \"npm:client\" \"npm:server\"",
+    "dev": "npm run start",
+    "build": "npm run build:client && npm run build:server",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "npm run preview:client",
+    "preview:client": "cd client && npm run preview",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "cd client && npm run dev",
+    "server": "cd server && node server.js",
+    "build:client": "cd client && npm run build",
+    "build:server": "cd server && npm run build"
   },
-  "dependencies": {
-    "@splidejs/react-splide": "^0.7.12",
-    "framer-motion": "^10.16.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-glider": "^4.0.2",
-    "react-icons": "^4.11.0",
-    "react-router-dom": "^6.16.0"
-  },
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "devDependencies": {
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react": "^4.0.3",
-    "eslint": "^8.45.0",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.3",
-    "vite": "^4.4.5"
+    "concurrently": "^7.6.0"
   }
 }

@@ -15,12 +15,13 @@ import ErrorPage from "./errorPage";
 import OrderHisory from "./components/dashboard/orderHistory";
 import EditProfile from "./components/dashboard/editProfile";
 import CoursesPage from "./coursesPage";
+import TestComponent from "./components/TestComponent";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <LandingPage />,
-		errorElement: < ErrorPage/>,
+		//errorElement: < ErrorPage/>,
 	},
 	{
 		path: "dashboard",
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
 		path: "signup",
 		element: <SignUp />,
 	},
+	{
+		path: "test",
+		element: <TestComponent/>,
+	}
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
