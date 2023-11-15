@@ -14,6 +14,7 @@ import Wishlist from "./components/dashboard/wishlist";
 import ErrorPage from "./errorPage";
 import OrderHisory from "./components/dashboard/orderHistory";
 import EditProfile from "./components/dashboard/editProfile";
+import CoursesPage from "./coursesPage";
 
 const router = createBrowserRouter([
 	{
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
 			{ path: "changepassword", element: <></> },
 			
 		],
+	},
+	{
+		path: "courses",
+		element: <CoursesPage />,
+		
 	},
 	{
 		path: "signin",

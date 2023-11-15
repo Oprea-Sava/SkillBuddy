@@ -1,0 +1,47 @@
+#coursesPageContent{
+    min-height: 75vh;
+    padding: 0 100px 0 100px;
+}
+
+.coursesPageTitle{
+    height: 25vh;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.coursesSection{
+    display: flex;
+    gap: 30px;
+} 
+
+.coursesContentHead{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.coursesContentHead>*{
+    padding: 0 40px 0 40px;
+}
+
+.showFilteredCourses{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.showFilteredCourses>button{
+    height: 30px;
+    width: 30px;
+}
+
+.coursesContent{
+    flex: 3;
+}
+
+.coursesSidebar{
+    flex: 1; 
+}
