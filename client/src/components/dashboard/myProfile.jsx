@@ -1,7 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../css/dashboard/myProfile.css";
+import { getUserData } from "../../getUserData";
 
 function MyProfile() {
+	const [userData, setUserData] = useState({});
+
+	useEffect(() => {
+		const fetchUserData = async () => {
+		  try {
+			// Retrieve the JWT token from localStorage
+			const token = localStorage.getItem('token');
+			const data = await getUserData(token)
+			setUserData(data);
+		  } catch (error) {
+			console.error('Error fetching user data:', error);
+		  }
+		};
+	
+		fetchUserData();
+	  }, []);
+	  const registrationDate = new Date(userData.registrationDate)
+	  console.log(typeof(userData.registrationDate))
+	  //dont delete for some reason it breaks
+	  if (isNaN(registrationDate)) {
+		return <div>Error: Invalid date format</div>;
+	  }
+	  //
+	  const formattedDate = registrationDate.toISOString().split('T')[0];
 	return (
 		<>
 			<div id="myProfile">
@@ -11,41 +36,31 @@ function MyProfile() {
 				<div className="profileInfoContainer text">
 					<div className="firstName">
 						<div>First Name</div>
-						<div>asd</div>
+						<div>{userData.firstname}</div>
 					</div>
 					<div className="lastName">
 						<div>Last Name</div>
-						<div>asd</div>
+						<div>{userData.lastname}</div>
 					</div>
 					<div className="regDate">
 						<div>Registration Date</div>
-						<div>asd</div>
+						<div>{formattedDate}</div>
 					</div>
 					<div className="username">
 						<div>Username</div>
-						<div>asd</div>
+						<div>{userData.username}</div>
 					</div>
 					<div className="email">
 						<div>Email</div>
-						<div>asd</div>
+						<div>{userData.email}</div>
 					</div>
 					<div className="phoneNmbr">
 						<div>Phone Numebr</div>
-						<div>as</div>
+						<div>{userData.phone}</div>
 					</div>
 					<div className="bio">
 						<div>Bio</div>
-						<div>
-							Lorem ipsum dolor sit amet, consectetur adipiscing
-							elit, sed do eiusmod tempor incididunt ut labore et
-							dolore magna aliqua. Ut enim ad minim veniam, quis
-							nostrud exercitation ullamco laboris nisi ut aliquip
-							ex ea commodo consequat. Duis aute irure dolor in
-							reprehenderit in voluptate velit esse cillum dolore
-							eu fugiat nulla pariatur. Excepteur sint occaecat
-							cupidatat non proident, sunt in culpa qui officia
-							deserunt mollit anim id est laborum.
-						</div>
+						<div>{userData.bio}</div>
 					</div>
 				</div>
 			</div>
