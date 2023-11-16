@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
+import { useNavigate } from "react-router-dom";
 import './css/signUp.css';
 
 export default function SignUp() {
@@ -9,6 +10,7 @@ export default function SignUp() {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -23,7 +25,7 @@ export default function SignUp() {
     // Add validation here
 
     try {
-      const response = await fetch("http://localhost:5000/api/users/create", {
+      const response = await fetch("http://localhost:5000/api/users/signUp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,7 +35,10 @@ export default function SignUp() {
 
       if (response.ok) {
         console.log("User created successfully");
-        // Redirect to the dashboard 
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("id", data.id);
+        navigate("/dashboard")
       } else {
         const data = await response.json();
         console.error("Error creating user:", data.error);
