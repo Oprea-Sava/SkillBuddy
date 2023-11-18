@@ -69,7 +69,7 @@ router.post("/signUp", async (req, res) => {
   }
 });
 
-//ROute to get user information
+//Route to get user information
 router.get("/:userId", async (req, res) => {
   const userId = req.params.userId;
 
@@ -87,4 +87,26 @@ router.get("/:userId", async (req, res) => {
   }
 });
 
+//Route to update user information
+router.put("/:userId", async (req, res) => {
+  const userId = req.params.userId;
+  const updatedData = req.body;
+
+  //Validate and sanitize data here
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { $set: updatedData },
+      { new: true }
+    ).select("-password");
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json(updatedUser);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 module.exports = router;

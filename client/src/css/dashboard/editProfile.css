@@ -1,89 +1,106 @@
-#editProfile{
-    display: flex;
+#editProfile {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+}
+
+.editProfileAvatar {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.profileAvatarButtons {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 20px;
+}
+
+.profileAvatarButtons > button {
+  background-color: var(--primary);
+  height: 35px;
+  width: 100px;
+  border: none;
+  border-radius: 5px;
+}
+
+.editProfileForm {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.editProfileDetails {
+  width: 100%;
+  min-width: 350px;
+  display: grid;
+  gap: 10px;
+  column-gap: 75px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.editProfileDetails > .gridCell:nth-last-child(2) {
+  grid-column: span 2;
+}
+
+.bioInput {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.gridCell {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 0px 15px 0px;
+}
+
+.gridCell > input {
+  height: 35px;
+}
+
+.editProfileBoldText {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.editProfileSubmit > button {
+  appearance: none;
+  border: none;
+  height: 50px;
+  background-color: var(--primary);
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 10px 20px;
+}
+
+@media screen and (max-width: 1150px) and (min-width: 761px) {
+  .editProfileAvatar {
     flex-direction: column;
-    gap: 30px;
-    padding: 20px;
-}
-
-.editProfileAvatar{
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-}
-
-.profileAvatarButtons{
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 20px;
-}
-
-.profileAvatarButtons>button{
-    background-color: var(--primary);
-    height: 35px;
-    width: 100px;
-    border: none;
-    border-radius: 5px;
-}
-
-.editProfileForm{
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.editProfileDetails{
+  }
+  .profileAvatarButtons {
     width: 100%;
-    min-width: 350px;
-    display: grid;
-    gap:10px;
-    column-gap: 75px;
-    grid-template-columns: repeat(2, 1fr); 
-}
-
-.gridCell{
+    justify-content: center;
+  }
+  .editProfileDetails {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 10px 10px 15px 0;
+  }
 }
 
-.gridCell>input{
+@media screen and (max-width: 580px) {
+  .editProfileAvatar {
+    flex-direction: column;
+  }
+  .profileAvatarButtons {
     width: 100%;
-    height: 35px;
-}
-
-.editProfileBoldText{
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-@media screen and (max-width:1150px) and (min-width:761px){
-    .editProfileAvatar{
-        flex-direction: column;
-    }
-    .profileAvatarButtons{
-        width: 100%;
-        justify-content: center;
-    }
-    .editProfileDetails{
-        display: flex;
-        flex-direction: column;
-    }
-}
-
-
-@media screen and (max-width:580px){
-    .editProfileAvatar{
-        flex-direction: column;
-    }
-    .profileAvatarButtons{
-        width: 100%;
-        justify-content: center;
-    }
-    .editProfileDetails{
-        display: flex;
-        flex-direction: column;
-        min-width: 0;
-    }
+    justify-content: center;
+  }
+  .editProfileDetails {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
 }
