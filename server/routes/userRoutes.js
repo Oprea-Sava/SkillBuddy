@@ -10,7 +10,7 @@ router.post("/signIn", async (req, res) => {
       $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
     });
 
-    if (!user || !user.password == password) {
+    if (!user || user.password != password) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
