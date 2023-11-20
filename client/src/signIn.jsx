@@ -32,7 +32,6 @@ export default function SignIn() {
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("token", data.token);
-        localStorage.setItem("id", data.id);
         console.log("Logged in");
         navigate("/dashboard");
       } else {

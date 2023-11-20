@@ -2,8 +2,19 @@ import React, { useEffect, useState } from "react";
 import "../../css/dashboard/sidebar.css";
 import placeholder from "../../assets/placeholder.png";
 import { useLocation, useNavigate } from "react-router-dom";
+import { getUserData } from "../../getUserData";
+
+
+const logout = () =>{
+    localStorage.removeItem('token')
+}
 
 function Sidebar() {
+	let posIndex = 0;
+	const navigate = useNavigate();
+	const { pathname } = useLocation();
+	const [userData, setUserData] = useState({});
+	const [isActive, setIsActive] = useState(posIndex);
 	const dashboardButtons = [
 		{ text: "Dasboard", path: "/dashboard/courses"},
 		{ text: "My Profile", path: "/dashboard/myprofile"},
@@ -18,12 +29,23 @@ function Sidebar() {
 		{ text: "Log Out", path: "/signin"},
 	];
 
-	const navigate = useNavigate();
-	const { pathname } = useLocation();
-	let posIndex = 0;
+	
 
-	const [isActive, setIsActive] = useState(posIndex);
-
+	useEffect(() => {
+		const fetchUserData = async () => {
+		  try {
+			// Retrieve the JWT token from localStorage
+			const token = localStorage.getItem('token');
+			const data = await getUserData(token)
+			setUserData(data);
+		  } catch (error) {
+			console.error('Error fetching user data:', error);
+		  }
+		};
+	
+		fetchUserData();
+	  }, []);
+	
 	useEffect(() => {
 		dashboardButtons.map((button, index) => {
 			if (button.path == pathname.slice(0, button.path.length)) {
@@ -39,6 +61,9 @@ function Sidebar() {
 	}, [pathname]);
 
 	function handleClick(whereTo) {
+		if(whereTo === "/signin") {
+			logout();
+		}
 		navigate(whereTo);
 	}
 
@@ -52,8 +77,8 @@ function Sidebar() {
 		<div id="sidebarWrapper">
 			<div id="sidebar">
 				<div className="profile">
-					<img src={placeholder} alt="" />
-					<div className="username text">Username</div>
+					{userData.img? (<img src="{userData.img}" alt=""/>):(<img src={placeholder} alt="" />)}
+					<div className="username text">{userData.username}</div>
 				</div>
 				<div className="navigator">
 					<div>
@@ -64,9 +89,9 @@ function Sidebar() {
 									className="text"
 									key={index}
 									onClick={() => {
-										handleClick(button.path);
-										resetColor(index);
-									}}
+										  handleClick(button.path);
+										  resetColor(index + dashboardButtons.length);
+									  }}
 									style={{
 										color:
 											isActive === index
