@@ -23,12 +23,6 @@ function CoursesPage() {
 							</div>
 							<div className="filterCourses">
 								<select name="filterCourses">
-									{/* <form action="">
-										<input
-											type="text"
-											placeholder="search"
-										/>
-									</form> */}
 									<option value="1">1</option>
 									<option value="2">2</option>
 									<option value="3">3</option>
