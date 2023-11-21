@@ -1,22 +1,26 @@
 const express = require("express");
-const path = require("path");
 const app = express();
 const port = process.env.PORT || 5000;
 const cors = require("cors");
+const mongoose = require("mongoose");
+const config = require("./config");
+const router = express.Router();
+const userRoutes = require("./routes/userRoutes");
 
 app.use(cors());
+app.use(express.json());
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, "../client/dist")));
+mongoose
+  .connect(config.mongoURI)
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.error("MongoDB Connection Error:", err));
 
 // Handle API requests here
 app.get("/api/test", (req, res) => {
   res.json({ message: "API test successful!" });
 });
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-});
+app.use("/api/users", userRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
