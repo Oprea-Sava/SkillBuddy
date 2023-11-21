@@ -1,7 +1,62 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../css/dashboard/editProfile.css";
+import { getUserData } from "../../getUserData";
 
 function EditProfile() {
+	const [formData, setFormData] = useState({
+		firstname:"",
+		lastname:"",
+		username:"",
+		bio:"",
+		phone:""
+	})
+    useEffect(() => {
+		const fetchUserData = async () => {
+		  try {
+			// Retrieve the JWT token from localStorage
+			const token = localStorage.getItem('token');
+			const data = await getUserData(token)
+			setFormData(data);
+		  } catch (error) {
+			console.error('Error fetching user data:', error);
+		  }
+		};
+	
+		fetchUserData();
+	  }, []);
+
+	const handleInputChange = (e) => {
+		setFormData({
+		  ...formData,
+		  [e.target.name]: e.target.value,
+		});
+	  };
+
+	const handleSubmit = async (e) =>{
+		e.preventDefault();
+		try{
+			const token = localStorage.getItem('token');
+			// Decode the token
+			const decodedToken = JSON.parse(atob(token.split(".")[1]));
+			// Access the user ID
+			const userId = decodedToken.userId;
+			const response = await fetch(`http://localhost:5000/api/users/${userId}`,{
+				method: "PUT",
+				headers: {
+					"Content-type":"application/json",
+				},
+				body: JSON.stringify(formData),
+			});
+			if(!response.ok){
+				const errorData = await response.json();
+				console.error("Error updating user:", errorData.error);
+			}
+		}catch(error){
+			console.error("Error updating user:", error);
+		}
+	}
+
+
 	return (
 		<>
 			<div id="editProfile">
@@ -42,7 +97,9 @@ function EditProfile() {
 							<input
 								className="text"
 								type="text"
-								placeholder="placeholder"
+								name="firstname"
+								value={formData.firstname}
+								onChange={handleInputChange}
 							/>
 						</div>
 						<div className="gridCell" >
@@ -50,7 +107,9 @@ function EditProfile() {
 							<input
 								className="text"
 								type="text"
-								placeholder="placeholder"
+								name="lastname"
+								value={formData.lastname}
+								onChange={handleInputChange}
 							/>
 						</div>
 						<div className="gridCell" >
@@ -58,7 +117,9 @@ function EditProfile() {
 							<input
 								className="text"
 								type="text"
-								placeholder="placeholder"
+								name="username"
+								value={formData.username}
+								onChange={handleInputChange}
 							/>
 						</div>
 						<div className="gridCell" >
@@ -66,75 +127,25 @@ function EditProfile() {
 							<input
 								className="text"
 								type="number"
-								placeholder="placeholder"
+								name="phone"
+								value={formData.phone}
+								onChange={handleInputChange}
 							/>
 						</div>
 						<div className="gridCell" >
-							<div className="text">Designation</div>
-							<input
-								className="text"
-								type="text"
-								placeholder="placeholder"
+							<div className="text ">Bio</div>
+							<textarea
+								className="text bioInput"
+								name="bio"
+								value={formData.bio}
+								onChange={handleInputChange}
 							/>
 						</div>
-						<div className="gridCell" >
-							<div className="text">Bio</div>
-							<input
-								className="text"
-								type="text"
-								placeholder="placeholder"
-							/>
-						</div>
-					</div>
-					<div>
-						<div className="editProfileBoldText text">
-							Social Profiles
-						</div>
-						<div className="text">
-							Add your social profile links in below soocial
-							accounts.
-						</div>
-					</div>
-					<div className="editProfileSocials">
-						<div className="gridCell" >
-							<div className="text">Website</div>
-							<input
-								className="text"
-								type="text"
-								placeholder="placeholder"
-							/>
-						</div>
-						<div className="gridCell" >
-							<div className="text">Github</div>
-							<input
-								className="text"
-								type="text"
-								placeholder="placeholder"
-							/>
-						</div>
-						<div className="gridCell" >
-							<div className="text">Facebook</div>
-							<input
-								className="text"
-								type="text"
-								placeholder="placeholder"
-							/>
-						</div>
-						<div className="gridCell" >
-							<div className="text">Twitter</div>
-							<input
-								className="text"
-								type="text"
-								placeholder="placeholder"
-							/>
-						</div>
-						<div className="gridCell" >
-							<div className="text">Linkedin</div>
-							<input
-								className="text"
-								type="text"
-								placeholder="placeholder"
-							/>
+
+						<div className="gridCell">
+							<div className="editProfileSubmit">
+								<button type="submit" className="text" onClick={handleSubmit}>Update Profile</button>
+							</div>
 						</div>
 					</div>
 				</form>

@@ -16,16 +16,17 @@ import OrderHisory from "./components/dashboard/orderHistory";
 import EditProfile from "./components/dashboard/editProfile";
 import CoursesPage from "./coursesPage";
 import TestComponent from "./components/TestComponent";
+import AuthRoute from "./authRoute";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <LandingPage />,
-		//errorElement: < ErrorPage/>,
+		errorElement: < ErrorPage/>,
 	},
 	{
 		path: "dashboard",
-		element: <Dashboard />,
+		element: <AuthRoute><Dashboard /></AuthRoute>,
 		children: [
 			{ index: true, element: <Overview /> },
 			{ path: "courses", element: <Overview /> },
