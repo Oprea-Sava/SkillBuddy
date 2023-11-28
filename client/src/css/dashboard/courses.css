@@ -19,14 +19,58 @@
 .courseCard {
     background-color: var(--primary);
     width: auto;
-    height: 400px;
+    min-height: 400px;
     border-radius: 30px;
     display: flex;
+    flex-direction: column;
 }
 
 .courseCardImageHolder{
-    background-image: url("placeholder.png");
-    background-position: cover;
+    z-index: 1;
+    width: 90%;
+    height: 50%;
+    margin: 5% 0 0 5%;
+    border-radius: 25px;
+    background-image: url("../../assets/placeholder.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+.coursePrice{
+    margin: 7.5%;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: var(--primary);
+}
+
+.courseCardDetails{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.courseCardDetails>*:first-child{
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.courseCardDetails>*:nth-child(2){
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.courseCardDetails>*:last-child{
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
 }
 
 @media screen and (max-width: 690px) {
