@@ -9,6 +9,6 @@ const courseCardSchema = new mongoose.Schema({
   // memberLimit: { type: Number },
 });
 
-const CourseCard = mongoose.model("CourseCard", courseCardSchema);
+const Course = mongoose.model("course", courseCardSchema);
 
-module.export = CourseCard;
+module.exports = Course;

@@ -2,10 +2,23 @@ const express = require("express");
 const router = express.Router();
 const Course = require("../schemas/courses");
 
-// create course
-router.put("/create", async (req, res) => {
+//route to get all id's
+
+router.get("/getall", async (req, res) => {
   try {
-    const { title, description, author, price } = req.body;
+    const courses = await Course.find({}, "_id");
+    const courseIds = courses.map((course) => course._id);
+    res.json(courseIds);
+  } catch (error) {
+    console.error("Error while retrieving course IDs:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// create course
+router.post("/create", async (req, res) => {
+  try {
+    const { title, description, author } = req.body;
     const course = await Course.findOne({ title: title });
     if (course) {
       return res.status(400).json({ error: "Course name is already taken." });
@@ -15,14 +28,14 @@ router.put("/create", async (req, res) => {
       title,
       description,
       author,
-      price,
     });
 
     await newCourse.save();
 
     res.status(201).json({ message: "Course created successfully" });
-  } catch {
-    res.status(500).json({ error: "internal Server Error" });
+  } catch (error) {
+    console.error("Error creating course:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
@@ -50,7 +63,7 @@ router.put("/:courseId", async (req, res) => {
   try {
     const updatedCourse = await Course.findByIdAndUpdate(
       courseId,
-      { $set: updatedCourse },
+      { $set: req.body },
       { new: true }
     );
     if (!updatedCourse) {
@@ -58,19 +71,6 @@ router.put("/:courseId", async (req, res) => {
     }
   } catch {
     res.status(500).json({ error: "Internal Server Error" });
-  }
-});
-
-//route to get all id's
-
-router.get("/getall", async (req, res) => {
-  try {
-    const courses = await Course.find({}, "_id");
-    const courseIds = courses.map((courses) => courses._id);
-    res.json({ courseIds });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: error.message });
   }
 });
 
