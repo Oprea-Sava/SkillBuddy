@@ -51,7 +51,8 @@ router.get("/:courseId", async (req, res) => {
     }
 
     res.json(course);
-  } catch {
+  } catch (error) {
+    console.error("Error retrieving course information:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
