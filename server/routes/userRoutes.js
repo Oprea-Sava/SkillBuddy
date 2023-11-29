@@ -4,6 +4,17 @@ const User = require("../schemas/users");
 const config = require("../config");
 const jwt = require("jsonwebtoken");
 
+function getUserId(token) {
+  try {
+    const decodedToken = JSON.parse(atob(token.split(".")[1]));
+    const userId = decodedToken.userId;
+    return userId;
+  } catch (error) {
+    console.error("Error decoding token:", error);
+    return null;
+  }
+}
+
 //Route to sign in the user
 router.post("/signIn", async (req, res) => {
   try {
@@ -68,10 +79,46 @@ router.post("/signUp", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
+//Route to add course to user
+router.put("/:token/addcourse", async (req, res) => {
+  const userId = getUserId(req.params.token);
+  const course = req.body.course;
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    if (user.enrolledCourses.includes(course)) {
+      return res
+        .status(403)
+        .json({ error: "User is already enrolled in the course" });
+    }
+    user.enrolledCourses.push(course);
+    await user.save();
+    return res.json({ message: "User data updated successfully" });
+  } catch (error) {
+    console.error("Error creating user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+//Route to get all enrolled courses from a user
+router.get("/:token/courses", async (req, res) => {
+  const userId = getUserId(req.params.token);
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    const courseIds = user.enrolledCourses;
+    res.json(courseIds);
+  } catch (error) {
+    console.error("Error retrieving enrolled course IDs:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 //Route to get user information
-router.get("/:userId", async (req, res) => {
-  const userId = req.params.userId;
+router.get("/:token", async (req, res) => {
+  const userId = getUserId(req.params.token);
 
   try {
     const user = await User.findById(userId).select("-password");
@@ -88,8 +135,8 @@ router.get("/:userId", async (req, res) => {
 });
 
 //Route to update user information
-router.put("/:userId", async (req, res) => {
-  const userId = req.params.userId;
+router.put("/:token", async (req, res) => {
+  const userId = getUserId(req.params.token);
   const updatedData = req.body;
 
   //Validate and sanitize data here

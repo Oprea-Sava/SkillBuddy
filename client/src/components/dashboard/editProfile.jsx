@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../../css/dashboard/editProfile.css";
-import { getUserData } from "../../getUserData";
 
 function EditProfile() {
 	const [formData, setFormData] = useState({
@@ -15,7 +14,11 @@ function EditProfile() {
 		  try {
 			// Retrieve the JWT token from localStorage
 			const token = localStorage.getItem('token');
-			const data = await getUserData(token)
+			const response = await fetch(`http://localhost:5000/api/users/${token}`);
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			  }
+			const data = await response.json();
 			setFormData(data);
 		  } catch (error) {
 			console.error('Error fetching user data:', error);
@@ -36,11 +39,7 @@ function EditProfile() {
 		e.preventDefault();
 		try{
 			const token = localStorage.getItem('token');
-			// Decode the token
-			const decodedToken = JSON.parse(atob(token.split(".")[1]));
-			// Access the user ID
-			const userId = decodedToken.userId;
-			const response = await fetch(`http://localhost:5000/api/users/${userId}`,{
+			const response = await fetch(`http://localhost:5000/api/users/${token}`,{
 				method: "PUT",
 				headers: {
 					"Content-type":"application/json",

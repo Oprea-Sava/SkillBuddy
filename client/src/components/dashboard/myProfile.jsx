@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../../css/dashboard/myProfile.css";
-import { getUserData } from "../../getUserData";
 
 function MyProfile() {
 	const [userData, setUserData] = useState({});
@@ -10,7 +9,11 @@ function MyProfile() {
 		  try {
 			// Retrieve the JWT token from localStorage
 			const token = localStorage.getItem('token');
-			const data = await getUserData(token)
+			const response = await fetch(`http://localhost:5000/api/users/${token}`);
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			  }
+			const data = await response.json();
 			setUserData(data);
 		  } catch (error) {
 			console.error('Error fetching user data:', error);
@@ -20,7 +23,6 @@ function MyProfile() {
 		fetchUserData();
 	  }, []);
 	  const registrationDate = new Date(userData.registrationDate)
-	  console.log(typeof(userData.registrationDate))
 	  //dont delete for some reason it breaks
 	  if (isNaN(registrationDate)) {
 		return <div>Error: Invalid date format</div>;

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "../../css/dashboard/sidebar.css";
 import placeholder from "../../assets/placeholder.png";
 import { useLocation, useNavigate } from "react-router-dom";
-import { getUserData } from "../../getUserData";
 
 
 const logout = () =>{
@@ -36,7 +35,11 @@ function Sidebar() {
 		  try {
 			// Retrieve the JWT token from localStorage
 			const token = localStorage.getItem('token');
-			const data = await getUserData(token)
+			const response = await fetch(`http://localhost:5000/api/users/${token}`);
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			  }
+			const data = await response.json();
 			setUserData(data);
 		  } catch (error) {
 			console.error('Error fetching user data:', error);

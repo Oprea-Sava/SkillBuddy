@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
   registrationDate: { type: Date, default: Date.now },
   bio: { type: String },
   phone: { type: String },
+  enrolledCourses: [{ type: String }],
 });
 
 const User = mongoose.model("User", userSchema);

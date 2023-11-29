@@ -8,11 +8,18 @@ function Courses( {courseType,userSpecific} ) {
 		const fetchCourseIds = async () => {
 		  try {
 			if(!userSpecific){
-			const response = await fetch('http://localhost:5000/api/courses/getall')
-			if(response.ok){
-				const data = await response.json();
-				setCourseIds(data);
-			}else throw new Error(`HTTP error! Status: ${response.status}`)
+				const response = await fetch('http://localhost:5000/api/courses/getall')
+				if(response.ok){
+					const data = await response.json();
+					setCourseIds(data);
+				}else throw new Error(`HTTP error! Status: ${response.status}`)
+			}else{
+				const token = localStorage.getItem('token');
+				const response = await fetch(`http://localhost:5000/api/users/${token}/courses`)
+				if(response.ok){
+					const data = await response.json();
+					setCourseIds(data);
+				}else throw new Error(`HTTP error! Status: ${response.status}`)
 			}
 		  } catch (error) {
 			console.error('Error fetching courses:', error);
