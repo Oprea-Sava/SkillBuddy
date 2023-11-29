@@ -1,7 +1,7 @@
 import React from "react";
 import placeholder from "../../assets/placeholder.png";
 
-function CourseCard() {
+function CourseCard(id) {
     return(
         <>
             <div className="courseCard">
