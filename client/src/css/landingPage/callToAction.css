@@ -1,50 +1,49 @@
 #callToAction {
-    min-height: 20vh;
-    width: 70%;
-    margin: 40px;
-    margin-left: 15%;
-    border-radius: 20px;
-    box-shadow: 5px 10px 20px 2px var(--shadow);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: var(--primary);
+  min-height: 20vh;
+  width: 70%;
+  margin: 40px;
+  margin-left: 15%;
+  border-radius: 20px;
+  box-shadow: 5px 10px 20px 2px var(--shadow);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-#callToAction>* {
-    margin: 20px;
+#callToAction > * {
+  margin: 20px;
 }
 
-#callToAction>div {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+#callToAction > div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .bigText {
-    font-size: 1.75rem;
-    font-weight: 600;
+  font-size: 1.75rem;
+  font-weight: 600;
 }
 
 .smallText {
-    font-size: 1.25rem;
-    font-weight: 500;
+  font-size: 1.25rem;
+  font-weight: 500;
 }
 
 .ctaButton {
-    border: none;
-    width: 130px;
-    height: 39px;
-    border-radius: 5px;
+  border: none;
+  width: 130px;
+  height: 39px;
+  border-radius: 5px;
 }
 
-@media screen and (max-width:1068px) {
-    .bigText {
-        font-size: 1.5rem;
-    }
+@media screen and (max-width: 1068px) {
+  .bigText {
+    font-size: 1.5rem;
+  }
 
-    .smallText {
-        font-size: 1rem;
-    }
+  .smallText {
+    font-size: 1rem;
+  }
 }

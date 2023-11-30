@@ -10,13 +10,13 @@ function LandingPage() {
     return (
         <>
             <Navbar/>
-            <div className='separator nav'></div>
+            
             <HeroContainer />
-            <div className='separator top'></div>
+            
             <Features/>
-            <div className='separator bottom'></div>
+            
             <Hook />
-            <div className='separator top'></div>
+            
             <CallToAction />
             <Footer/>
         </>

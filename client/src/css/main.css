@@ -1,14 +1,11 @@
 html[data-theme="light"] {
-  --text: #04030c;
-  --background: #efeafb;
-  --primary: #683bd8;
-  --secondary: #c4b2f0;
-  --accent: #4c23b3;
+  --text: #ffffff;
+  --background: #0a1929;
+  --primary: #1565c0;
+  --secondary: #5e92f3;
+  --accent: #ff4081;
   --shadow: #969696;
   --special: #190b38;
-  --top: url("../assets/separators/layered-waves-haikei.svg");
-  --bottom: url("../assets/separators/layered-waves-haikei2.svg");
-  --navbar: url("../assets/separators/layered-waves-haikei5.svg");
 }
 
 html[data-theme="dark"] {
@@ -19,9 +16,6 @@ html[data-theme="dark"] {
   --accent: #754cdc;
   --shadow: #000000;
   --special: #c4b2f0;
-  --top: url("../assets/separators/layered-waves-haikei3.svg");
-  --bottom: url("../assets/separators/layered-waves-haikei4.svg");
-  --navbar: url("../assets/separators/layered-waves-haikei6.svg");
 }
 
 body {
