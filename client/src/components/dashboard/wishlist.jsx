@@ -8,7 +8,7 @@ function Wishlist() {
 			<div id="wishlist">
 				<div className="wishlist text">Wishlist</div>
 
-				<Courses />
+				<Courses userSpecific={true} />
 			</div>
 		</>
 	);

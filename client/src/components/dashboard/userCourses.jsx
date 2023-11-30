@@ -35,7 +35,7 @@ function UserCourses() {
 					</button>
 				</div>
 
-				<Courses courseType={option} />
+				<Courses courseType={option} userSpecific={true} />
 			</div>
 		</>
 	);
