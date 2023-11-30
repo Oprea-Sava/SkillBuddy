@@ -21,7 +21,7 @@ function Overview() {
 					</div>
 				</div>
 
-				<Courses courseType={"Recently Enrolled Courses"} userSpecific={true}/>
+				<Courses courseType={"Enrolled Courses"} userSpecific={true}/>
 			</div>
 		</>
 	);

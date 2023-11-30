@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import placeholder from "../../assets/placeholder.png";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 
-function CourseCard({ Id }) {
+function CourseCard({ Id, onWishlistChange, courseType }) {
 	const [isActive, setIsActive] = useState(false);
 	const [courseData, setCourseData] = useState({});
 
@@ -29,7 +29,7 @@ function CourseCard({ Id }) {
 			try {
 				const token = localStorage.getItem("token");
 				const response = await fetch(
-					`http://localhost:5000/api/users/${token}/checkishlist`,
+					`http://localhost:5000/api/users/${token}/checkwishlist`,
 					{
 						method: "PUT",
 						headers: {
@@ -43,13 +43,11 @@ function CourseCard({ Id }) {
 				}
 				const isWishlisted = await response.json();
 				setIsActive(isWishlisted);
-				console.log(isWishlisted);
 			} catch (error) {
 				console.error("Error checking course:", error);
 			}
 		};
-
-		checkWishlist();
+		checkWishlist(Id);
 		fetchCourseData();
 	}, []);
 
@@ -92,12 +90,10 @@ function CourseCard({ Id }) {
 				}
 			)
 			if (!response.ok) {
-				if (response.status === 403) {
-					console.error("User is already enrolled in the course");
-				} else {
-					throw new Error(`HTTP error! Status: ${response.status}`);
-				}
-			}
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			} else if(courseType=="Wishlisted Courses"){
+                onWishlistChange();
+            }
 		}
 		catch{
 			console.error("Error adding course:", error);
@@ -113,7 +109,7 @@ function CourseCard({ Id }) {
 				<div className="courseCardDetails">
 					<div>
 						<div className="authorName">{courseData.author}</div>
-						<button
+						<div
 							className="bookmark"
 							onClick={() => {
 								setIsActive(!isActive);
@@ -125,7 +121,7 @@ function CourseCard({ Id }) {
 							) : (
 								<FaRegHeart size={15} />
 							)}
-						</button>
+						</div>
 					</div>
 					<div>{courseData.title}</div>
 					{/* if the name is too long the button gets out of the card */}

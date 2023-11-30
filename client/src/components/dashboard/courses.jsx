@@ -4,7 +4,9 @@ import "../../css/dashboard/courses.css";
 
 function Courses({ courseType, userSpecific }) {
 	const [courseIds, setCourseIds] = useState([]);
+	const [wishlistChanged, setWishlistChanged] = useState(false);
 	useEffect(() => {
+		setCourseIds([]);
 		const fetchCourseIds = async () => {
 			try {
 				if (!userSpecific) {
@@ -19,15 +21,15 @@ function Courses({ courseType, userSpecific }) {
 							`HTTP error! Status: ${response.status}`
 						);
 				} else {
+					setWishlistChanged(false);
 					const token = localStorage.getItem("token");
 					const response = await fetch(
-						`http://localhost:5000/api/users/${token}/courses`
+						`http://localhost:5000/api/users/${token}/courses?type=${encodeURIComponent(courseType)}`
 					);
 					if (response.ok) {
 						const data = await response.json();
 						setCourseIds(data);
-					} else
-						throw new Error(
+					} else throw new Error(
 							`HTTP error! Status: ${response.status}`
 						);
 				}
@@ -35,9 +37,10 @@ function Courses({ courseType, userSpecific }) {
 				console.error("Error fetching courses:", error);
 			}
 		};
-
 		fetchCourseIds();
-	}, []);
+	}, [wishlistChanged]);
+
+	
 
 	return (
 		<>
@@ -48,6 +51,8 @@ function Courses({ courseType, userSpecific }) {
 						<CourseCard
 							Id={id}
 							key={index}
+							onWishlistChange={() => setWishlistChanged(true)}
+							courseType={courseType}
 						/>
 					))}
 				</div>

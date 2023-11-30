@@ -6,9 +6,7 @@ function Wishlist() {
 	return (
 		<>
 			<div id="wishlist">
-				<div className="wishlist text">Wishlist</div>
-
-				<Courses userSpecific={true} />
+				<Courses courseType={"Wishlisted Courses"} userSpecific={true} />
 			</div>
 		</>
 	);

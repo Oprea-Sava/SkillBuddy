@@ -1,9 +1,9 @@
 html[data-theme="light"] {
-  --text: #ffffff;
-  --background: #0a1929;
-  --primary: #1565c0;
-  --secondary: #5e92f3;
-  --accent: #ff4081;
+  --text: #04030c;
+  --background: #efeafb;
+  --primary: #683bd8;
+  --secondary: #c4b2f0;
+  --accent: #4c23b3;
   --shadow: #969696;
   --special: #190b38;
 }
