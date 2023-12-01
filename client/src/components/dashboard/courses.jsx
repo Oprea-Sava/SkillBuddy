@@ -3,11 +3,14 @@ import CourseCard from "./courseCard";
 import "../../css/dashboard/courses.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function Courses({ courseType, userSpecific }) {
 	const [courseIds, setCourseIds] = useState([]);
 	const [wishlistChanged, setWishlistChanged] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
+		setIsLoading(true);
 		setCourseIds([]);
 		const fetchCourseIds = async () => {
 			try {
@@ -44,6 +47,10 @@ function Courses({ courseType, userSpecific }) {
 				}
 			} catch (error) {
 				console.error("Error fetching courses:", error);
+			} finally {
+				// setTimeout(()=>{
+				    setIsLoading(false)
+			    // },200)
 			}
 		};
 		fetchCourseIds();
@@ -53,7 +60,9 @@ function Courses({ courseType, userSpecific }) {
 		<>
 			<div className="courses text">
 				<div>{courseType}</div>
-				<div className="coursesContainer">
+			
+					{ isLoading ? (<div className="loaderContainer"><ClipLoader color="#683bd8"/></div>):
+					(<div className="coursesContainer">
 					{courseIds.map((id, index) => (
 						<CourseCard
 							Id={id}
@@ -62,19 +71,7 @@ function Courses({ courseType, userSpecific }) {
 							courseType={courseType}
 						/>
 					))}
-				</div>
-				<ToastContainer
-					position="bottom-right"
-					autoClose={5000}
-					hideProgressBar={false}
-					newestOnTop={false}
-					closeOnClick
-					rtl={false}
-					pauseOnFocusLoss
-					draggable
-					pauseOnHover
-					theme="colored"
-				/>
+					</div>)}
 			</div>
 		</>
 	);

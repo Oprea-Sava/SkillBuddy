@@ -10,6 +10,13 @@
   text-wrap: nowrap;
 }
 
+.loaderContainer {
+  height: 50vh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
 .coursesContainer {
   display: grid;
   gap: 20px;
