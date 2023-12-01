@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import placeholder from "../../assets/placeholder.png";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function CourseCard({ Id, onWishlistChange, courseType }) {
 	const [isActive, setIsActive] = useState(false);
@@ -67,9 +69,14 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
 			if (!response.ok) {
 				if (response.status === 403) {
 					console.error("User is already enrolled in the course");
+					toast.info("User is already enrolled in the course");
 				} else {
+					toast.error(`HTTP error! Status: ${response.status}`);
 					throw new Error(`HTTP error! Status: ${response.status}`);
 				}
+			}
+			else{
+				toast.success("Course enrolled successfully!");
 			}
 		} catch (error) {
 			console.error("Error adding course:", error);
@@ -90,10 +97,17 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
 				}
 			)
 			if (!response.ok) {
+				toast.error(`HTTP error! Status: ${response.status}`);
 				throw new Error(`HTTP error! Status: ${response.status}`);
 			} else if(courseType=="Wishlisted Courses"){
                 onWishlistChange();
             }
+			if(isActive) {
+				toast.success("Course removed from wishlist!")
+			}
+			else {
+				toast.success("Course added to wishlist!")
+			}
 		}
 		catch{
 			console.error("Error adding course:", error);
@@ -135,6 +149,19 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
 						</button>
 					</div>
 				</div>
+
+				<ToastContainer
+					position="bottom-right"
+					autoClose={5000}
+					hideProgressBar={false}
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss
+					draggable
+					pauseOnHover
+					theme="colored"
+				/>
 			</div>
 		</>
 	);
