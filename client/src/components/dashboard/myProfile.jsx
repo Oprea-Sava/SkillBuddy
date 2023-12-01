@@ -6,29 +6,30 @@ function MyProfile() {
 
 	useEffect(() => {
 		const fetchUserData = async () => {
-		  try {
-			// Retrieve the JWT token from localStorage
-			const token = localStorage.getItem('token');
-			const response = await fetch(`http://localhost:5000/api/users/${token}`);
-			if (!response.ok) {
-				throw new Error(`HTTP error! Status: ${response.status}`);
-			  }
-			const data = await response.json();
-			setUserData(data);
-		  } catch (error) {
-			console.error('Error fetching user data:', error);
-		  }
+			try {
+				const token = localStorage.getItem("token");
+				const response = await fetch(
+					`http://localhost:5000/api/users/${token}`
+				);
+				if (!response.ok) {
+					throw new Error(`HTTP error! Status: ${response.status}`);
+				}
+				const data = await response.json();
+				setUserData(data);
+			} catch (error) {
+				console.error("Error fetching user data:", error);
+			}
 		};
-	
+
 		fetchUserData();
-	  }, []);
-	  const registrationDate = new Date(userData.registrationDate)
-	  //dont delete for some reason it breaks
-	  if (isNaN(registrationDate)) {
+	}, []);
+	const registrationDate = new Date(userData.registrationDate);
+	//dont delete for some reason it breaks
+	if (isNaN(registrationDate)) {
 		return <div>Error: Invalid date format</div>;
-	  }
-	  //
-	  const formattedDate = registrationDate.toISOString().split('T')[0];
+	}
+	//
+	const formattedDate = registrationDate.toISOString().split("T")[0];
 	return (
 		<>
 			<div id="myProfile">

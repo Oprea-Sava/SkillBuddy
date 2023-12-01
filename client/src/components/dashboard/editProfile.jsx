@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../css/dashboard/editProfile.css";
+import { ToastContainer, toast } from 'react-toastify';
 
 function EditProfile() {
 	const [formData, setFormData] = useState({
@@ -49,6 +50,10 @@ function EditProfile() {
 			if(!response.ok){
 				const errorData = await response.json();
 				console.error("Error updating user:", errorData.error);
+				toast.error(`Error updating user data: ${errorData.error}`);
+			}
+			else{
+				toast.success("User data updated successfully!");
 			}
 		}catch(error){
 			console.error("Error updating user:", error);

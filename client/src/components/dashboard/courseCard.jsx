@@ -103,10 +103,10 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
                 onWishlistChange();
             }
 			if(isActive) {
-				toast.success("Course removed from wishlist!")
+				toast.success("Course removed from wishlist!");
 			}
 			else {
-				toast.success("Course added to wishlist!")
+				toast.success("Course added to wishlist!");
 			}
 		}
 		catch{
