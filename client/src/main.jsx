@@ -16,7 +16,7 @@ import OrderHisory from "./components/dashboard/orderHistory";
 import EditProfile from "./components/dashboard/editProfile";
 import CoursesPage from "./coursesPage";
 import AuthRoute from "./authRoute";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const router = createBrowserRouter([

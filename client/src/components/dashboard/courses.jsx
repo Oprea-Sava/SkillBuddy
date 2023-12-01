@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CourseCard from "./courseCard";
 import "../../css/dashboard/courses.css";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
 
 function Courses({ courseType, userSpecific }) {
