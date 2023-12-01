@@ -6,7 +6,11 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: ["react-toastify/dist/ReactToastify.css", "react-toastify"],
+      external: [
+        "react-toastify/dist/ReactToastify.css",
+        "react-toastify",
+        "react-spinners/ClipLoader",
+      ],
     },
   },
 });
