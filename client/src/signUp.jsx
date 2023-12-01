@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import './css/signUp.css';
 
@@ -9,8 +9,15 @@ export default function SignUp() {
     username: "",
     email: "",
     password: "",
+    cpassword:"",
   });
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
 
   const handleChange = (e) => {
     setFormData({
@@ -22,7 +29,10 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Add validation here
+    if (formData.password !== formData.cpassword) {
+      console.error("Passwords do not match");
+      return;
+    }
 
     try {
       const response = await fetch("http://localhost:5000/api/users/signUp", {
@@ -88,6 +98,10 @@ export default function SignUp() {
           <div className="formGroup__su">
             <label className="formLabel__su">Password</label>
             <input type="password" name="password" className="formInput__su" value={formData.password} onChange={handleChange} required />
+          </div>
+          <div className="formGroup__su">
+            <label className="formLabel__su">Confirm Password</label>
+            <input type="password" name="cpassword" className="formInput__su" value={formData.cpassword} onChange={handleChange} required />
           </div>
           <div className="submit__su">
             <button type="submit" className="submitButton__su">Create Account</button>

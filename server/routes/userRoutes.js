@@ -29,7 +29,7 @@ function toCamelCase(inputString) {
 //Route to sign in the user
 router.post("/signIn", async (req, res) => {
   try {
-    const { usernameOrEmail, password } = req.body;
+    const { usernameOrEmail, password, rememberMe } = req.body;
     const user = await User.findOne({
       $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
     });
@@ -38,9 +38,15 @@ router.post("/signIn", async (req, res) => {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
+    let expiresIn = "1h";
+
+    if (rememberMe) {
+      expiresIn = "30d";
+    }
     const token = jwt.sign({ userId: user._id }, config.secureKey, {
-      expiresIn: "1h",
+      expiresIn: expiresIn,
     });
+
     res.status(200).json({ token });
   } catch (error) {
     console.error("Error logging in:", error);

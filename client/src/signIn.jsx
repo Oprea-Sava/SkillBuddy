@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './css/signIn.css';
 
@@ -7,13 +7,21 @@ export default function SignIn() {
   const [formData, setFormData] = useState({
     usernameOrEmail: "",
     password: "",
+    rememberMe: false,
   });
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
+
   const handleChange = (e) => {
+    const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
     });
   };
 
@@ -72,7 +80,7 @@ export default function SignIn() {
                     </div>
                     <div className="formGroupCheck__si">
                         <div className="remember__si">
-                            <input type="checkbox" className="formCheck__si"/>
+                            <input type="checkbox" name="rememberMe" className="formCheck__si" value={formData.rememberMe} onChange={handleChange}/>
                             <label className="rememberLabel__si">
                                 Remember Me
                             </label>
