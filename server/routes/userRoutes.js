@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../schemas/users");
 const config = require("../config");
 const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
 
 function getUserId(token) {
   try {
@@ -58,6 +59,7 @@ router.post("/signIn", async (req, res) => {
 router.post("/signUp", async (req, res) => {
   try {
     const { firstname, lastname, username, email, password } = req.body;
+    const _id = new mongoose.Types.ObjectId();
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -70,6 +72,7 @@ router.post("/signUp", async (req, res) => {
     }
 
     const newUser = new User({
+      _id,
       firstname,
       lastname,
       username,
@@ -82,7 +85,11 @@ router.post("/signUp", async (req, res) => {
 
     await newUser.save();
 
-    res.status(201).json({ message: "User created successfully" });
+    const token = jwt.sign({ userId: _id }, config.secureKey, {
+      expiresIn: "1h",
+    });
+
+    res.status(201).json({ message: "User created successfully", token });
   } catch (error) {
     console.error("Error creating user:", error);
     res.status(500).json({ error: "Internal Server Error" });

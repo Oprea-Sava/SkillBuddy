@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import "../../css/dashboard/sidebar.css";
 import placeholder from "../../assets/placeholder.png";
 import { useLocation, useNavigate } from "react-router-dom";
+import {toast} from 'react-toastify'
 
 
 const logout = () =>{
-    localStorage.removeItem('token')
+    localStorage.removeItem('token');
+	toast.info("Logged out")
 }
 
 function Sidebar() {

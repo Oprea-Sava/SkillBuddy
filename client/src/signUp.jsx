@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
+import {toast} from 'react-toastify'
 import './css/signUp.css';
 
 export default function SignUp() {
@@ -47,11 +48,12 @@ export default function SignUp() {
         console.log("User created successfully");
         const data = await response.json();
         localStorage.setItem("token", data.token);
-        localStorage.setItem("id", data.id);
+        toast.success("Account created successfully")
         navigate("/dashboard")
       } else {
         const data = await response.json();
         console.error("Error creating user:", data.error);
+        toast.error(`${data.error}`)
       }
     } catch (error) {
       console.error("Error creating user:", error);

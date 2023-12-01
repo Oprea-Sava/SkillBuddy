@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import {toast} from 'react-toastify'
 import './css/signIn.css';
 
 
@@ -40,7 +41,7 @@ export default function SignIn() {
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("token", data.token);
-        console.log("Logged in");
+        toast.success("Logged in successfully")
         navigate("/dashboard");
       } else {
         const data = await response.json();
