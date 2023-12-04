@@ -1,4 +1,4 @@
-html[data-theme="light"] {
+/* html[data-theme="light"] {
   --text: #04030c;
   --background: #efeafb;
   --primary: #683bd8;
@@ -16,6 +16,36 @@ html[data-theme="dark"] {
   --accent: #754cdc;
   --shadow: #000000;
   --special: #c4b2f0;
+} */
+
+/* html[data-theme="light"] {
+  --text: #0a0a18;
+  --background: #f5f5fc;
+  --primary: #3932cf;
+  --secondary: #8681eb;
+  --accent: #5851ee;
+}
+html[data-theme="dark"] {
+  --text: #e6e6f4;
+  --background: #04040c;
+  --primary: #3830cf;
+  --secondary: #191480;
+  --accent: #1911ac;
+} */
+
+html[data-theme="light"] {
+  --text: #080b16;
+  --background: #fafbfe;
+  --primary: #2f55d6;
+  --secondary: #8aa1f0;
+  --accent: #476ef3;
+}
+html[data-theme="dark"] {
+  --text: #e9ecf7;
+  --background: #010204;
+  --primary: #2950d1;
+  --secondary: #0f2775;
+  --accent: #0c33b6;
 }
 
 body {
@@ -35,24 +65,4 @@ body::-webkit-scrollbar {
 
 .accent {
   background-color: var(--accent);
-}
-
-.separator {
-  aspect-ratio: 900/100;
-  width: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-.top {
-  background-image: var(--top);
-}
-
-.bottom {
-  background-image: var(--bottom);
-}
-
-.nav {
-  background-image: var(--navbar);
 }

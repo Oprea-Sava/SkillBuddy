@@ -10,13 +10,9 @@ function LandingPage() {
     return (
         <>
             <Navbar/>
-            
             <HeroContainer />
-            
             <Features/>
-            
             <Hook />
-            
             <CallToAction />
             <Footer/>
         </>

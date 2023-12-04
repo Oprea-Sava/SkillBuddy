@@ -82,7 +82,11 @@ function EditProfile() {
 						</div>
 					</div>
 					<div className="profileAvatarButtons">
-						<button className="text">Upload</button>
+						<form className="text submitImage" action="">
+  							<label className="text" >Select image:</label>
+  							<input className="text" type="file" id="img" name="img" accept="image/*"/>
+						</form>
+						
 						<button className="text">Delete</button>
 					</div>
 				</div>

@@ -15,7 +15,7 @@
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  gap: 20px;
+  gap: 0px;
 }
 
 .profileAvatarButtons > button {
@@ -24,6 +24,10 @@
   width: 100px;
   border: none;
   border-radius: 5px;
+}
+
+.submitImage>*{
+  margin: 10px 10px 0px 0px;
 }
 
 .editProfileForm {
