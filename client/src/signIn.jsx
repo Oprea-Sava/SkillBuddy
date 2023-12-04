@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify'
 import './css/signIn.css';
+import { isAuthenticated } from "./auth";
 
 
 export default function SignIn() {
@@ -13,7 +14,7 @@ export default function SignIn() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    if (isAuthenticated()) {
       navigate("/dashboard");
     }
   }, [navigate]);
