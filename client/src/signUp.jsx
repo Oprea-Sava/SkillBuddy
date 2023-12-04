@@ -103,13 +103,14 @@ export default function SignUp() {
             <input type="password" name="password" className="formInput__su" value={formData.password} onChange={handleChange} required />
           </div>
           <div className="formGroup__su">
-            <label className="formLabel__su">Confirm Password</label>
+            <label className="formLabel__su">Password Confirmation</label>
             <input type="password" name="cpassword" className="formInput__su" value={formData.cpassword} onChange={handleChange} required />
           </div>
           <div className="submit__su">
             <button type="submit" className="submitButton__su">Create Account</button>
           </div>
         </form>
+        <div className="formBottom__su">Already have an account ? <a href="/signin">Login</a></div>
       </div>
     </div>
   );

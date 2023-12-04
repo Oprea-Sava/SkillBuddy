@@ -9,7 +9,7 @@ function Dashboard() {
 	const [change, setChange] = useState(false)
 	return (
 		<>
-			<Navbar />
+			<Navbar dataChange={change} />
 			<div id="dashboardBody">
 				<Sidebar dataChange={change}/>
 				<Outlet context={[change, setChange]}/>

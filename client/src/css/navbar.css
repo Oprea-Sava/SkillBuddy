@@ -68,6 +68,10 @@
   border: none;
   font-size: 16px;
   text-wrap: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .signUp {
@@ -76,6 +80,14 @@
   width: 100px;
   height: 30px;
   border-radius: 5px;
+}
+
+.profileImg {
+  height: 35px;
+  width: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 @media screen and (max-width: 993px) {
@@ -92,7 +104,7 @@
   }
 }
 
-@media screen and (max-width: 1106px) {
+@media screen and (max-width: 1030px) {
   .navbarButton {
     font-size: 12px;
   }

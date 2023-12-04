@@ -8,6 +8,7 @@
 .signInBox {
   width: 50%;
   height: 100%;
+  box-sizing: border-box;
 }
 
 .banner__si {
@@ -131,6 +132,18 @@
 
 .rememberLabel__si {
   margin-top: 2%;
+}
+
+.formBottom__si {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 5px;
+}
+
+.formBottom__si > a {
+  text-decoration: none;
+  color: var(--accent);
 }
 
 @media screen and (max-width: 768px) {

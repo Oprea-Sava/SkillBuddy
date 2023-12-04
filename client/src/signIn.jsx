@@ -50,7 +50,6 @@ export default function SignIn() {
       }
     } catch (error) {
       console.error("Error logging in:", error);
-      // Handle unexpected errors
     }
   };
 
@@ -97,6 +96,7 @@ export default function SignIn() {
                         <button type="submit" className="submitButton__si">Login</button>
                     </div>
                 </form>
+                <div className="formBottom__si">New user ? <a>Create an Account</a></div>
 
             </div>
         </div>

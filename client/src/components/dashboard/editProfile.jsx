@@ -77,6 +77,7 @@ function EditProfile(handleDataChange) {
 				  toast.error(`Error uploading image: ${errorData.error}`);
 				} else {
 				  toast.success("Image uploaded successfully!");
+				  sessionStorage.removeItem('image')
 				  setChange(!change);
 				}
 			  }

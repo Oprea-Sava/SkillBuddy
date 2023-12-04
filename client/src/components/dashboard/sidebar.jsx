@@ -32,8 +32,6 @@ function Sidebar({dataChange}) {
 		{ text: "Log Out", path: "/signin"},
 	];
 
-	
-
 	useEffect(() => {
 		const fetchUserData = async () => {
 		  try {
