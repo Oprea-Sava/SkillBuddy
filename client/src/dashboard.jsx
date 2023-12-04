@@ -9,7 +9,6 @@ function Dashboard() {
 	const [change, setChange] = useState(false)
 	return (
 		<>
-			<button onClick={()=>handleChange()}>Render</button>
 			<Navbar />
 			<div id="dashboardBody">
 				<Sidebar dataChange={change}/>
