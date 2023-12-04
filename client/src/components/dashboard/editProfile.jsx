@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import "../../css/dashboard/editProfile.css";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import { useOutletContext } from "react-router-dom";
 
-function EditProfile() {
+function EditProfile(handleDataChange) {
 	const [formData, setFormData] = useState({
 		firstname:"",
 		lastname:"",
@@ -10,6 +11,8 @@ function EditProfile() {
 		bio:"",
 		phone:""
 	})
+	const [img, setImg] = useState(null);
+	const [change, setChange] = useOutletContext();
     useEffect(() => {
 		const fetchUserData = async () => {
 		  try {
@@ -36,25 +39,47 @@ function EditProfile() {
 		});
 	  };
 
+	const handleFileChange = (e) => {
+		const selectedFile = e.target.files[0];
+		setImg(selectedFile);
+	}
+
 	const handleSubmit = async (e) =>{
 		e.preventDefault();
 		try{
 			const token = localStorage.getItem('token');
-			const response = await fetch(`http://localhost:5000/api/users/${token}`,{
+			const responseData = await fetch(`http://localhost:5000/api/users/${token}`,{
 				method: "PUT",
 				headers: {
 					"Content-type":"application/json",
 				},
 				body: JSON.stringify(formData),
 			});
-			if(!response.ok){
-				const errorData = await response.json();
+			if (!responseData.ok) {
+				const errorData = await userDataResponse.json();
 				console.error("Error updating user:", errorData.error);
-				toast.error(`Error updating user data: ${errorData.error}`);
-			}
-			else{
+				toast.error("Error updating user data");
+			  } else {
 				toast.success("User data updated successfully!");
-			}
+			  }
+			  if (img) {
+				const imageFormData = new FormData();
+				imageFormData.append('image', img, img.name);
+		  
+				const imageResponse = await fetch(`http://localhost:5000/api/users/upload/${token}`, {
+				  method: 'POST',
+				  body: imageFormData,
+				});
+		  
+				if (!imageResponse.ok) {
+				  const errorData = await imageResponse.json();
+				  console.error("Error uploading image:", errorData.error);
+				  toast.error(`Error uploading image: ${errorData.error}`);
+				} else {
+				  toast.success("Image uploaded successfully!");
+				  setChange(!change);
+				}
+			  }
 		}catch(error){
 			console.error("Error updating user:", error);
 		}
@@ -83,8 +108,8 @@ function EditProfile() {
 					</div>
 					<div className="profileAvatarButtons">
 						<form className="text submitImage" action="">
-  							<label className="text" >Select image:</label>
-  							<input className="text" type="file" id="img" name="img" accept="image/*"/>
+  							<label className="text" htmlFor="img" >Upload</label>
+  							<input className="text" type="file" id="img" name="img" accept="image/*" hidden onChange={handleFileChange}/>
 						</form>
 						
 						<button className="text">Delete</button>

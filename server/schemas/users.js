@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
   bio: { type: String },
   phone: { type: String },
   enrolledCourses: [{ type: String }],
-  wishlistedCourses: [{type: String}],
+  wishlistedCourses: [{ type: String }],
 });
 
 const User = mongoose.model("User", userSchema);

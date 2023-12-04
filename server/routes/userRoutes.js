@@ -4,6 +4,20 @@ const User = require("../schemas/users");
 const config = require("../config");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
+const client = require("ssh2-sftp-client");
+const multer = require("multer");
+
+const schoolServer = {
+  host: "info.tm.edu.ro",
+  port: "54321",
+  username: "toprea",
+  password: config.schoolPass,
+  remotePath: "/home/toprea/profile_img",
+};
+
+const storage = multer.memoryStorage();
+
+const upload = multer({ storage: storage });
 
 function getUserId(token) {
   try {
@@ -26,6 +40,42 @@ function toCamelCase(inputString) {
 
   return camelCasedString;
 }
+
+//route to upload profile img
+router.post("/upload/:token", upload.single("image"), async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: "No file uploaded" });
+  }
+
+  const userId = getUserId(req.params.token);
+  const remotePath = `${schoolServer.remotePath}/${userId}.jpg`;
+
+  try {
+    const sftp = new client();
+    await sftp.connect(schoolServer);
+    await sftp.put(Buffer.from(req.file.buffer), remotePath);
+    res.status(200).json({ message: "File uploaded successfully" });
+  } catch (error) {
+    console.error("Error uploading file:", error.message);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+//route to get profile img
+router.get("/retrieve/:token", async (req, res) => {
+  const userId = getUserId(req.params.token);
+  const remotePath = `${schoolServer.remotePath}/${userId}.jpg`;
+  try {
+    const sftp = new client();
+    await sftp.connect(schoolServer);
+    const fileBuffer = await sftp.get(remotePath);
+    res.setHeader("Content-Type", "image/jpeg");
+    res.status(200).send(fileBuffer);
+  } catch (error) {
+    console.error("Error retrieving file:", error.message);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 //Route to sign in the user
 router.post("/signIn", async (req, res) => {

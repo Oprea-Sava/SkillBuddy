@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./css/dashboard/dashboard.css"
 import Navbar from "./navbar";
 import Footer from "./footer";
@@ -6,12 +6,14 @@ import Sidebar from "./components/dashboard/sidebar";
 import { Outlet } from "react-router-dom";
 
 function Dashboard() {
+	const [change, setChange] = useState(false)
 	return (
 		<>
+			<button onClick={()=>handleChange()}>Render</button>
 			<Navbar />
 			<div id="dashboardBody">
-				<Sidebar />
-				<Outlet />
+				<Sidebar dataChange={change}/>
+				<Outlet context={[change, setChange]}/>
 			</div>
 			<Footer />
 		</>

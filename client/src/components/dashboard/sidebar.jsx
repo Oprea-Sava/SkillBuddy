@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../../css/dashboard/sidebar.css";
-import placeholder from "../../assets/placeholder.png";
+import placeholder from "../../assets/paceholder2.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify'
+
 
 
 const logout = () =>{
@@ -10,12 +11,13 @@ const logout = () =>{
 	toast.info("Logged out")
 }
 
-function Sidebar() {
+function Sidebar({dataChange}) {
 	let posIndex = 0;
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
 	const [userData, setUserData] = useState({});
 	const [isActive, setIsActive] = useState(posIndex);
+
 	const dashboardButtons = [
 		{ text: "Dasboard", path: "/dashboard/courses"},
 		{ text: "My Profile", path: "/dashboard/myprofile"},
@@ -47,9 +49,28 @@ function Sidebar() {
 			console.error('Error fetching user data:', error);
 		  }
 		};
-	
+		const fetchUserImg = async() => {
+			try{
+				const token = localStorage.getItem('token');
+				const response = await fetch(`http://localhost:5000/api/users/retrieve/${token}`)
+				if(!response.ok){
+					throw new Error(`HTTP error! Status: ${response.status}`)
+				}
+
+				const imageBlob = await response.blob();
+				const imageUrl = URL.createObjectURL(imageBlob)
+				console.log(imageUrl);
+				setUserData((prevUserData) => ({
+					...prevUserData,
+					img: imageUrl,
+				  }));
+			} catch(error){
+				console.error('Error fetching user image:', error);
+			}
+		}
 		fetchUserData();
-	  }, []);
+		fetchUserImg();
+	  }, [dataChange]);
 	
 	useEffect(() => {
 		dashboardButtons.map((button, index) => {
@@ -82,7 +103,7 @@ function Sidebar() {
 		<div id="sidebarWrapper">
 			<div id="sidebar">
 				<div className="profile">
-					{userData.img? (<img src="{userData.img}" alt=""/>):(<img src={placeholder} alt="" />)}
+					{userData.img? (<img src={userData.img} alt=""/>):(<img src={placeholder} alt="" />)}
 					<div className="username text">{userData.username}</div>
 				</div>
 				<div className="navigator">
