@@ -20,9 +20,7 @@
 }
 
 .logoText {
-  height: auto;
-  max-width: 30%;
-  min-width: 200px;
+  max-height: 35px;
 }
 
 .logo,
