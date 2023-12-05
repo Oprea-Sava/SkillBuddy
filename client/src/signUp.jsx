@@ -63,7 +63,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className="container__su">
+    <div className="container__su text">
       <div className="banner__su">
         <div className="bannerImg__su"></div>
         <div className="bannerText__su">
@@ -83,31 +83,31 @@ export default function SignUp() {
           <div className="formName__su">
             <div className="formGroup__su">
               <label className="formLabel__su">First Name</label>
-              <input type="text" name="firstname" className="formInput__su" value={formData.firstname} onChange={handleChange} required />
+              <input type="text" name="firstname" className="formInput__su text" value={formData.firstname} onChange={handleChange} required />
             </div>
             <div className="formGroup__su">
               <label className="formLabel__su">Last Name</label>
-              <input type="text" name="lastname" className="formInput__su" value={formData.lastname} onChange={handleChange} required />
+              <input type="text" name="lastname" className="formInput__su text" value={formData.lastname} onChange={handleChange} required />
             </div>
           </div>
           <div className="formGroup__su">
             <label className="formLabel__su">Username</label>
-            <input type="text" name="username" className="formInput__su" value={formData.username} onChange={handleChange} required />
+            <input type="text" name="username" className="formInput__su text" value={formData.username} onChange={handleChange} required />
           </div>
           <div className="formGroup__su">
             <label className="formLabel__su">Email Address</label>
-            <input type="text" name="email" className="formInput__su" value={formData.email} onChange={handleChange} required />
+            <input type="text" name="email" className="formInput__su text" value={formData.email} onChange={handleChange} required />
           </div>
           <div className="formGroup__su">
             <label className="formLabel__su">Password</label>
-            <input type="password" name="password" className="formInput__su" value={formData.password} onChange={handleChange} required />
+            <input type="password" name="password" className="formInput__su text" value={formData.password} onChange={handleChange} required />
           </div>
           <div className="formGroup__su">
             <label className="formLabel__su">Password Confirmation</label>
-            <input type="password" name="cpassword" className="formInput__su" value={formData.cpassword} onChange={handleChange} required />
+            <input type="password" name="cpassword" className="formInput__su text" value={formData.cpassword} onChange={handleChange} required />
           </div>
           <div className="submit__su">
-            <button type="submit" className="submitButton__su">Create Account</button>
+            <button type="submit" className="submitButton__su text">Create Account</button>
           </div>
         </form>
         <div className="formBottom__su">Already have an account ? <a href="/signin">Login</a></div>

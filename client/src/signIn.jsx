@@ -54,7 +54,7 @@ export default function SignIn() {
   };
 
     return(
-        <div className="container__si">
+        <div className="container__si text">
             <div className="banner__si">
                 <div className="bannerImg__si"></div>
                 <div className="bannerText__si">
@@ -73,15 +73,15 @@ export default function SignIn() {
                 <form id="signInForm" onSubmit={handleSubmit}>
                     <div className="formGroup__si">
                         <label className="formLabel__si">Username or Email Address</label>
-                        <input type="text" name="usernameOrEmail" className="formInput__si" value={formData.usernameOrEmail} onChange={handleChange} required/>
+                        <input type="text" name="usernameOrEmail" className="formInput__si text" value={formData.usernameOrEmail} onChange={handleChange} required/>
                     </div>
                     <div className="formGroup__si">
                         <label className="formLabel__si">Password</label>
-                        <input type="password" name="password" className="formInput__si" value={formData.password} onChange={handleChange} required/>
+                        <input type="password" name="password" className="formInput__si text" value={formData.password} onChange={handleChange} required/>
                     </div>
                     <div className="formGroupCheck__si">
                         <div className="remember__si">
-                            <input type="checkbox" name="rememberMe" className="formCheck__si" value={formData.rememberMe} onChange={handleChange}/>
+                            <input type="checkbox" name="rememberMe" className="formCheck__si text" value={formData.rememberMe} onChange={handleChange}/>
                             <label className="rememberLabel__si">
                                 Remember Me
                             </label>
@@ -96,7 +96,7 @@ export default function SignIn() {
                         <button type="submit" className="submitButton__si">Login</button>
                     </div>
                 </form>
-                <div className="formBottom__si">New user ? <a>Create an Account</a></div>
+                <div className="formBottom__si">New user ? <a href="/signup" className="text">Create an Account</a></div>
 
             </div>
         </div>
