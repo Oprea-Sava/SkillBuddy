@@ -17,7 +17,7 @@ export default function SignIn() {
     if (isAuthenticated()) {
       navigate("/dashboard");
     }
-  }, [navigate]);
+  }, []);
 
   const handleChange = (e) => {
     const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
