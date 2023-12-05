@@ -4,7 +4,18 @@ import ClipLoader from "react-spinners/ClipLoader";
 const UserContext = createContext(null);
 
 export function UserProvider ({children}){
-    const [userData, setUserData]= useState(null)
+    const [userData, setUserData]= useState({
+        firstname:"",
+        lastname:"",
+        username:"",
+        email:"",
+        bio:"",
+        phone:"",
+        registrationDate:"",
+        enrolledCourses:[],
+        wishlistedCourses:[],
+    })
+    const [fetchData, setFetchData] = useState(false);
 
     function handleData(data){
         setUserData(data);
@@ -13,6 +24,7 @@ export function UserProvider ({children}){
     const contextValue = {
         userData,
         handleData,
+        setFetchData,
     };
     
     useEffect(() => {
@@ -48,14 +60,14 @@ export function UserProvider ({children}){
         //         console.error('Error fetching user image:', error);
         //     }
         // }
-        fetchUserData();
+        if (!fetchData) {
+            fetchUserData();
+            setFetchData(false); // Reset the fetch state after fetching
+          }
         console.log(userData);
-      }, []);
+      }, [fetchData]);
 
-      if (userData === null) {
-        //Render a loading state until user data is fetched
-        return <div className="loaderContainer"><ClipLoader color="#683bd8"/></div>
-    }
+     
 
     return (
         <UserContext.Provider value = {contextValue}>

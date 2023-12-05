@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import placeholder from "../../assets/placeholder.png";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 function CourseCard({ Id, onWishlistChange, courseType }) {
 	const [isActive, setIsActive] = useState(false);

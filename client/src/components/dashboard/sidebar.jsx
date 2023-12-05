@@ -3,7 +3,6 @@ import "../../css/dashboard/sidebar.css";
 import placeholder from "../../assets/paceholder2.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify';
-import UserContext from "../../userContext";
 
 
 
@@ -12,12 +11,28 @@ const logout = () =>{
 	toast.info("Logged out")
 }
 
-function Sidebar() {
+function Sidebar({dataChange}) {
 	let posIndex = 0;
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
-	const {userData} = useContext(UserContext);
 	const [isActive, setIsActive] = useState(posIndex);
+	const [userData, setUserData] = useState({})
+	useEffect(()=>{
+	const fetchUserData = async () => {
+		try {
+		  const token = localStorage.getItem('token');
+		  const response = await fetch(`http://localhost:5000/api/users/${token}`);
+		  if (!response.ok) {
+			  throw new Error(`HTTP error! Status: ${response.status}`);
+			}
+		  const data = await response.json();
+		  setUserData(data);
+		} catch (error) {
+		  console.error('Error fetching user data:', error);
+		}
+	  };
+	  fetchUserData()
+	},[dataChange])
 
 	const dashboardButtons = [
 		{ text: "Dasboard", path: "/dashboard/courses"},

@@ -10,33 +10,30 @@ import { isAuthenticated } from "./auth";
 import { useNavigate } from "react-router-dom";
 import placeholder from "./assets/paceholder2.png";
 import { useTheme } from "./themeContext";
-import UserContext from './userContext'
 
 function Navbar({dataChange}) {
     const { toggleTheme } = useTheme();
     const [isOpen, setIsOpen] = useState(false)
-    const {userData} = useContext(UserContext);
+    const [userImg, setUserImg] = useState(null)
     const navigate = useNavigate();
     useEffect(() => {
 
-		// const fetchUserImg = async() => {
-		// 	try{
-		// 		const token = localStorage.getItem('token');
-		// 		const response = await fetch(`http://localhost:5000/api/users/retrieve/${token}`)
-		// 		if(!response.ok){
-		// 			throw new Error(`HTTP error! Status: ${response.status}`)
-		// 		}
-		// 		const imageBlob = await response.blob();
-		// 		const imageUrl = URL.createObjectURL(imageBlob);
-		// 		setUserImg(imageUrl)
-        //         console.log(userImg)
-		// 	} catch(error){
-		// 		console.error('Error fetching user image:', error);
-		// 	}
-		// }
-        // if(isAuthenticated()){
-		//     fetchUserImg();
-        // }
+		const fetchUserData = async () => {
+            try {
+              const token = localStorage.getItem('token');
+              const response = await fetch(`http://localhost:5000/api/users/${token}`);
+              if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+              const data = await response.json();
+              setUserImg(data.img);
+            } catch (error) {
+              console.error('Error fetching user data:', error);
+            }
+          };
+        if(isAuthenticated()){
+		    fetchUserData();
+        }
         
     }, [dataChange]);
     function goToDashboard(){
@@ -78,10 +75,10 @@ function Navbar({dataChange}) {
 				</a>
 				<DarkModeButton toggleTheme={toggleTheme} />
 				{isAuthenticated() ? (
-					userData.img ? (
+					userImg ? (
 						<img
 							className="profileImg"
-							src={userData.img}
+							src={userImg}
 							alt=""
 							onClick={goToDashboard}
 						/>

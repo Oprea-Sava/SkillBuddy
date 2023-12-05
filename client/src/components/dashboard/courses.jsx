@@ -3,13 +3,12 @@ import CourseCard from "./courseCard";
 import "../../css/dashboard/courses.css";
 import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
-import UserContext from "../../userContext";
 
 function Courses({ courseType, userSpecific }) {
-	const {userData} = useContext(UserContext);
 	const [courseIds, setCourseIds] = useState([]);
-	const [wishlistChanged, setWishlistChanged] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
+	const [wishlistChanged, setWishlistChanged] = useState(false);
+	
 	function toCamelCase(inputString) {
 		const words = inputString.split(" ");
 		const firstWord = words[0].toLowerCase();
@@ -39,24 +38,22 @@ function Courses({ courseType, userSpecific }) {
 						);
 					}
 				} else {
-					setWishlistChanged(false);
 					
-					setCourseIds(userData[toCamelCase(courseType)])
-					// const token = localStorage.getItem("token");
-					// const response = await fetch(
-					// 	`http://localhost:5000/api/users/${token}/courses?type=${encodeURIComponent(
-					// 		courseType
-					// 	)}`
-					// );
-					// if (response.ok) {
-					// 	const data = await response.json();
-					// 	setCourseIds(data);
-					// } else {
-					// 	toast.error(`HTTP error! Status: ${response.status}`);
-					// 	throw new Error(
-					// 		`HTTP error! Status: ${response.status}`
-					// 	);
-					// }
+					const token = localStorage.getItem("token");
+					const response = await fetch(
+						`http://localhost:5000/api/users/${token}
+						)}`
+					);
+					if (response.ok) {
+						const data = await response.json();
+						const camelCaseType = toCamelCase(courseType)
+						setCourseIds(data[camelCaseType]|| []);
+					} else {
+						toast.error(`HTTP error! Status: ${response.status}`);
+						throw new Error(
+							`HTTP error! Status: ${response.status}`
+						);
+					}
 				}
 			} catch (error) {
 				console.error("Error fetching courses:", error);
