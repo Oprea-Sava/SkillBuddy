@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../../css/dashboard/sidebar.css";
 import placeholder from "../../assets/paceholder2.png";
 import { useLocation, useNavigate } from "react-router-dom";
-import {toast} from 'react-toastify'
+import {toast} from 'react-toastify';
+import UserContext from "../../userContext";
 
 
 
@@ -11,11 +12,11 @@ const logout = () =>{
 	toast.info("Logged out")
 }
 
-function Sidebar({dataChange}) {
+function Sidebar() {
 	let posIndex = 0;
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
-	const [userData, setUserData] = useState({});
+	const {userData} = useContext(UserContext);
 	const [isActive, setIsActive] = useState(posIndex);
 
 	const dashboardButtons = [
@@ -32,43 +33,7 @@ function Sidebar({dataChange}) {
 		{ text: "Log Out", path: "/signin"},
 	];
 
-	useEffect(() => {
-		const fetchUserData = async () => {
-		  try {
-			// Retrieve the JWT token from localStorage
-			const token = localStorage.getItem('token');
-			const response = await fetch(`http://localhost:5000/api/users/${token}`);
-			if (!response.ok) {
-				throw new Error(`HTTP error! Status: ${response.status}`);
-			  }
-			const data = await response.json();
-			setUserData(data);
-		  } catch (error) {
-			console.error('Error fetching user data:', error);
-		  }
-		};
-		const fetchUserImg = async() => {
-			try{
-				const token = localStorage.getItem('token');
-				const response = await fetch(`http://localhost:5000/api/users/retrieve/${token}`)
-				if(!response.ok){
-					throw new Error(`HTTP error! Status: ${response.status}`)
-				}
-
-				const imageBlob = await response.blob();
-				const imageUrl = URL.createObjectURL(imageBlob)
-				console.log(imageUrl);
-				setUserData((prevUserData) => ({
-					...prevUserData,
-					img: imageUrl,
-				  }));
-			} catch(error){
-				console.error('Error fetching user image:', error);
-			}
-		}
-		fetchUserData();
-		fetchUserImg();
-	  }, [dataChange]);
+	
 	
 	useEffect(() => {
 		dashboardButtons.map((button, index) => {

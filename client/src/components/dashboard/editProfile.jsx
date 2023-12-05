@@ -1,36 +1,36 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect, useContext} from "react";
 import "../../css/dashboard/editProfile.css";
 import { toast } from 'react-toastify';
 import { useOutletContext } from "react-router-dom";
+import UserContext from "../../userContext";
 
-function EditProfile(handleDataChange) {
-	const [formData, setFormData] = useState({
-		firstname:"",
-		lastname:"",
-		username:"",
-		bio:"",
-		phone:""
-	})
+function EditProfile() {
+	const {userData, handleData} = useContext(UserContext);
+	const [formData, setFormData] = useState(userData)
 	const [img, setImg] = useState(null);
 	const [change, setChange] = useOutletContext();
-    useEffect(() => {
-		const fetchUserData = async () => {
-		  try {
-			// Retrieve the JWT token from localStorage
-			const token = localStorage.getItem('token');
-			const response = await fetch(`http://localhost:5000/api/users/${token}`);
-			if (!response.ok) {
-				throw new Error(`HTTP error! Status: ${response.status}`);
-			  }
-			const data = await response.json();
-			setFormData(data);
-		  } catch (error) {
-			console.error('Error fetching user data:', error);
-		  }
-		};
+    // useEffect(() => {
+	// 	const fetchUserData = async () => {
+	// 	  try {
+	// 		// Retrieve the JWT token from localStorage
+	// 		const token = localStorage.getItem('token');
+	// 		const response = await fetch(`http://localhost:5000/api/users/${token}`);
+	// 		if (!response.ok) {
+	// 			throw new Error(`HTTP error! Status: ${response.status}`);
+	// 		  }
+	// 		const data = await response.json();
+	// 		setFormData(data);
+	// 	  } catch (error) {
+	// 		console.error('Error fetching user data:', error);
+	// 	  }
+	// 	};
 	
-		fetchUserData();
-	  }, []);
+	// 	fetchUserData();
+	//   }, []);
+
+	useEffect(()=>{
+		console.log(userData)
+	},[])
 
 	const handleInputChange = (e) => {
 		setFormData({
@@ -61,6 +61,7 @@ function EditProfile(handleDataChange) {
 				toast.error("Error updating user data");
 			  } else {
 				toast.success("User data updated successfully!");
+				handleData(formData);
 			  }
 			  if (img) {
 				const imageFormData = new FormData();
@@ -77,8 +78,6 @@ function EditProfile(handleDataChange) {
 				  toast.error(`Error uploading image: ${errorData.error}`);
 				} else {
 				  toast.success("Image uploaded successfully!");
-				  sessionStorage.removeItem('image')
-				  setChange(!change);
 				}
 			  }
 		}catch(error){
@@ -88,7 +87,7 @@ function EditProfile(handleDataChange) {
 
 
 	return (
-		<>
+		<> 
 			<div id="editProfile">
 				<div className="editProfileTitle">
 					<div className="editProfileBoldText text">

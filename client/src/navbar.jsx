@@ -4,39 +4,41 @@ import darkModeImage from './assets/moon.png'
 import lightModeImage from './assets/sun.png'
 import logo from './assets/logo.svg'
 import logoText from './assets/logoText1.png'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import {AiOutlineClose, AiOutlineMenu} from "react-icons/ai"
 import { isAuthenticated } from './auth'
 import { useNavigate } from 'react-router-dom'
 import placeholder from './assets/paceholder2.png'
 import { useTheme } from "./themeContext";
+import UserContext from './userContext'
 
 function Navbar({dataChange}) {
     const { toggleTheme } = useTheme();
     const [isOpen, setIsOpen] = useState(false)
-    const [userImg, setUserImg] = useState(null)
+    const {userData} = useContext(UserContext);
     const navigate = useNavigate();
     useEffect(() => {
 
-		const fetchUserImg = async() => {
-			try{
-				const token = localStorage.getItem('token');
-				const response = await fetch(`http://localhost:5000/api/users/retrieve/${token}`)
-				if(!response.ok){
-					throw new Error(`HTTP error! Status: ${response.status}`)
-				}
-				const imageBlob = await response.blob();
-				const imageUrl = URL.createObjectURL(imageBlob);
-				setUserImg(imageUrl)
-                console.log(userImg)
-			} catch(error){
-				console.error('Error fetching user image:', error);
-			}
-		}
-        if(isAuthenticated()){
-		fetchUserImg();
-    }
-	  }, [dataChange]);
+		// const fetchUserImg = async() => {
+		// 	try{
+		// 		const token = localStorage.getItem('token');
+		// 		const response = await fetch(`http://localhost:5000/api/users/retrieve/${token}`)
+		// 		if(!response.ok){
+		// 			throw new Error(`HTTP error! Status: ${response.status}`)
+		// 		}
+		// 		const imageBlob = await response.blob();
+		// 		const imageUrl = URL.createObjectURL(imageBlob);
+		// 		setUserImg(imageUrl)
+        //         console.log(userImg)
+		// 	} catch(error){
+		// 		console.error('Error fetching user image:', error);
+		// 	}
+		// }
+        // if(isAuthenticated()){
+		//     fetchUserImg();
+        // }
+        
+    }, [dataChange]);
     function goToDashboard(){
         navigate("/dashboard")
     }
@@ -65,7 +67,7 @@ function Navbar({dataChange}) {
                 <a className="navbarButton text" href='/'>About Us</a>
                 <a className="navbarButton text" href='/'>Contact</a>
                 <DarkModeButton toggleTheme={toggleTheme}/>
-                {isAuthenticated()? (userImg? (<img className='profileImg' src={userImg} alt="" onClick={goToDashboard}/>):(<img className='profileImg' src={placeholder} alt="" onClick={goToDashboard}/>)):<button className="secondary signUp text" onClick={goToSignUp}>Sign up</button>}
+                {isAuthenticated()? (userData.img? (<img className='profileImg' src={userData.img} alt="" onClick={goToDashboard}/>):(<img className='profileImg' src={placeholder} alt="" onClick={goToDashboard}/>)):<button className="secondary signUp text" onClick={goToSignUp}>Sign up</button>}
             </nav>
             <div className='menu' onClick={handleNav}>
                 {isOpen ? <AiOutlineClose size={20}/> : <AiOutlineMenu size={20}/>}

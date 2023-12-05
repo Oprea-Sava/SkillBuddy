@@ -1,13 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import CourseCard from "./courseCard";
 import "../../css/dashboard/courses.css";
 import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
+import UserContext from "../../userContext";
 
 function Courses({ courseType, userSpecific }) {
+	const {userData} = useContext(UserContext);
 	const [courseIds, setCourseIds] = useState([]);
 	const [wishlistChanged, setWishlistChanged] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
+	function toCamelCase(inputString) {
+		const words = inputString.split(" ");
+		const firstWord = words[0].toLowerCase();
+		const camelCasedWords = words
+		  .slice(1)
+		  .map((word) => word.charAt(0).toUpperCase() + word.slice(1));
+		const camelCasedString = [firstWord, ...camelCasedWords].join("");
+	  
+		return camelCasedString;
+	  }
 	useEffect(() => {
 		setIsLoading(true);
 		setCourseIds([]);
@@ -28,21 +40,23 @@ function Courses({ courseType, userSpecific }) {
 					}
 				} else {
 					setWishlistChanged(false);
-					const token = localStorage.getItem("token");
-					const response = await fetch(
-						`http://localhost:5000/api/users/${token}/courses?type=${encodeURIComponent(
-							courseType
-						)}`
-					);
-					if (response.ok) {
-						const data = await response.json();
-						setCourseIds(data);
-					} else {
-						toast.error(`HTTP error! Status: ${response.status}`);
-						throw new Error(
-							`HTTP error! Status: ${response.status}`
-						);
-					}
+					
+					setCourseIds(userData[toCamelCase(courseType)])
+					// const token = localStorage.getItem("token");
+					// const response = await fetch(
+					// 	`http://localhost:5000/api/users/${token}/courses?type=${encodeURIComponent(
+					// 		courseType
+					// 	)}`
+					// );
+					// if (response.ok) {
+					// 	const data = await response.json();
+					// 	setCourseIds(data);
+					// } else {
+					// 	toast.error(`HTTP error! Status: ${response.status}`);
+					// 	throw new Error(
+					// 		`HTTP error! Status: ${response.status}`
+					// 	);
+					// }
 				}
 			} catch (error) {
 				console.error("Error fetching courses:", error);

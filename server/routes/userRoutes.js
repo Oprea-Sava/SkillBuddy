@@ -12,7 +12,8 @@ const schoolServer = {
   port: "54321",
   username: "toprea",
   password: config.schoolPass,
-  remotePath: "/home/toprea/profile_img",
+  remotePath: "/home/toprea/public_html/profile_img",
+  sourcePath: "/~toprea/profile_img",
 };
 
 const storage = multer.memoryStorage();
@@ -48,12 +49,19 @@ router.post("/upload/:token", upload.single("image"), async (req, res) => {
   }
 
   const userId = getUserId(req.params.token);
-  const remotePath = `${schoolServer.remotePath}/${userId}.jpg`;
+  const user = await User.findById(userId);
+  const remotePath = `${schoolServer.remotePath}/${user.username}.jpg`;
+  const imgPath = `http://${schoolServer.host}:8088${schoolServer.sourcePath}/${user.username}.jpg`;
 
   try {
     const sftp = new client();
     await sftp.connect(schoolServer);
     await sftp.put(Buffer.from(req.file.buffer), remotePath);
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { $set: { img: imgPath } },
+      { new: true }
+    ).select("-password");
     res.status(200).json({ message: "File uploaded successfully" });
   } catch (error) {
     console.error("Error uploading file:", error.message);
