@@ -119,7 +119,15 @@ function Sidebar({dataChange}) {
 									style={{
 										color:
 											isActive === index
-												? "var(--accent)"
+												? "var(--accent3)"
+												: "",
+										fontWeight:
+											isActive === index
+												? "600"
+												: "",
+										fontSize:
+											isActive === index
+												? "18px"
 												: "",
 									}}
 								>
