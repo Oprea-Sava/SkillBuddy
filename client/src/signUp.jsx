@@ -19,7 +19,7 @@ export default function SignUp() {
     if (isAuthenticated()) {
       navigate("/dashboard");
     }
-  }, [navigate]);
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
