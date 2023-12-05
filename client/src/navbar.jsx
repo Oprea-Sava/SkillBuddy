@@ -14,7 +14,7 @@ import UserContext from './userContext'
 
 function Navbar({dataChange}) {
     const { toggleTheme } = useTheme();
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
     const {userData} = useContext(UserContext);
     const navigate = useNavigate();
     useEffect(() => {

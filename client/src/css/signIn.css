@@ -72,22 +72,10 @@
 }
 
 .formInput__si {
-  box-sizing: border-box;
-  box-shadow: none;
-  border: 1px solid var(--primary);
-  background-color: transparent;
-  border-radius: 5px;
-  min-height: 50px;
-  appearance: none;
-  line-height: 1.5;
-  padding: 6px 15px;
-  font-weight: 400;
-  font-size: 15px;
-  margin: 0;
-}
-
-.formInput__si:focus {
-  outline: none;
+  background-color: var(--inputBackground);
+  border-radius: 10px;
+  border: 2px solid var(--secondary);
+  padding: 15px;
 }
 
 .formGroupCheck__si,

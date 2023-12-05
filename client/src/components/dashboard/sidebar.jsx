@@ -115,7 +115,15 @@ function Sidebar() {
 									style={{
 										color:
 											isActive === (index + dashboardButtons.length)
-												? "var(--accent)"
+												? "var(--accent3)"
+												: "",
+										fontWeight:
+											isActive === (index + dashboardButtons.length)
+												? "600"
+												: "",
+										fontSize:
+											isActive === (index + dashboardButtons.length)
+												? "18px"
 												: "",
 									}}
 								>
