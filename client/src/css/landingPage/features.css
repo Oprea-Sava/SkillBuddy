@@ -1,4 +1,5 @@
 #featuresContainer {
+  background-color: var(--secondary);
   min-height: 60vh;
   display: flex;
   flex-direction: column;
@@ -15,7 +16,7 @@
 
 .feature {
   width: 33%;
-  gap: 1.75rem;
+  gap: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,21 +28,24 @@
   place-items: center;
   width: 140px;
   height: 140px;
-  background-color: var(--primary);
   border-radius: 50%;
 }
 
-.iconContainer > * {
-  width: 30px;
-  height: 30px;
-}
-
 .textContainer {
-  gap: 0.75rem;
+  gap: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+}
+
+.featureTitle{
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.featureContent{
+  font-size: 20px;
 }
 
 @media screen and (max-width: 769px) {

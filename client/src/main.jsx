@@ -18,6 +18,7 @@ import CoursesPage from "./coursesPage";
 import AuthRoute from "./authRoute";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ThemeProvider } from "./themeContext";
 
 const router = createBrowserRouter([
 	{
@@ -57,7 +58,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<ToastContainer
+		<ThemeProvider>
+			<ToastContainer
 					position="bottom-right"
 					autoClose={5000}
 					hideProgressBar={false}
@@ -69,6 +71,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 					pauseOnHover
 					theme="colored"
 				/>
-		<RouterProvider router={router} />
+			<RouterProvider router={router} />
+		</ThemeProvider>
 	</React.StrictMode>
 );

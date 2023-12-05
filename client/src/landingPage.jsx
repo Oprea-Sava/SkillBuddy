@@ -11,7 +11,9 @@ function LandingPage() {
         <>
             <Navbar/>
             <HeroContainer />
+            <div className="separator top"></div>
             <Features/>
+            <div className="separator bottom"></div>
             <Hook />
             <CallToAction />
             <Footer/>

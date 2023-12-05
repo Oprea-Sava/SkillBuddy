@@ -9,8 +9,10 @@ import {AiOutlineClose, AiOutlineMenu} from "react-icons/ai"
 import { isAuthenticated } from './auth'
 import { useNavigate } from 'react-router-dom'
 import placeholder from './assets/paceholder2.png'
+import { useTheme } from "./themeContext";
 
 function Navbar({dataChange}) {
+    const { toggleTheme } = useTheme();
     const [isOpen, setIsOpen] = useState(false)
     const [userImg, setUserImg] = useState(null)
     const navigate = useNavigate();
@@ -62,7 +64,7 @@ function Navbar({dataChange}) {
                 <a className="navbarButton text" href='/'>Skill Exchange</a>
                 <a className="navbarButton text" href='/'>About Us</a>
                 <a className="navbarButton text" href='/'>Contact</a>
-                <DarkModeButton />
+                <DarkModeButton toggleTheme={toggleTheme}/>
                 {isAuthenticated()? (userImg? (<img className='profileImg' src={userImg} alt="" onClick={goToDashboard}/>):(<img className='profileImg' src={placeholder} alt="" onClick={goToDashboard}/>)):<button className="secondary signUp text" onClick={goToSignUp}>Sign up</button>}
             </nav>
             <div className='menu' onClick={handleNav}>
@@ -84,20 +86,19 @@ function Navbar({dataChange}) {
     )
 }
 
-function DarkModeButton(){
-    const [isDark, setIsDark] = useState(lightModeImage)
+function DarkModeButton({toggleTheme}){
+    const [isDark, setIsDark] = useState(lightModeImage);
 
     function handleClick(){
         if(isDark === darkModeImage){
             setIsDark(lightModeImage);
-            document.documentElement.setAttribute('data-theme', 'light');
         }
         else{
             setIsDark(darkModeImage);
-            document.documentElement.setAttribute('data-theme', 'dark');
         }
+        toggleTheme();
     }
-
+    
     return(
         <div className="darkmodeButton" onClick={handleClick}>
             <img src={isDark} alt="color" />

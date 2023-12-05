@@ -36,16 +36,25 @@ html[data-theme="dark"] {
 html[data-theme="light"] {
   --text: #080b16;
   --background: #fafbfe;
-  --primary: #2f55d6;
+  --primary: #5378f0;
   --secondary: #8aa1f0;
+  --Secondary2: #a8bcff;
   --accent: #476ef3;
+  --accent2: #fafbfe;
+  --separatorTop: url("../assets/separators/separator1.svg");
+  --separatorBottom: url("../assets/separators/separator2.svg");
 }
 html[data-theme="dark"] {
   --text: #e9ecf7;
-  --background: #010204;
+  --background: #00091a;
   --primary: #2950d1;
   --secondary: #0f2775;
+  --secondary2: #071c61;
   --accent: #0c33b6;
+  /* --accent2: #bbcbff; */
+  --accent2: #05132e;
+  --separatorTop: url("../assets/separators/separator3.svg");
+  --separatorBottom: url("../assets/separators/separator4.svg");
 }
 
 body {
@@ -65,4 +74,18 @@ body::-webkit-scrollbar {
 
 .accent {
   background-color: var(--accent);
+}
+
+.separator{
+  height: 300px;
+  width: auto;
+  object-fit: contain;
+}
+
+.top{
+  background-image: var(--separatorTop);
+}
+
+.bottom{
+  background-image: var(--separatorBottom);
 }
