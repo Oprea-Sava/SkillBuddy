@@ -6,7 +6,7 @@ import Sidebar from "./components/dashboard/sidebar";
 import { Outlet } from "react-router-dom";
 
 function Dashboard() {
-	const [change, setChange] = useState(false)
+	const [change, setChange] = useState(false);
 	return (
 		<>
 			<Navbar dataChange={change} />

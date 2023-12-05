@@ -41,6 +41,7 @@ html[data-theme="light"] {
   --Secondary2: #a8bcff;
   --accent: #476ef3;
   --accent2: #fafbfe;
+  --accent3: #040a20;
   --separatorTop: url("../assets/separators/separator1.svg");
   --separatorBottom: url("../assets/separators/separator2.svg");
 }
@@ -51,8 +52,8 @@ html[data-theme="dark"] {
   --secondary: #0f2775;
   --secondary2: #071c61;
   --accent: #0c33b6;
-  /* --accent2: #bbcbff; */
   --accent2: #05132e;
+  --accent3: #819bf1;
   --separatorTop: url("../assets/separators/separator3.svg");
   --separatorBottom: url("../assets/separators/separator4.svg");
 }
