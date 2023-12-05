@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
 import "../../css/dashboard/editProfile.css";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import { useOutletContext } from "react-router-dom";
 
 function EditProfile() {
@@ -36,57 +36,62 @@ function EditProfile() {
 
 	const handleInputChange = (e) => {
 		setFormData({
-		  ...formData,
-		  [e.target.name]: e.target.value,
+			...formData,
+			[e.target.name]: e.target.value,
 		});
-	  };
+	};
 
 	const handleFileChange = (e) => {
 		const selectedFile = e.target.files[0];
 		setImg(selectedFile);
-	}
+	};
 
-	const handleSubmit = async (e) =>{
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		try{
-			const token = localStorage.getItem('token');
-			const responseData = await fetch(`http://localhost:5000/api/users/${token}`,{
-				method: "PUT",
-				headers: {
-					"Content-type":"application/json",
-				},
-				body: JSON.stringify(formData),
-			});
+		try {
+			const token = localStorage.getItem("token");
+			const responseData = await fetch(
+				`http://localhost:5000/api/users/${token}`,
+				{
+					method: "PUT",
+					headers: {
+						"Content-type": "application/json",
+					},
+					body: JSON.stringify(formData),
+				}
+			);
 			if (!responseData.ok) {
 				const errorData = await userDataResponse.json();
 				console.error("Error updating user:", errorData.error);
 				toast.error("Error updating user data");
-			  } else {
+			} else {
 				toast.success("User data updated successfully!");
 			  }
 			  if (img) {
 				const imageFormData = new FormData();
-				imageFormData.append('image', img, img.name);
-		  
-				const imageResponse = await fetch(`http://localhost:5000/api/users/upload/${token}`, {
-				  method: 'POST',
-				  body: imageFormData,
-				});
-		  
+				imageFormData.append("image", img, img.name);
+
+				const imageResponse = await fetch(
+					`http://localhost:5000/api/users/upload/${token}`,
+					{
+						method: "POST",
+						body: imageFormData,
+					}
+				);
+
 				if (!imageResponse.ok) {
-				  const errorData = await imageResponse.json();
-				  console.error("Error uploading image:", errorData.error);
-				  toast.error(`Error uploading image: ${errorData.error}`);
+					const errorData = await imageResponse.json();
+					console.error("Error uploading image:", errorData.error);
+					toast.error(`Error uploading image: ${errorData.error}`);
 				} else {
 				  toast.success("Image uploaded successfully!");
 				  setChange(!change);
 				}
-			  }
-		}catch(error){
+			}
+		} catch (error) {
 			console.error("Error updating user:", error);
 		}
-	}
-
+	};
 
 	return (
 		<> 
@@ -111,10 +116,20 @@ function EditProfile() {
 					</div>
 					<div className="profileAvatarButtons">
 						<form className="text submitImage" action="">
-  							<label className="text" htmlFor="img" >Upload</label>
-  							<input className="text" type="file" id="img" name="img" accept="image/*" hidden onChange={handleFileChange}/>
+							<label className="text" htmlFor="img">
+								Upload
+							</label>
+							<input
+								className="text"
+								type="file"
+								id="img"
+								name="img"
+								accept="image/*"
+								hidden
+								onChange={handleFileChange}
+							/>
 						</form>
-						
+
 						<button className="text">Delete</button>
 					</div>
 				</div>
@@ -128,50 +143,50 @@ function EditProfile() {
 						</div>
 					</div>
 					<div className="editProfileDetails">
-						<div className="gridCell" >
+						<div className="gridCell">
 							<div className="text">First Name</div>
 							<input
-								className="text"
+								className="text editProfileInput"
 								type="text"
 								name="firstname"
 								value={formData.firstname}
 								onChange={handleInputChange}
 							/>
 						</div>
-						<div className="gridCell" >
+						<div className="gridCell">
 							<div className="text">Last Name</div>
 							<input
-								className="text"
+								className="text editProfileInput"
 								type="text"
 								name="lastname"
 								value={formData.lastname}
 								onChange={handleInputChange}
 							/>
 						</div>
-						<div className="gridCell" >
+						<div className="gridCell">
 							<div className="text">User Name</div>
 							<input
-								className="text"
+								className="text editProfileInput"
 								type="text"
 								name="username"
 								value={formData.username}
 								onChange={handleInputChange}
 							/>
 						</div>
-						<div className="gridCell" >
+						<div className="gridCell">
 							<div className="text">Phone Number</div>
 							<input
-								className="text"
+								className="text editProfileInput"
 								type="number"
 								name="phone"
 								value={formData.phone}
 								onChange={handleInputChange}
 							/>
 						</div>
-						<div className="gridCell" >
+						<div className="gridCell">
 							<div className="text ">Bio</div>
 							<textarea
-								className="text bioInput"
+								className="text bioInput editProfileInput"
 								name="bio"
 								value={formData.bio}
 								onChange={handleInputChange}
@@ -180,7 +195,13 @@ function EditProfile() {
 
 						<div className="gridCell">
 							<div className="editProfileSubmit">
-								<button type="submit" className="text" onClick={handleSubmit}>Update Profile</button>
+								<button
+									type="submit"
+									className="text"
+									onClick={handleSubmit}
+								>
+									Update Profile
+								</button>
 							</div>
 						</div>
 					</div>

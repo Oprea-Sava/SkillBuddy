@@ -24,10 +24,21 @@
   width: 100px;
   border: none;
   border-radius: 5px;
+  font-size: 16px;
 }
 
-.submitImage>*{
-  margin: 10px 10px 0px 0px;
+.submitImage>label{
+  background-color: var(--primary);
+  padding: 8px 15px 9px 15px;
+  border-radius: 5px;
+  margin: 10px 30px 0px 0px;
+}
+
+.editProfileInput{
+  background-color: var(--inputBackground);
+  border-radius: 10px;
+  border: 2px solid var(--secondary);
+  padding: 10px 15px 10px 15px;
 }
 
 .editProfileForm {

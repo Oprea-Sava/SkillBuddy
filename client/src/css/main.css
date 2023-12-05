@@ -36,6 +36,7 @@ html[data-theme="dark"] {
 html[data-theme="light"] {
   --text: #080b16;
   --background: #fafbfe;
+  --inputBackground: #d0d7f0;
   --primary: #5378f0;
   --secondary: #8aa1f0;
   --Secondary2: #a8bcff;
@@ -48,6 +49,7 @@ html[data-theme="light"] {
 html[data-theme="dark"] {
   --text: #e9ecf7;
   --background: #00091a;
+  --inputBackground: #1a2231;
   --primary: #2950d1;
   --secondary: #0f2775;
   --secondary2: #071c61;
