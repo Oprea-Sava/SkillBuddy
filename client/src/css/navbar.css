@@ -20,7 +20,7 @@
 }
 
 .logoText {
-  max-height: 35px;
+  max-height: 30px;
 }
 
 .logo,
@@ -100,10 +100,18 @@
   #navSection {
     padding: 1rem 2rem 0 2rem;
   }
+
+  .logoText{
+    max-height: 20px;
+  }
 }
 
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: 1070px) {
   .navbarButton {
     font-size: 12px;
+  }
+
+  .logoText{
+    max-height: 25px;
   }
 }

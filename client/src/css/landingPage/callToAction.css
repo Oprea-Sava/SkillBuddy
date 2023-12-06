@@ -47,3 +47,10 @@
     font-size: 1rem;
   }
 }
+
+
+@media screen and (max-width: 757px) {
+  #callToAction{
+    margin-bottom: 100px;
+  }
+}

@@ -36,7 +36,7 @@ html[data-theme="dark"] {
 html[data-theme="light"] {
   --text: #080b16;
   --background: #fafbfe;
-  --inputBackground: #d0d7f0;
+  --inputBackground: #e6ecff;
   --primary: #5378f0;
   --secondary: #8aa1f0;
   --Secondary2: #a8bcff;
