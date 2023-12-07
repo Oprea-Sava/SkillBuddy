@@ -20,7 +20,8 @@
 .coursesContainer {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(4, minmax(0, 1fr)); /* add breakpoints */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  /* aici lucreaza oprea!!! (nu imi apartine aceasta sectiune de cod */
 }
 
 .courseCard {
@@ -37,7 +38,7 @@
   width: 90%;
   height: 50%;
   margin: 5% 0 0 5%;
-  border-radius: 25px;
+  border-radius: 15px;
   background-image: url("../../assets/placeholder.png");
   background-size: cover;
   background-position: center;
@@ -54,8 +55,10 @@
 }
 
 .courseCardDetails {
-  margin-left: 5%;
-  margin-right: 5%;
+  margin: 25px 5%; 
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
 }
 
 .courseCardDetails > *:first-child {
@@ -78,6 +81,14 @@
   display: flex;
   justify-content: end;
   align-items: center;
+}
+
+.buyButton{
+  background-color: var(--accent2);
+  border: none;
+  border-radius: 7.5px;
+  height: 30px;
+  width: 100px;
 }
 
 @media screen and (max-width: 690px) {

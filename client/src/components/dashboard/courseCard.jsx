@@ -138,9 +138,9 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
 						</div>
 					</div>
 					<div>{courseData.title}</div>
-					{/* if the name is too long the button gets out of the card */}
 					<div>
 						<button
+							className="buyButton text"
 							onClick={() => {
 								handleBuy();
 							}}
