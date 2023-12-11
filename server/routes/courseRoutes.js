@@ -1,6 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const Course = require("../schemas/courses");
+const { Course } = require("../schemas/schema");
+
+function getUserId(token) {
+  try {
+    const decodedToken = JSON.parse(atob(token.split(".")[1]));
+    const userId = decodedToken.userId;
+    return userId;
+  } catch (error) {
+    console.error("Error decoding token:", error);
+    return null;
+  }
+}
 
 //route to get all id's
 
@@ -18,23 +29,32 @@ router.get("/getall", async (req, res) => {
 // create course
 router.post("/create", async (req, res) => {
   try {
-    const { title, description, author } = req.body;
-    const course = await Course.findOne({ title: title });
-    if (course) {
-      return res.status(400).json({ error: "Course name is already taken." });
+    const requestData = req.body;
+    if (!requestData.title) {
+      return res.status(400).json({ error: "Title is required" });
+    }
+    const token = req.headers.authorization.split(" ")[1];
+    const userId = getUserId(token);
+    if (!userId) {
+      return res.status(401).json({ error: "Unauthorized" });
     }
 
     const newCourse = new Course({
-      title,
-      description,
-      author,
+      requestData,
+      author: userId,
     });
 
-    await newCourse.save();
+    const savedCourse = await newCourse.save();
 
-    res.status(201).json({ message: "Course created successfully" });
+    res.status(201).json({
+      message: "Course created successfully",
+      courseId: savedCourse._id,
+    });
   } catch (error) {
     console.error("Error creating course:", error);
+    if (error.code === 11000) {
+      return res.status(400).json({ error: "Course name is already taken." });
+    }
     res.status(500).json({ error: "Internal Server Error" });
   }
 });

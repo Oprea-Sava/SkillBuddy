@@ -16,7 +16,8 @@ import OrderHisory from "./components/dashboard/orderHistory";
 import EditProfile from "./components/dashboard/editProfile";
 import CoursesPage from "./coursesPage";
 import AuthRoute from "./authRoute";
-import CreateCourse from "./createCourse"
+import CreateCourse from "./createCourse";
+import CourseDetails from "./courseDetails";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ThemeProvider } from "./themeContext";
@@ -46,11 +47,14 @@ const router = createBrowserRouter([
 	{
 		path: "courses",
 		element: <CoursesPage />,
-		
+	},
+	{
+		path: "courses/:courseId",
+		element: <CourseDetails/>
 	},
 	{
 		path: "create",
-		element: <CreateCourse/>,
+		element: <AuthRoute><CreateCourse/></AuthRoute>,
 	},
 	{
 		path: "signin",

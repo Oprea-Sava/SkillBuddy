@@ -26,6 +26,7 @@
 .courseBox__cc {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .formGroup__cc {
@@ -39,4 +40,21 @@
   border-radius: 10px;
   border: 2px solid var(--secondary);
   padding: 15px;
+}
+
+.formBottom__cc {
+  display: flex;
+  gap: 10px;
+}
+
+.formBottom__cc > button {
+  height: 40px;
+  width: 100px;
+  border: 0;
+  border-radius: 10px;
+  background-color: var(--secondary);
+}
+
+.formBottom__cc > button:first-child {
+  background-color: var(--inputBackground);
 }
