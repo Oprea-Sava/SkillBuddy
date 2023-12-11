@@ -4,7 +4,7 @@ import { FaRegLightbulb } from "react-icons/fa6";
 import { FaEarthAmericas } from "react-icons/fa6";
 import { SlWallet } from "react-icons/sl";
 import { useTheme } from "../../themeContext";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger } from "gsap/all";
 
 function Features() {
@@ -22,62 +22,64 @@ function Features() {
 	const secondFeature = useRef(null);
 	const thirdFeature = useRef(null);
 
-	let matchMedia = gsap.matchMedia();
-	let breakPoint = 769;
+	const [matches, setMatches] = useState(false);
 
-	matchMedia.add(`(max-width: ${breakPoint - 1}px)`, () => {
-			useEffect(() => {
-				gsap.registerPlugin(ScrollTrigger);
-				gsap.to(".firstFeature", {
-					x: 600,
-					duration: 0.5,
-					scrollTrigger: {
-						trigger: ".firstFeature",
-						start: "center 90%",
-					},
-				});
-				gsap.to(".secondFeature", {
-					x: 600,
-					duration: 0.5,
-					scrollTrigger: {
-						trigger: ".secondFeature",
-						start: "center 90%",
-					},
-				});
-				gsap.to(".thirdFeature", {
-					x: 600,
-					duration: 0.5,
-					scrollTrigger: {
-						trigger: ".thirdFeature",
-						start: "center 90%",
-					},
-				});
-			}, []);
-
-			return () => {
-				matchMedia.revert();
-			};
-		}
-	);
-
-	matchMedia.add(`(min-width: ${breakPoint}px)`, () => {
-		useEffect(() => {
-			gsap.registerPlugin(ScrollTrigger);
-			gsap.to(".features", {
-				duration: 0.5,
-				ease: "fadeIn",
-				scrollTrigger: {
-					trigger: ".features",
-					start: "center 90%",
-				},
-			});
-		}, []);
+	useEffect(() => {
+		const mediaQuery = window.matchMedia("(max-width: 768px)");
+		const handleMediaQueryChange = (e) => {
+			setMatches(e.matches);
+		};
+		mediaQuery.addEventListener("change", handleMediaQueryChange);
 
 		return () => {
-			matchMedia.revert();
+			mediaQuery.removeEventListener("change", handleMediaQueryChange);
 		};
-	}
-);
+	}, []);
+
+	useEffect(() => {
+		if (matches) {
+		  gsap.registerPlugin(ScrollTrigger);
+
+		  gsap.to(".firstFeature", {
+			x: 600,
+			duration: 0.5,
+			scrollTrigger: {
+			  trigger: ".firstFeature",
+			  start: "center 90%",
+			},
+		  });
+		  gsap.to(".secondFeature", {
+			x: 600,
+			duration: 0.5,
+			scrollTrigger: {
+			  trigger: ".secondFeature",
+			  start: "center 90%",
+			},
+		  });
+		  gsap.to(".thirdFeature", {
+			x: 600,
+			duration: 0.5,
+			scrollTrigger: {
+			  trigger: ".thirdFeature",
+			  start: "center 90%",
+			},
+		  });
+
+		} else {
+		  gsap.registerPlugin(ScrollTrigger);
+
+		  gsap.to([".firstFeature", ".secondFeature", ".thirdFeature"], {
+			x: 0,
+			duration: 0.15,
+			scrollTrigger: {
+			  trigger: ".features",
+			  start: "center 90%",
+			},
+		  });
+
+		  
+		}
+	  }, [matches]);
 
 	return (
 		<div id="featuresContainer">
