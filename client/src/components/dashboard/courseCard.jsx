@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 function CourseCard({ Id, onWishlistChange, courseType }) {
 	const [isActive, setIsActive] = useState(false);
 	const [courseData, setCourseData] = useState({});
+	const [author, setAuthor] = useState("")
 
 	useEffect(() => {
 		const fetchCourseData = async () => {
@@ -18,8 +19,10 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
 					}
 				);
 				if (response.ok) {
-					const data = await response.json();
+					const data = await response.json(); 
+					setAuthor(data.author.username)
 					setCourseData(data);
+					
 				} else
 					throw new Error(`HTTP error! Status: ${response.status}`);
 			} catch (error) {
@@ -122,7 +125,7 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
 				</div>
 				<div className="courseCardDetails">
 					<div>
-						<div className="authorName">{courseData.author}</div>
+						<div className="authorName">{author}</div>
 						<div
 							className="bookmark"
 							onClick={() => {

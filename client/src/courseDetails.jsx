@@ -5,7 +5,7 @@ import Footer from "./footer";
 import { useParams } from "react-router-dom";
 
 export default function CourseDetails(){
-    const {courseId} = useParams
+    const {courseId} = useParams()
     return(
         <>
             <Navbar/>
