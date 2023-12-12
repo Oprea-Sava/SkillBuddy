@@ -1,0 +1,60 @@
+.container__cc {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  min-height: 100vh;
+  padding: 6rem;
+}
+
+.container__cc > * {
+  max-width: 48rem;
+}
+
+.container__cc > div,
+.courseBox__cc,
+.formGroup__cc,
+.formInput__cc {
+  width: 100%;
+}
+
+.container__cc h1 {
+  font-size: xx-large;
+  margin-bottom: 10px;
+}
+
+.courseBox__cc {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formGroup__cc {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formInput__cc {
+  background-color: var(--inputBackground);
+  border-radius: 10px;
+  border: 2px solid var(--secondary);
+  padding: 15px;
+}
+
+.formBottom__cc {
+  display: flex;
+  gap: 10px;
+}
+
+.formBottom__cc > button {
+  height: 40px;
+  width: 100px;
+  border: 0;
+  border-radius: 10px;
+  background-color: var(--secondary);
+}
+
+.formBottom__cc > button:first-child {
+  background-color: var(--inputBackground);
+}
