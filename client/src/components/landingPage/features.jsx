@@ -38,48 +38,49 @@ function Features() {
 
 	useEffect(() => {
 		if (matches) {
-		  gsap.registerPlugin(ScrollTrigger);
+			gsap.registerPlugin(ScrollTrigger);
 
-		  gsap.to(".firstFeature", {
-			x: 600,
-			duration: 0.5,
-			scrollTrigger: {
-			  trigger: ".firstFeature",
-			  start: "center 90%",
-			},
-		  });
-		  gsap.to(".secondFeature", {
-			x: 600,
-			duration: 0.5,
-			scrollTrigger: {
-			  trigger: ".secondFeature",
-			  start: "center 90%",
-			},
-		  });
-		  gsap.to(".thirdFeature", {
-			x: 600,
-			duration: 0.5,
-			scrollTrigger: {
-			  trigger: ".thirdFeature",
-			  start: "center 90%",
-			},
-		  });
-
+			gsap.to(".firstFeature", {
+				x: 600,
+				duration: 0.5,
+				scrollTrigger: {
+					trigger: ".firstFeature",
+					start: "center 90%",
+				},
+			});
+			gsap.to(".secondFeature", {
+				x: 600,
+				duration: 0.5,
+				scrollTrigger: {
+					trigger: ".secondFeature",
+					start: "center 90%",
+				},
+			});
+			gsap.to(".thirdFeature", {
+				x: 600,
+				duration: 0.5,
+				scrollTrigger: {
+					trigger: ".thirdFeature",
+					start: "center 90%",
+				},
+			});
 		} else {
-		  gsap.registerPlugin(ScrollTrigger);
+			gsap.registerPlugin(ScrollTrigger);
 
-		  gsap.to([".firstFeature", ".secondFeature", ".thirdFeature"], {
-			x: 0,
-			duration: 0.15,
-			scrollTrigger: {
-			  trigger: ".features",
-			  start: "center 90%",
-			},
-		  });
-
-		  
+			gsap.to([".firstFeature", ".secondFeature", ".thirdFeature"], {
+				x: 0,
+				duration: 0.15,
+				scrollTrigger: {
+					trigger: [
+						".firstFeature",
+						".secondFeature",
+						".thirdFeature",
+					],
+					start: "center 90%",
+				},
+			});
 		}
-	  }, [matches]);
+	}, [matches]);
 
 	return (
 		<div id="featuresContainer">
