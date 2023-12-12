@@ -22,65 +22,69 @@ function Features() {
 	const secondFeature = useRef(null);
 	const thirdFeature = useRef(null);
 
-	const [matches, setMatches] = useState(false);
+	let matchMedia = gsap.matchMedia();
+	let breakpoint = 769;
+	gsap.registerPlugin(ScrollTrigger);
 
 	useEffect(() => {
-		const mediaQuery = window.matchMedia("(max-width: 768px)");
-		const handleMediaQueryChange = (e) => {
-			setMatches(e.matches);
-		};
-		mediaQuery.addEventListener("change", handleMediaQueryChange);
+		matchMedia.add(
+			{
+				isMobile: `(max-width: ${breakpoint}px)`,
+				isDesktop: `(min-width:  ${breakpoint + 1}px)`,
+			},
+			(context) => {
+				let { isDesktop, isMobile } = context.conditions;
+				if (isMobile) {
+					gsap.to(firstFeature.current, {
+						x: 600,
+						duration: 0.5,
+						scrollTrigger: {
+							trigger: firstFeature.current,
+							start: "top 80%",
+							end: "bottom 20%",
+						},
+						
+					});
+					gsap.to(secondFeature.current, {
+						x: 600,
+						duration: 0.5,
+						scrollTrigger: {
+							trigger: secondFeature.current,
+							start: "top 80%",
+							end: "bottom 20%",
+						},
+					});
+					gsap.to(thirdFeature.current, {
+						x: 600,
+						duration: 0.5,
+						scrollTrigger: {
+							trigger: thirdFeature.current,
+							start: "top 80%",
+							end: "bottom 20%",
+						},
+					});
+				}
+				if (isDesktop) {
+					gsap.to(features.current, {
+						opacity: 0,
+						y: 50,
+						duration: 0.5,
+						scrollTrigger: {
+							trigger: features.current,
+							start: "top 80%",
+							end: "bottom 20%",
+							toggleActions: "reverse none none play",
+						},
+						stagger: 0.2,
+					});
+				}
 
-		return () => {
-			mediaQuery.removeEventListener("change", handleMediaQueryChange);
-		};
+				return () => {
+					
+				};
+			}
+		);
 	}, []);
-
-	useEffect(() => {
-		if (matches) {
-			gsap.registerPlugin(ScrollTrigger);
-
-			gsap.to(".firstFeature", {
-				x: 600,
-				duration: 0.5,
-				scrollTrigger: {
-					trigger: ".firstFeature",
-					start: "center 90%",
-				},
-			});
-			gsap.to(".secondFeature", {
-				x: 600,
-				duration: 0.5,
-				scrollTrigger: {
-					trigger: ".secondFeature",
-					start: "center 90%",
-				},
-			});
-			gsap.to(".thirdFeature", {
-				x: 600,
-				duration: 0.5,
-				scrollTrigger: {
-					trigger: ".thirdFeature",
-					start: "center 90%",
-				},
-			});
-		} else {
-			gsap.registerPlugin(ScrollTrigger);
-
-			gsap.to([".firstFeature", ".secondFeature", ".thirdFeature"], {
-				x: 0,
-				duration: 0.15,
-				scrollTrigger: {
-					trigger: [
-						".firstFeature",
-						".secondFeature",
-						".thirdFeature",
-					],
-					start: "center 90%",
-				},
-			});
-		}
-	}, [matches]);
 
 	return (
 		<div id="featuresContainer">
