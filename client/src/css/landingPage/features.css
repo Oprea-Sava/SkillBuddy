@@ -15,6 +15,7 @@
 }
 
 .features > * {
+  opacity: 0;
   width: 33%;
   margin: 50px;
 }
@@ -64,6 +65,7 @@
   }
 
   .features > * {
+    opacity: 1;
     position: relative;
     left: -600px;
   }
