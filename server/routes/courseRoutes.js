@@ -62,7 +62,6 @@ router.post("/create", async (req, res) => {
 // get course inforation
 router.get("/:courseId", async (req, res) => {
   const courseId = req.params.courseId;
-  console.log(courseId);
   try {
     const course = await Course.findById(courseId).populate("author");
 
@@ -80,7 +79,12 @@ router.get("/:courseId", async (req, res) => {
 // edit course
 router.put("/:courseId", async (req, res) => {
   const courseId = req.params.courseId;
-
+  const token = req.headers.authorization.split(" ")[1];
+  const userId = getUserId(token);
+  const course = await Course.findById(courseId);
+  if (userId != course.author) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
   try {
     const updatedCourse = await Course.findByIdAndUpdate(
       courseId,
@@ -90,6 +94,7 @@ router.put("/:courseId", async (req, res) => {
     if (!updatedCourse) {
       return res.status(404).json({ error: "Course not found" });
     }
+    res.status(200).json({ message: "Course updated successfully" });
   } catch {
     res.status(500).json({ error: "Internal Server Error" });
   }

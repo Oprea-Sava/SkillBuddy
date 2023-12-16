@@ -15,7 +15,6 @@ function CreateCourse () {
 			...formData,
 			[e.target.name]: e.target.value,
 		});
-        console.log(formData)
 	};
 
     const handleSubmit= async (e) => {
@@ -47,7 +46,6 @@ function CreateCourse () {
 		} catch (error) {
 			console.error("Error creating course in:", error);
 		}
-        console.log(formData)
     }
     function handleCancel(){
         navigate("/")

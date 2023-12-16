@@ -4,6 +4,7 @@ import Navbar from "./navbar";
 import Footer from "./footer";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import CourseForm from "./components/courseForm";
 
 export default function CourseDetails(){
     const {courseId} = useParams()
@@ -55,7 +56,7 @@ export default function CourseDetails(){
                             <div className="sectionTitle text">
                                 Customize your course
                             </div>
-                            <form></form>
+                            <CourseForm label={"Course Title"} value={courseData.title} name="title" courseId={courseId}/>
                        </div>
                     </div>
                     <div className="column__cd">coloana 2</div>
