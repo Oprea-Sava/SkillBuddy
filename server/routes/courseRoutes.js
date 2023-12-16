@@ -62,7 +62,7 @@ router.post("/create", async (req, res) => {
 // get course inforation
 router.get("/:courseId", async (req, res) => {
   const courseId = req.params.courseId;
-
+  console.log(courseId);
   try {
     const course = await Course.findById(courseId).populate("author");
 
