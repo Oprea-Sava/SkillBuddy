@@ -50,4 +50,20 @@
   padding: 5px 10px;
   border: 0;
   border-radius: 8px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  font-size: 1rem;
+  gap: 5px;
+}
+
+.imgContainer__cf {
+  width: 100%;
+  height: 300px;
+}
+
+.courseImg__cf {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }

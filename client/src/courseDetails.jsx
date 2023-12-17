@@ -31,7 +31,7 @@ export default function CourseDetails(){
 			}
 		};
         fetchCourseData();
-    },[courseData]);
+    },[]);
     const requiredFields = [
         courseData.title,
         courseData.description,
@@ -52,11 +52,15 @@ export default function CourseDetails(){
                         <div className="text">
                             Complete all fields {completitionText}
                         </div>
-                       <div className="section">
-                            <div className="sectionTitle text">
+                       <div className="section__cd">
+                            <div className="sectionTitle__cd text">
                                 Customize your course
                             </div>
-                            <CourseForm label={"Course Title"} value={courseData.title} name="title" courseId={courseId}/>
+                            <div className="sectionContent__cd">
+                                <CourseForm label={"Course Title"} value={courseData.title} name="title" courseId={courseId}/>
+                                <CourseForm label={"Course Description"} value={courseData.description} name="description" courseId={courseId}/>
+                                <CourseForm label={"Course Image"} value={courseData.image} name="image" courseId={courseId}/>
+                            </div>
                        </div>
                     </div>
                     <div className="column__cd">coloana 2</div>

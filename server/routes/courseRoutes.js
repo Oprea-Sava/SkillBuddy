@@ -1,6 +1,22 @@
 const express = require("express");
 const router = express.Router();
 const { Course } = require("../schemas/schema");
+const client = require("ssh2-sftp-client");
+const multer = require("multer");
+const config = require("../config");
+
+const schoolServer = {
+  host: "info.tm.edu.ro",
+  port: "54321",
+  username: "toprea",
+  password: config.schoolPass,
+  remotePath: "/home/toprea/public_html/course_img",
+  sourcePath: "/~toprea/course_img",
+};
+
+const storage = multer.memoryStorage();
+
+const upload = multer({ storage: storage });
 
 function getUserId(token) {
   try {
@@ -12,6 +28,55 @@ function getUserId(token) {
     return null;
   }
 }
+
+//route to upload course img
+router.post("/upload/:courseId", upload.single("image"), async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: "No file uploaded" });
+  }
+  const courseId = req.params.courseId;
+  const token = req.headers.authorization.split(" ")[1];
+  const userId = getUserId(token);
+
+  try {
+    const course = await Course.findById(courseId);
+    if (!course) {
+      return res.status(404).json({ error: "Course not found" });
+    }
+    if (userId != course.author) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+    const currentDateString = new Date().toISOString().replace(/:/g, "-");
+    const remotePath = `${schoolServer.remotePath}/${course.title}_${currentDateString}.jpg`;
+    const imgPath = `http://${schoolServer.host}:8088${schoolServer.sourcePath}/${course.title}_${currentDateString}.jpg`;
+    if (course.image) {
+      const existingImagePath = course.image.replace(
+        `http://${schoolServer.host}:8088${schoolServer.sourcePath}`,
+        schoolServer.remotePath
+      );
+
+      const sftp = new client();
+      await sftp.connect(schoolServer);
+      await sftp.delete(existingImagePath);
+      await sftp.end();
+    }
+    const sftp = new client();
+    await sftp.connect(schoolServer);
+    await sftp.put(Buffer.from(req.file.buffer), remotePath);
+    const updatedCourse = await Course.findByIdAndUpdate(
+      courseId,
+      { $set: { image: imgPath } },
+      { new: true }
+    ).select("-password");
+    res.status(200).json({
+      image: updatedCourse.image,
+      message: "File uploaded successfully",
+    });
+  } catch (error) {
+    console.error("Error uploading file:", error.message);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 //route to get all id's
 
