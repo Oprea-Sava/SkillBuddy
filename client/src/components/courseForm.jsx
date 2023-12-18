@@ -114,7 +114,6 @@ export default function CourseForm({label, value, name, courseId}) {
             {imageUrl && (
               <img className="courseImg__cf" src={imageUrl} alt="course image" />
             )}
-            {console.count("counter")}
             </div>
         </form>
         ) : 

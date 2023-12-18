@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./css/courseDetails.css";
 import Navbar from "./navbar";
 import Footer from "./footer";
-import { useNavigate, useParams } from "react-router-dom";
+import { redirect, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import CourseForm from "./components/courseForm";
+import { isAuthenticated } from "./auth";
 
 export default function CourseDetails(){
     const {courseId} = useParams()
@@ -31,6 +32,9 @@ export default function CourseDetails(){
 			}
 		};
         fetchCourseData();
+        if(!isAuthenticated()){
+            navigate("/signin")
+        }
     },[]);
     const requiredFields = [
         courseData.title,
