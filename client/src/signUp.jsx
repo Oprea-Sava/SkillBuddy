@@ -12,6 +12,7 @@ export default function SignUp() {
 		email: "",
 		password: "",
 		cpassword: "",
+		isTutor: false,
 	});
 	const navigate = useNavigate();
 
@@ -27,6 +28,12 @@ export default function SignUp() {
 			[e.target.name]: e.target.value,
 		});
 	};
+
+	const handleCheck = (e) => {
+		console.log(e.target.value);
+		setFormData({...formData, isTutor : !formData.isTutor });
+		console.log(formData);
+	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -85,8 +92,19 @@ export default function SignUp() {
 						<a href="/">Back To Home</a>
 					</div>
 				</div>
-				<h1>Login into your account</h1>
+				<h1>Create your account</h1>
 				<form id="signUpForm" onSubmit={handleSubmit}>
+					<div className="formGroup__su tutorCheck">
+						<label className="tutorSwitch">
+							<input
+								type="checkbox"
+								name="isTutor"
+								checked={formData.isTutor}
+								onChange={handleCheck}
+							/>
+							<span className="slider"></span>
+						</label>
+					</div>
 					<div className="formName__su">
 						<div className="formGroup__su">
 							<label className="formLabel__su">First Name</label>
