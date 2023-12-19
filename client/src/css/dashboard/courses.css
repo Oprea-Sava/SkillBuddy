@@ -19,15 +19,17 @@
 
 .coursesContainer {
   display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   /* aici lucreaza oprea!!! (nu imi apartine aceasta sectiune de cod */
 }
 
 .courseCard {
   background-color: var(--primary);
   width: auto;
-  height: 400px;
+  max-width: 300px;
+  max-height: 350px;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
@@ -54,6 +56,7 @@
   border-radius: 15px;
   overflow: clip;
   overflow-clip-margin: border-box;
+  aspect-ratio: 16/9;
 }
 
 .coursePrice {
@@ -106,5 +109,23 @@
 @media screen and (max-width: 690px) {
   .courses > *:first-child {
     font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 1480px) {
+  .coursesContainer {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .coursesContainer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 890px) {
+  .coursesContainer {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }
