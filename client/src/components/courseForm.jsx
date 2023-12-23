@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import "../css/courseForm.css"
@@ -6,21 +6,25 @@ import { HiPencil } from "react-icons/hi2";
 import { CiCirclePlus } from "react-icons/ci";
 
 
-export default function CourseForm({label, value, name, courseId}) {
+export default function CourseForm({label, value, name, courseId, data, setData}) {
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({});
     const [img, setImg] = useState(null);
     const [imageUrl, setImageUrl] = useState(null)
+    const navigate = useNavigate();
     useEffect(() => {
-        if (name !== "image") {
-            setFormData((prevData) => ({
-              ...prevData,
-              [name]: value,
-            }));
-          } else {
-            setImageUrl(value);
-          }
-      }, [name, value]);
+        // if (name !== "image") {
+        //     setFormData((prevData) => ({
+        //       ...prevData,
+        //       [name]: value,
+        //     }));
+        //   } else {
+        //     setImageUrl(value);
+        //   }
+        // if (typeof setData === 'function') {
+        //     setData((prevData) => (data));
+        // }
+      }, [data]);
     useEffect(() => {
         const uploadImg = async () => {
             const token = localStorage.getItem("token");
@@ -71,7 +75,6 @@ export default function CourseForm({label, value, name, courseId}) {
             [e.target.name]: e.target.value,
         }));
 	};
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         
@@ -92,6 +95,7 @@ export default function CourseForm({label, value, name, courseId}) {
                 const data = await response.json();
                 toast.success(data.message);
                 setIsEditing((prev) => !prev)
+                navigate(0)
             } else {
                 const data = await response.json();
                 toast.error(data.error);
@@ -114,7 +118,6 @@ export default function CourseForm({label, value, name, courseId}) {
             {imageUrl && (
               <img className="courseImg__cf" src={imageUrl} alt="course image" />
             )}
-            {console.count("counter")}
             </div>
         </form>
         ) : 
@@ -129,7 +132,7 @@ export default function CourseForm({label, value, name, courseId}) {
                 {isEditing ? (<div className="edit__cf">
                                 <input className="formInput__cf" id={name} name={name} value={formData[name]} onChange={handleInputChange}/> 
                                 <button className="text submitButton__cf" onClick={handleSubmit}>Submit</button> 
-                            </div>) : (<div className="text">{!value ? (`No ${name}`):(value)}</div>) }
+                            </div>) : (<div className="text">{!value ? (name=="price"? "Free" :`No ${name}`):(name=="price" ? `${value}$`: value)}</div>) }
             </form>
         )
             }       

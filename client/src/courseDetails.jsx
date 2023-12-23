@@ -30,6 +30,7 @@ export default function CourseDetails(){
                 navigate("/")
 			}
 		};
+        console.log("useEffect is running");
         fetchCourseData();
     },[]);
     const requiredFields = [
@@ -38,7 +39,7 @@ export default function CourseDetails(){
         courseData.price,
         courseData.image,
     ];
-
+    console.count("counter")
     const totalFields = requiredFields.length;
     const completedFields = requiredFields.filter(Boolean).length;
     const completitionText = `(${completedFields}/${totalFields})`;
@@ -63,7 +64,19 @@ export default function CourseDetails(){
                             </div>
                        </div>
                     </div>
-                    <div className="column__cd">coloana 2</div>
+                    <div className="column__cd">
+                        <div className="sectionTitle__cd text">
+                            Course Chapters
+                        </div>
+                        <div className="sectionContent__cd">Chapter</div>
+                        <div className="sectionTitle__cd text">
+                            Sell your course
+                        </div>
+                        <div className="sectionContent__cd">
+                            <CourseForm label={"Course Price"} value={courseData.price} name="price" courseId={courseId} data={courseData} setData={setCourseData}/>
+                        </div>
+
+                    </div>
                 </div>
             </div>
             <Footer/>
