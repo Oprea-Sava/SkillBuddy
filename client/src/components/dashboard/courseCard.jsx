@@ -8,6 +8,7 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
 	const [isActive, setIsActive] = useState(false);
 	const [courseData, setCourseData] = useState({});
 	const [author, setAuthor] = useState("")
+	const [img, setImg] = useState();
 
 	useEffect(() => {
 		const fetchCourseData = async () => {
@@ -22,14 +23,30 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
 					const data = await response.json(); 
 					setAuthor(data.author.username)
 					setCourseData(data);
-					
 				} else
 					throw new Error(`HTTP error! Status: ${response.status}`);
 			} catch (error) {
 				console.error("Error fetching course details:", error);
 			}
 		};
-
+		const fetchCourseImg = async () => {
+            try {
+              const response = await fetch(`http://localhost:5000/api/courses/image/${Id}`,
+                {
+                    method: "GET",
+                }
+              );
+              if (!response.ok) {
+				const errorResponse = await response.json();
+                  throw new Error(`Status: ${response.status} ${errorResponse.error}`);
+                }
+                const blob = await response.blob();
+                const imageUrl = URL.createObjectURL(blob);
+                setImg(imageUrl);
+            } catch (error) {
+              console.error('Error fetching user data:', error);
+            }
+          };
 		const checkWishlist = async (Id) => {
 			try {
 				const token = localStorage.getItem("token");
@@ -54,8 +71,8 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
 		};
 		checkWishlist(Id);
 		fetchCourseData();
+		fetchCourseImg();
 	}, []);
-
 	const handleBuy = async () => {
 		const token = localStorage.getItem("token");
 		try {
@@ -121,7 +138,7 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
 		<>
 			<div className="courseCard">
 				<div className="courseCardImageHolder" >
-					<img src= {courseData.image ? courseData.image : placeholder}/>{/* fix aspect ratio */}
+					<img src= {img ? img : placeholder}/>{/* fix aspect ratio */}
 					<div className="coursePrice">{courseData.price}</div>
 				</div>
 				<div className="courseCardDetails">

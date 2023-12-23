@@ -10,6 +10,7 @@ import { isAuthenticated } from "./auth";
 export default function CourseDetails(){
     const {courseId} = useParams()
     const [courseData, setCourseData] = useState({});
+    const [courseImg, setCourseImg] = useState()
     const navigate = useNavigate();
     useEffect(() => {
 		const fetchCourseData = async () => {
@@ -30,8 +31,26 @@ export default function CourseDetails(){
                 toast.error("Course does not exist");
                 navigate("/")
 			}
-		};
-        fetchCourseData();
+		}; 
+        const fetchCourseImg = async () => {
+            try {
+              const response = await fetch(`http://localhost:5000/api/courses/image/${courseId}`,
+                {
+                    method: "GET",
+                }
+              );
+              if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const blob = await response.blob();
+                const imageUrl = URL.createObjectURL(blob);
+                setCourseImg(imageUrl);
+            } catch (error) {
+              console.error('Error fetching user data:', error);
+            }
+          };
+          fetchCourseData()
+          fetchCourseImg();
         if(!isAuthenticated()){
             navigate("/signin")
         }
@@ -63,7 +82,7 @@ export default function CourseDetails(){
                             <div className="sectionContent__cd">
                                 <CourseForm label={"Course Title"} value={courseData.title} name="title" courseId={courseId}/>
                                 <CourseForm label={"Course Description"} value={courseData.description} name="description" courseId={courseId}/>
-                                <CourseForm label={"Course Image"} value={courseData.image} name="image" courseId={courseId}/>
+                                <CourseForm label={"Course Image"} value={courseImg} name="image" courseId={courseId}/>
                             </div>
                        </div>
                     </div>

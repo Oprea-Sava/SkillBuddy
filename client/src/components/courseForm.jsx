@@ -39,9 +39,10 @@ export default function CourseForm({label, value, name, courseId}) {
                         body: imageFormData,
                     });
             if(response.ok){
-                const responseData = await response.json();
-                toast.success("Image uploaded successfully!");
-                setImageUrl(responseData.image)
+                const blob = await response.blob();
+				const imageUrl = URL.createObjectURL(blob);
+				setImageUrl(imageUrl);
+                navigate(0);
             } else {
                 const errorData = await response.json();
 				console.error("Error uploading image:", errorData.error);
@@ -55,7 +56,6 @@ export default function CourseForm({label, value, name, courseId}) {
             uploadImg();
         }
     }, [img]);
-    
     const handleClick = (e) => {
         e.preventDefault();
         setIsEditing((prev) => !prev)

@@ -23,7 +23,10 @@ const courseSchema = new mongoose.Schema({
   description: { type: String },
   author: { type: mongoose.Schema.Types.ObjectId, ref: "User", require: true },
   price: { type: Number, default: 0 },
-  image: { type: String, default: "" },
+  img: {
+    data: Buffer,
+    contentType: String,
+  },
   isPublished: { type: Boolean, default: false },
   //chapters
   //category

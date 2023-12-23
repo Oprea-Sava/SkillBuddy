@@ -34,46 +34,48 @@ router.post("/upload/:courseId", upload.single("image"), async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: "No file uploaded" });
   }
+
   const courseId = req.params.courseId;
   const token = req.headers.authorization.split(" ")[1];
   const userId = getUserId(token);
-
+  console.log(userId);
   try {
     const course = await Course.findById(courseId);
+    console.log(course.author == userId);
     if (!course) {
       return res.status(404).json({ error: "Course not found" });
     }
     if (userId != course.author) {
       return res.status(401).json({ error: "Unauthorized" });
     }
-    const currentDateString = new Date().toISOString().replace(/:/g, "-");
-    const remotePath = `${schoolServer.remotePath}/${course.title}_${currentDateString}.jpg`;
-    const imgPath = `http://${schoolServer.host}:8088${schoolServer.sourcePath}/${course.title}_${currentDateString}.jpg`;
-    if (course.image) {
-      const existingImagePath = course.image.replace(
-        `http://${schoolServer.host}:8088${schoolServer.sourcePath}`,
-        schoolServer.remotePath
-      );
 
-      const sftp = new client();
-      await sftp.connect(schoolServer);
-      await sftp.delete(existingImagePath);
-      await sftp.end();
-    }
-    const sftp = new client();
-    await sftp.connect(schoolServer);
-    await sftp.put(Buffer.from(req.file.buffer), remotePath);
-    const updatedCourse = await Course.findByIdAndUpdate(
-      courseId,
-      { $set: { image: imgPath } },
-      { new: true }
-    ).select("-password");
-    res.status(200).json({
-      image: updatedCourse.image,
-      message: "File uploaded successfully",
-    });
+    // Update image in MongoDB
+    course.img.data = req.file.buffer;
+    course.img.contentType = req.file.mimetype;
+    await course.save();
+
+    res.status(200).json(course.img.data);
   } catch (error) {
     console.error("Error uploading file:", error.message);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+//route to get course img
+router.get("/image/:courseId", async (req, res) => {
+  const courseId = req.params.courseId;
+  try {
+    const course = await Course.findById(courseId);
+    if (!course) {
+      return res.status(404).json({ error: "Course not found" });
+    }
+    if (!course.img.data) {
+      return res.status(404).json({ error: "Course doesn't have an image" });
+    }
+    res.setHeader("Content-Type", course.img.contentType);
+    res.status(200).send(course.img.data);
+  } catch (error) {
+    console.error("Error retrieving file:", error.message);
     res.status(500).json({ error: "Internal server error" });
   }
 });

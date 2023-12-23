@@ -36,9 +36,6 @@ function Navbar({dataChange}) {
         }
         
     }, [dataChange]);
-	useEffect(() => {
-		console.log('userImg:', userImg);
-	  }, [userImg]);
     function goToDashboard(){
         navigate("/dashboard")
     }
