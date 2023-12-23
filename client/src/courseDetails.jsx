@@ -31,7 +31,6 @@ export default function CourseDetails(){
                 navigate("/")
 			}
 		};
-        console.log("useEffect is running");
         fetchCourseData();
         if(!isAuthenticated()){
             navigate("/signin")
@@ -77,7 +76,7 @@ export default function CourseDetails(){
                             Sell your course
                         </div>
                         <div className="sectionContent__cd">
-                            <CourseForm label={"Course Price"} value={courseData.price} name="price" courseId={courseId} data={courseData} setData={setCourseData}/>
+                            <CourseForm label={"Course Price"} value={courseData.price} name="price" courseId={courseId}/>
                         </div>
 
                     </div>

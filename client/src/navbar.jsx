@@ -14,19 +14,19 @@ import { useTheme } from "./themeContext";
 function Navbar({dataChange}) {
     const { toggleTheme } = useTheme();
     const [isOpen, setIsOpen] = useState(false)
-    const [userImg, setUserImg] = useState(null)
+    const [userImg, setUserImg] = useState()
     const navigate = useNavigate();
     useEffect(() => {
-
 		const fetchUserData = async () => {
             try {
               const token = localStorage.getItem('token');
-              const response = await fetch(`http://localhost:5000/api/users/${token}`);
+              const response = await fetch(`http://localhost:5000/api/users/retrieve/${token}`);
               if (!response.ok) {
                   throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-              const data = await response.json();
-              setUserImg(data.img);
+				const blob = await response.blob();
+				const imageUrl = URL.createObjectURL(blob);
+				setUserImg(imageUrl);
             } catch (error) {
               console.error('Error fetching user data:', error);
             }
@@ -36,6 +36,9 @@ function Navbar({dataChange}) {
         }
         
     }, [dataChange]);
+	useEffect(() => {
+		console.log('userImg:', userImg);
+	  }, [userImg]);
     function goToDashboard(){
         navigate("/dashboard")
     }

@@ -50,18 +50,16 @@ router.post("/upload/:token", upload.single("image"), async (req, res) => {
 
   const userId = getUserId(req.params.token);
   const user = await User.findById(userId);
-  const remotePath = `${schoolServer.remotePath}/${user.username}.jpg`;
-  const imgPath = `http://${schoolServer.host}:8088${schoolServer.sourcePath}/${user.username}.jpg`;
+  const imgData = req.file.buffer;
 
   try {
-    const sftp = new client();
-    await sftp.connect(schoolServer);
-    await sftp.put(Buffer.from(req.file.buffer), remotePath);
+    // Store image data in MongoDB using Mongoose
     const updatedUser = await User.findByIdAndUpdate(
       userId,
-      { $set: { img: imgPath } },
+      { $set: { img: { data: imgData, contentType: req.file.mimetype } } },
       { new: true }
     ).select("-password");
+
     res.status(200).json({ message: "File uploaded successfully" });
   } catch (error) {
     console.error("Error uploading file:", error.message);
@@ -72,13 +70,19 @@ router.post("/upload/:token", upload.single("image"), async (req, res) => {
 //route to get profile img
 router.get("/retrieve/:token", async (req, res) => {
   const userId = getUserId(req.params.token);
-  const remotePath = `${schoolServer.remotePath}/${userId}.jpg`;
+
   try {
-    const sftp = new client();
-    await sftp.connect(schoolServer);
-    const fileBuffer = await sftp.get(remotePath);
-    res.setHeader("Content-Type", "image/jpeg");
-    res.status(200).send(fileBuffer);
+    // Retrieve user data from MongoDB
+    const user = await User.findById(userId);
+
+    // If the user or user's image data is not found, return an error
+    if (!user || !user.img || !user.img.data) {
+      return res.status(404).json({ error: "User or image data not found" });
+    }
+
+    // Send the image data as the response
+    res.setHeader("Content-Type", user.img.contentType);
+    res.status(200).send(user.img.data);
   } catch (error) {
     console.error("Error retrieving file:", error.message);
     res.status(500).json({ error: "Internal server error" });
@@ -116,7 +120,8 @@ router.post("/signIn", async (req, res) => {
 // Route to create a new user
 router.post("/signUp", async (req, res) => {
   try {
-    const { firstname, lastname, username, email, password, isTutor } = req.body;
+    const { firstname, lastname, username, email, password, isTutor } =
+      req.body;
     const _id = new mongoose.Types.ObjectId();
 
     const existingUser = await User.findOne({ email });

@@ -6,25 +6,22 @@ import { HiPencil } from "react-icons/hi2";
 import { CiCirclePlus } from "react-icons/ci";
 
 
-export default function CourseForm({label, value, name, courseId, data, setData}) {
+export default function CourseForm({label, value, name, courseId}) {
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({});
     const [img, setImg] = useState(null);
     const [imageUrl, setImageUrl] = useState(null)
     const navigate = useNavigate();
     useEffect(() => {
-        // if (name !== "image") {
-        //     setFormData((prevData) => ({
-        //       ...prevData,
-        //       [name]: value,
-        //     }));
-        //   } else {
-        //     setImageUrl(value);
-        //   }
-        // if (typeof setData === 'function') {
-        //     setData((prevData) => (data));
-        // }
-      }, [data]);
+        if (name !== "image") {
+            setFormData((prevData) => ({
+              ...prevData,
+              [name]: value,
+            }));
+          } else {
+            setImageUrl(value);
+          }
+      }, [value, name]);
     useEffect(() => {
         const uploadImg = async () => {
             const token = localStorage.getItem("token");

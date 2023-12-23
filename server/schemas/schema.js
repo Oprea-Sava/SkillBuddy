@@ -1,13 +1,16 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  isTutor: { type: Boolean, default: false},
+  isTutor: { type: Boolean, default: false },
   firstname: { type: String, required: true },
   lastname: { type: String, required: true },
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  img: { type: String },
+  img: {
+    data: Buffer,
+    contentType: String,
+  },
   registrationDate: { type: Date, default: Date.now },
   bio: { type: String },
   phone: { type: String },

@@ -2,9 +2,3 @@
 from = "/*"
 to = "/index.html"
 status = 200
-
-[[redirects]]
-  from = "/*"
-  to = "http://info.tm.edu.ro:8088/:splat"
-  status = 200
-  force = true

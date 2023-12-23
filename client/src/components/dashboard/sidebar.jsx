@@ -17,6 +17,7 @@ function Sidebar({dataChange}) {
 	const { pathname } = useLocation();
 	const [isActive, setIsActive] = useState(posIndex);
 	const [userData, setUserData] = useState({})
+	const [userImg, setUserImg] = useState()
 	useEffect(()=>{
 	const fetchUserData = async () => {
 		try {
@@ -31,7 +32,22 @@ function Sidebar({dataChange}) {
 		  console.error('Error fetching user data:', error);
 		}
 	  };
+	  const fetchUserImg = async () => {
+		try {
+		  const token = localStorage.getItem('token');
+		  const response = await fetch(`http://localhost:5000/api/users/retrieve/${token}`);
+		  if (!response.ok) {
+			  throw new Error(`HTTP error! Status: ${response.status}`);
+			}
+			const blob = await response.blob();
+			const imageUrl = URL.createObjectURL(blob);
+			setUserImg(imageUrl);
+		} catch (error) {
+		  console.error('Error fetching user data:', error);
+		}
+	  };
 	  fetchUserData()
+	  fetchUserImg();
 	},[dataChange])
 
 	const dashboardButtons = [
@@ -81,7 +97,7 @@ function Sidebar({dataChange}) {
 		<div id="sidebarWrapper">
 			<div id="sidebar">
 				<div className="profile">
-					{userData.img? (<img src={userData.img} alt=""/>):(<img src={placeholder} alt="" />)}
+					{userImg? (<img src={userImg} alt=""/>):(<img src={placeholder} alt="" />)}
 					<div className="username text">{userData.username}</div>
 				</div>
 				<div className="navigator">
