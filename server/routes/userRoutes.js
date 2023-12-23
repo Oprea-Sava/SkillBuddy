@@ -116,7 +116,7 @@ router.post("/signIn", async (req, res) => {
 // Route to create a new user
 router.post("/signUp", async (req, res) => {
   try {
-    const { firstname, lastname, username, email, password } = req.body;
+    const { firstname, lastname, username, email, password, isTutor } = req.body;
     const _id = new mongoose.Types.ObjectId();
 
     const existingUser = await User.findOne({ email });
@@ -139,6 +139,7 @@ router.post("/signUp", async (req, res) => {
       img: "",
       bio: "",
       phone: "",
+      isTutor,
     });
 
     await newUser.save();

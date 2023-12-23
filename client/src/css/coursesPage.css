@@ -1,47 +1,47 @@
-#coursesPageContent{
-    min-height: 75vh;
-    padding: 0 100px 0 100px;
+#coursesPageContent {
+  min-height: 75vh;
+  padding: 0 100px 0 100px;
 }
 
-.coursesPageTitle{
-    height: 25vh;
-    font-size: 2.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.coursesPageTitle {
+  height: 25vh;
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.coursesSection{
-    display: flex;
-    gap: 30px;
-} 
-
-.coursesContentHead{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.coursesSection {
+  display: flex;
+  gap: 30px;
 }
 
-.coursesContentHead>*{
-    padding: 0 40px 0 40px;
+.coursesContentHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.showFilteredCourses{
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 10px;
+.coursesContentHead > * {
+  padding: 0 40px 0 40px;
 }
 
-.showFilteredCourses>button{
-    height: 30px;
-    width: 30px;
+.showFilteredCourses {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 10px;
 }
 
-.coursesContent{
-    flex: 3;
+.showFilteredCourses > button {
+  height: 30px;
+  width: 30px;
 }
 
-.coursesSidebar{
-    flex: 1; 
+.coursesContent {
+  flex: 4;
+}
+
+.coursesSidebar {
+  flex: 1;
 }

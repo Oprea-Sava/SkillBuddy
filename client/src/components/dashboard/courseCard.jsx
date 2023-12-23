@@ -120,7 +120,8 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
 	return (
 		<>
 			<div className="courseCard">
-				<div className="courseCardImageHolder">
+				<div className="courseCardImageHolder" >
+					<img src= {courseData.image ? courseData.image : placeholder}/>{/* fix aspect ratio */}
 					<div className="coursePrice">{courseData.price}</div>
 				</div>
 				<div className="courseCardDetails">
