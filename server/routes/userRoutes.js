@@ -7,15 +7,6 @@ const mongoose = require("mongoose");
 const client = require("ssh2-sftp-client");
 const multer = require("multer");
 
-const schoolServer = {
-  host: "info.tm.edu.ro",
-  port: "54321",
-  username: "toprea",
-  password: config.schoolPass,
-  remotePath: "/home/toprea/public_html/profile_img",
-  sourcePath: "/~toprea/profile_img",
-};
-
 const storage = multer.memoryStorage();
 
 const upload = multer({ storage: storage });

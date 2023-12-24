@@ -6,6 +6,7 @@ import { redirect, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import CourseForm from "./components/courseForm";
 import { isAuthenticated } from "./auth";
+import ChaptersForm from "./components/chaptersForm";
 
 export default function CourseDetails(){
     const {courseId} = useParams()
@@ -61,7 +62,6 @@ export default function CourseDetails(){
         courseData.price,
         courseData.image,
     ];
-    console.count("counter")
     const totalFields = requiredFields.length;
     const completedFields = requiredFields.filter(Boolean).length;
     const completitionText = `(${completedFields}/${totalFields})`;
@@ -90,7 +90,9 @@ export default function CourseDetails(){
                         <div className="sectionTitle__cd text">
                             Course Chapters
                         </div>
-                        <div className="sectionContent__cd">Chapter</div>
+                        <div className="sectionContent__cd">
+                            <ChaptersForm courseId={courseId}/>
+                        </div>
                         <div className="sectionTitle__cd text">
                             Sell your course
                         </div>

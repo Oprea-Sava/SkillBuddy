@@ -1,4 +1,4 @@
-.form__cf {
+.form__chf {
   width: 100%;
   max-width: 500px;
   background-color: var(--inputBackground);
@@ -11,41 +11,14 @@
   gap: 20px;
 }
 
-.formGroup__cf {
+.formGroup__chf {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.formLabel__cf {
-  font-size: large;
-}
-
-.formInput__cf {
-  background-color: var(--inputBackground);
-  border-radius: 10px;
-  border: 2px solid var(--secondary);
-  padding: 15px;
-  margin: 0;
-}
-
-.edit__cf {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.submitButton__cf {
-  max-width: 100px;
-  padding: 10px 20px;
-  border: 0;
-  border-radius: 8px;
-  margin-left: 1px;
-  background-color: var(--accent);
-}
-
-.editButton__cf,
-.cancelButton__cf {
+.editButton__chf,
+.cancelButton__chf {
   background-color: var(--inputBackground);
   padding: 5px 10px;
   border: 0;
@@ -57,14 +30,25 @@
   gap: 5px;
 }
 
-.imgContainer__cf {
-  width: 100%;
-  max-height: 300px;
+.formInput__chf {
+  background-color: var(--inputBackground);
+  border-radius: 10px;
+  border: 2px solid var(--secondary);
+  padding: 15px;
+  margin: 0;
 }
 
-.courseImg__cf {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  aspect-ratio: 16/9;
+.addChapter__chf {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.submitButton__chf {
+  max-width: 100px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 8px;
+  margin-left: 1px;
+  background-color: var(--accent);
 }

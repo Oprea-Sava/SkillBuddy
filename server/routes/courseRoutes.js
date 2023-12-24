@@ -1,18 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { Course } = require("../schemas/schema");
+const { Course, Chapter } = require("../schemas/schema");
 const client = require("ssh2-sftp-client");
 const multer = require("multer");
 const config = require("../config");
-
-const schoolServer = {
-  host: "info.tm.edu.ro",
-  port: "54321",
-  username: "toprea",
-  password: config.schoolPass,
-  remotePath: "/home/toprea/public_html/course_img",
-  sourcePath: "/~toprea/course_img",
-};
 
 const storage = multer.memoryStorage();
 
@@ -29,6 +20,70 @@ function getUserId(token) {
   }
 }
 
+//route to create a chapter
+router.post("/createChapter/:courseId", async (req, res) => {
+  try {
+    const { title, videoUrl } = req.body;
+    const courseId = req.params.courseId;
+    const token = req.headers.authorization.split(" ")[1];
+    const userId = getUserId(token);
+    // Validate if courseId exists
+    const course = await Course.findById(courseId);
+    if (!course) {
+      return res.status(404).json({ error: "Course not found" });
+    }
+    if (userId != course.author) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    // Determine the position for the new chapter
+    const newPosition = course.chapters.length + 1;
+
+    // Create a new chapter
+    const newChapter = new Chapter({
+      title,
+      videoUrl,
+      courseId,
+      position: newPosition,
+    });
+
+    // Save the chapter
+    const savedChapter = await newChapter.save();
+
+    // Link the chapter to the course
+    course.chapters.push(savedChapter._id);
+    await course.save();
+
+    res.status(201).json({ message: "Chapter created successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// route to get all chapters from a course
+router.get("/chapters/:courseId", async (req, res) => {
+  try {
+    const courseId = req.params.courseId;
+
+    // Validate if courseId exists
+    const course = await Course.findById(courseId);
+    if (!course) {
+      return res.status(404).json({ error: "Course not found" });
+    }
+
+    const populatedCourse = await Course.findById(courseId).populate({
+      path: "chapters",
+      options: { sort: { position: 1 } }, // Sort chapters by position in ascending order
+    });
+
+    res.status(200).json(populatedCourse.chapters);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 //route to upload course img
 router.post("/upload/:courseId", upload.single("image"), async (req, res) => {
   if (!req.file) {
@@ -38,7 +93,6 @@ router.post("/upload/:courseId", upload.single("image"), async (req, res) => {
   const courseId = req.params.courseId;
   const token = req.headers.authorization.split(" ")[1];
   const userId = getUserId(token);
-  console.log(userId);
   try {
     const course = await Course.findById(courseId);
     console.log(course.author == userId);
@@ -126,7 +180,7 @@ router.post("/create", async (req, res) => {
   }
 });
 
-// get course inforation
+// get course information
 router.get("/:courseId", async (req, res) => {
   const courseId = req.params.courseId;
   try {

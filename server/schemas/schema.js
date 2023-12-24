@@ -18,6 +18,16 @@ const userSchema = new mongoose.Schema({
   wishlistedCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
 });
 
+const chapterSchema = new mongoose.Schema({
+  title: { type: String },
+  description: { type: String },
+  videoUrl: { type: String },
+  position: { type: Number, unique: true },
+  isPublished: { type: Boolean, default: false },
+  courseId: { type: String, ref: "Course", required: true },
+  //userProgress: [{ type: mongoose.Schema.Types.ObjectId, ref: 'UserProgress' }],
+});
+
 const courseSchema = new mongoose.Schema({
   title: { type: String, require: true, unique: true },
   description: { type: String },
@@ -28,12 +38,12 @@ const courseSchema = new mongoose.Schema({
     contentType: String,
   },
   isPublished: { type: Boolean, default: false },
-  //chapters
+  chapters: [{ type: mongoose.Schema.Types.ObjectId, ref: "Chapter" }],
   //category
   // memberLimit: { type: Number },
 });
 
 const Course = mongoose.model("course", courseSchema);
 const User = mongoose.model("User", userSchema);
-
-module.exports = { User, Course };
+const Chapter = mongoose.model("Chapter", chapterSchema);
+module.exports = { User, Course, Chapter };
