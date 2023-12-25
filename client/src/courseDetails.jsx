@@ -60,21 +60,26 @@ export default function CourseDetails(){
         courseData.title,
         courseData.description,
         courseData.price,
-        courseData.image,
+        courseData.img,
     ];
-    const totalFields = requiredFields.length;
-    const completedFields = requiredFields.filter(Boolean).length;
+    const hasPublishedChapter = courseData.chapters && courseData.chapters.some(chapter => chapter.isPublished);
+    const totalFields = requiredFields.length + 1;
+    const completedFields = requiredFields.filter(Boolean).length + (hasPublishedChapter ? 1 : 0);
     const completitionText = `(${completedFields}/${totalFields})`;
     return(
         <>
             <Navbar/>
+            
             <div className="container__cd">
+                <div className="title__cd">
+                    <h1 className="text"> Course Setup</h1>
+                    <div className="text">
+                        Complete all fields {completitionText}
+                    </div>
+                </div>
                 <div className="columnGrid__cd">
                     <div className="column__cd">
-                        <h1 className="text"> Course Setup</h1>
-                        <div className="text">
-                            Complete all fields {completitionText}
-                        </div>
+                        
                        <div className="section__cd">
                             <div className="sectionTitle__cd text">
                                 Customize your course

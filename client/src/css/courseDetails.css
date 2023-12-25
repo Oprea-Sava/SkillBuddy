@@ -1,12 +1,14 @@
-.column__cd > h1 {
+.title__cd > h1 {
   font-size: xx-large;
+  margin-bottom: 10px;
 }
 
 .container__cd {
   min-height: 80vh;
   padding: 6rem 10rem;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .columnGrid__cd {

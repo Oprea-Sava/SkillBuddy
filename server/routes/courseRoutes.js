@@ -84,6 +84,28 @@ router.get("/chapters/:courseId", async (req, res) => {
   }
 });
 
+//route to update chapter order
+router.post("/chapters/updateOrder", async (req, res) => {
+  try {
+    const updatedChapters = req.body.updatedChapters;
+
+    if (!Array.isArray(updatedChapters)) {
+      return res.status(400).json({ error: "Invalid data format" });
+    }
+    await Promise.all(
+      updatedChapters.map(async (chapterData, index) => {
+        const chapterId = chapterData._id;
+        await Chapter.findByIdAndUpdate(chapterId, { position: index + 1 });
+      })
+    );
+
+    res.status(200).json({ message: "Chapter positions updated successfully" });
+  } catch (error) {
+    console.error("Error updating chapter positions:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 //route to upload course img
 router.post("/upload/:courseId", upload.single("image"), async (req, res) => {
   if (!req.file) {
@@ -184,7 +206,9 @@ router.post("/create", async (req, res) => {
 router.get("/:courseId", async (req, res) => {
   const courseId = req.params.courseId;
   try {
-    const course = await Course.findById(courseId).populate("author");
+    const course = await Course.findById(courseId)
+      .populate("author")
+      .populate("chapters");
 
     if (!course) {
       return res.status(404).json({ error: "Course not found" });

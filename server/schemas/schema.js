@@ -22,7 +22,7 @@ const chapterSchema = new mongoose.Schema({
   title: { type: String },
   description: { type: String },
   videoUrl: { type: String },
-  position: { type: Number, unique: true },
+  position: { type: Number },
   isPublished: { type: Boolean, default: false },
   courseId: { type: String, ref: "Course", required: true },
   //userProgress: [{ type: mongoose.Schema.Types.ObjectId, ref: 'UserProgress' }],
@@ -42,6 +42,22 @@ const courseSchema = new mongoose.Schema({
   //category
   // memberLimit: { type: Number },
 });
+
+chapterSchema.pre(
+  "remove",
+  { document: true, query: false },
+  async function (next) {
+    try {
+      const courseId = this.courseId;
+      await mongoose
+        .model("Course")
+        .updateOne({ _id: courseId }, { $pull: { chapters: this._id } });
+      next();
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 const Course = mongoose.model("course", courseSchema);
 const User = mongoose.model("User", userSchema);
