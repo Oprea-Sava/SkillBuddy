@@ -1,0 +1,107 @@
+.form__chl {
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--inputBackground);
+  min-height: 100px;
+  padding: 1rem;
+  box-sizing: border-box;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup__chl {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editButton__chl,
+.cancelButton__chl {
+  background-color: var(--inputBackground);
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 8px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  font-size: 1rem;
+  gap: 5px;
+}
+
+.formInput__chl {
+  background-color: var(--inputBackground);
+  border-radius: 10px;
+  border: 2px solid var(--secondary);
+  padding: 15px;
+  margin: 0;
+}
+
+.addChapter__chl {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.submitButton__chl {
+  max-width: 100px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 8px;
+  margin-left: 1px;
+  background-color: var(--accent);
+}
+
+.chapter__chl {
+  padding: 8px;
+  margin: 4px;
+  border: 1px solid black;
+  cursor: move;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.chapterTitle__chl {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  gap: 10px;
+}
+
+.chapterList__chl {
+  display: flex;
+  flex-direction: column;
+}
+
+.badge__chl {
+  display: flex;
+  gap: 10px;
+}
+
+.badge__chl > * {
+  padding: 4px;
+}
+
+.draft__chl,
+.published__chl {
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.draft__chl {
+  background-color: rgb(100 116 139);
+}
+
+.published__chl {
+  background-color: rgb(3 105 161);
+}
+
+.editChapter__chl {
+  cursor: default;
+}

@@ -8,6 +8,7 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
 .formGroup__chf {
@@ -16,17 +17,8 @@
   justify-content: space-between;
 }
 
-.editButton__chf,
-.cancelButton__chf {
-  background-color: var(--inputBackground);
-  padding: 5px 10px;
-  border: 0;
-  border-radius: 8px;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  font-size: 1rem;
-  gap: 5px;
+.formLabel__chf {
+  font-size: large;
 }
 
 .formInput__chf {
@@ -37,7 +29,7 @@
   margin: 0;
 }
 
-.addChapter__chf {
+.edit__chf {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -52,56 +44,15 @@
   background-color: var(--accent);
 }
 
-.chapter__chf {
-  padding: 8px;
-  margin: 4px;
-  border: 1px solid black;
-  cursor: move;
+.editButton__chf,
+.cancelButton__chf {
+  background-color: var(--inputBackground);
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 8px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 1rem;
-}
-
-.chapterTitle__chf {
-  display: flex;
+  justify-content: end;
   align-items: center;
   font-size: 1rem;
-  gap: 10px;
-}
-
-.chapterList__chf {
-  display: flex;
-  flex-direction: column;
-}
-
-.badge__chf {
-  display: flex;
-  gap: 10px;
-}
-
-.badge__chf > * {
-  padding: 4px;
-}
-
-.draft__chf,
-.published__chf {
-  border-radius: 10px;
-  color: white;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.draft__chf {
-  background-color: rgb(100 116 139);
-}
-
-.published__chf {
-  background-color: rgb(3 105 161);
-}
-
-.editChapter__chf {
-  cursor: default;
+  gap: 5px;
 }

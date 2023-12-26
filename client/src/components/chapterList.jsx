@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
-import "../css/chapterForm.css"
+import "../css/chapterList.css"
 import { HiPencil } from "react-icons/hi2";
 import { CiCirclePlus } from "react-icons/ci";
 import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
@@ -11,6 +11,7 @@ export default function ChaptersForm({courseId}){
     const [isCreating, setIsCreating] = useState(false);
     const [formData, setFormData] = useState({title: ""})
     const [chapters, setChapters] = useState([])
+    const navigate = useNavigate()
     const updateChapterOrderInDatabase = async (updatedChapters) => {
         try {
           const response = await fetch("http://localhost:5000/api/courses/chapters/updateOrder", {
@@ -33,7 +34,7 @@ export default function ChaptersForm({courseId}){
         const fetchChapters = async () => {
 			try {
 				const response = await fetch(
-					`http://localhost:5000/api/courses/chapters/${courseId}`,
+					`http://localhost:5000/api/courses/${courseId}/chapters`,
 					{
 						method: "GET",
 					}
@@ -57,7 +58,7 @@ export default function ChaptersForm({courseId}){
     }, [chapters])
 
     function editChapter(chapterId) {
-      console.log(chapterId)
+      navigate(`/chapters/${chapterId}`)
     }
 
     function handleClick() {
@@ -115,38 +116,38 @@ export default function ChaptersForm({courseId}){
             <Droppable droppableId="chapters">
               {(provided) => (
                 <div
-                  className="form__chf"
+                  className="form__chl"
                   {...provided.droppableProps}
                   ref={provided.innerRef}
                 >
-                  <div className="formGroup__chf">
-                    <div className="label__chf text">Course Chapters</div>
+                  <div className="formGroup__chl">
+                    <div className="label__chl text">Course Chapters</div>
                     {isCreating ? (
-                      <button onClick={handleClick} className="cancelButton__chf text">
+                      <button onClick={handleClick} className="cancelButton__chl text">
                         Cancel
                       </button>
                     ) : (
-                      <button onClick={handleClick} className="editButton__chf text">
+                      <button onClick={handleClick} className="editButton__chl text">
                         <CiCirclePlus size={20} />Add a chapter
                       </button>
                     )}
                   </div>
                   {isCreating ? (
-                    <div className="addChapter__chf">
+                    <div className="addChapter__chl">
                       <input
-                        className="formInput__chf"
+                        className="formInput__chl"
                         name="title"
                         required
                         value={formData.title}
                         onChange={handleChange}
                         placeholder="e.g. 'Introduction to the course'"
                       />
-                      <button className="submitButton__chf" onClick={handleSubmit}>
+                      <button className="submitButton__chl" onClick={handleSubmit}>
                         Submit
                       </button>
                     </div>
                   ) : (
-                    <div className="chapterList__chf">
+                    <div className="chapterList__chl">
                       {chapters.map((chapter, index) => (
                         <Draggable
                           key={chapter._id}
@@ -159,12 +160,12 @@ export default function ChaptersForm({courseId}){
                               {...provided.dragHandleProps}
                               ref={provided.innerRef}
                             >
-                              <div className="chapter__chf">
-                                <div className="chapterTitle__chf text">
+                              <div className="chapter__chl">
+                                <div className="chapterTitle__chl text">
                                   <CgMenuGridO size={20} />
                                   {chapter.title}
                                 </div>
-                                {!chapter.isPublished ? (<div className="badge__chf"><div className="draft__chf">Draft</div> <HiPencil className="editChapter__chf" onClick={() =>editChapter(chapter._id)}/></div>) : (<div className="badge__chf"><div className="published__chf">Published</div><HiPencil className="editChapter__chf" onClick={() =>editChapter(chapter._id)}/></div>) }
+                                {!chapter.isPublished ? (<div className="badge__chl"><div className="draft__chl">Draft</div> <HiPencil className="editChapter__chl" onClick={() =>editChapter(chapter._id)}/></div>) : (<div className="badge__chl"><div className="published__chl">Published</div><HiPencil className="editChapter__chl" onClick={() =>editChapter(chapter._id)}/></div>) }
                               </div>
                             </div>
                           )}

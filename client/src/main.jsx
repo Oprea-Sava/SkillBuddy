@@ -21,6 +21,7 @@ import CourseDetails from "./courseDetails";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ThemeProvider } from "./themeContext";
+import ChapterDetails from "./chapterDetails";
 
 
 const router = createBrowserRouter([
@@ -49,8 +50,12 @@ const router = createBrowserRouter([
 		element: <CoursesPage />,
 	},
 	{
-		path: "courses/:courseId",
-		element: <CourseDetails/>
+		path: "edit/:courseId",
+		element: <AuthRoute><CourseDetails/></AuthRoute>
+	},
+	{
+		path: "chapters/:chapterId",
+		element: <AuthRoute><ChapterDetails/></AuthRoute>
 	},
 	{
 		path: "create",

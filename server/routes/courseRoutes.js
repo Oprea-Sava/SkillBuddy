@@ -61,8 +61,25 @@ router.post("/createChapter/:courseId", async (req, res) => {
   }
 });
 
+// get chapter information
+router.get("/chapters/:chapterId", async (req, res) => {
+  const chapterId = req.params.chapterId;
+  try {
+    const chapter = await Chapter.findById(chapterId);
+
+    if (!chapter) {
+      return res.status(404).json({ error: "Chapter not found" });
+    }
+
+    res.json(chapter);
+  } catch (error) {
+    console.error("Error retrieving chapter information:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 // route to get all chapters from a course
-router.get("/chapters/:courseId", async (req, res) => {
+router.get("/:courseId/chapters", async (req, res) => {
   try {
     const courseId = req.params.courseId;
 

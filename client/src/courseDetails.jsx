@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./css/courseDetails.css";
 import Navbar from "./navbar";
 import Footer from "./footer";
-import { redirect, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import CourseForm from "./components/courseForm";
 import { isAuthenticated } from "./auth";
-import ChaptersForm from "./components/chaptersForm";
+import ChaptersForm from "./components/chapterList";
 
 export default function CourseDetails(){
     const {courseId} = useParams()
@@ -52,9 +52,6 @@ export default function CourseDetails(){
           };
           fetchCourseData()
           fetchCourseImg();
-        if(!isAuthenticated()){
-            navigate("/signin")
-        }
     },[]);
     const requiredFields = [
         courseData.title,
