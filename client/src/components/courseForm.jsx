@@ -92,7 +92,6 @@ export default function CourseForm({label, value, name, courseId}) {
                 const data = await response.json();
                 toast.success(data.message);
                 setIsEditing((prev) => !prev)
-                navigate(0)
             } else {
                 const data = await response.json();
                 toast.error(data.error);
@@ -129,7 +128,7 @@ export default function CourseForm({label, value, name, courseId}) {
                 {isEditing ? (<div className="edit__cf">
                                 <input className="formInput__cf" id={name} name={name} value={formData[name]} onChange={handleInputChange}/> 
                                 <button className="text submitButton__cf" onClick={handleSubmit}>Submit</button> 
-                            </div>) : (<div className="text">{!value ? (name=="price"? "Free" :`No ${name}`):(name=="price" ? `${value}$`: value)}</div>) }
+                            </div>) : (<div className="text">{!value ? (name=="price"? "Free" :`No ${name}`):(name=="price" ? `${formData[name]}$`: formData[name])}</div>) }
             </form>
         )
             }       

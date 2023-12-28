@@ -78,6 +78,30 @@ router.get("/chapters/:chapterId", async (req, res) => {
   }
 });
 
+//route to update chapter information
+router.put("/chapters/:chapterId", async (req, res) => {
+  const chapterId = req.params.chapterId;
+  const token = req.headers.authorization.split(" ")[1];
+  const userId = getUserId(token);
+  const chapter = await Chapter.findById(chapterId).populate("courseId");
+  if (userId != chapter.courseId.author) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  try {
+    const updatedChapter = await Chapter.findByIdAndUpdate(
+      chapterId,
+      { $set: req.body },
+      { new: true }
+    );
+    if (!updatedChapter) {
+      return res.status(404).json({ error: "Chapter not found" });
+    }
+    res.status(200).json({ message: "Chapter updated successfully" });
+  } catch {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 // route to get all chapters from a course
 router.get("/:courseId/chapters", async (req, res) => {
   try {

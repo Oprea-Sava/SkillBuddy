@@ -6,6 +6,7 @@ import { HiArrowLongLeft } from "react-icons/hi2";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import ChapterForm from "./components/chapterForm";
+import ChapterVideo from "./components/chapterVideo";
 
 
 export default function ChapterDetails() {
@@ -62,10 +63,10 @@ export default function ChapterDetails() {
             <div className="gridContainer__chd">
                 <div className="column__chd">
                     <ChapterForm label="Chapter title" name="title" value={chapterData.title} chapterId={chapterId}/>
-                    <ChapterForm label="Chapter description" name="discription" value={chapterData.description} chapterId={chapterId}/>
+                    <ChapterForm label="Chapter description" name="description" value={chapterData.description} chapterId={chapterId}/>
                 </div>
                 <div className="column__chd">
-                    coloana 2
+                    <ChapterVideo value={chapterData.videoUrl} chapterId={chapterId}/>
                 </div>
             </div>
         </div>
