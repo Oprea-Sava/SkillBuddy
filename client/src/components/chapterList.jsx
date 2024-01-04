@@ -7,7 +7,7 @@ import { CiCirclePlus } from "react-icons/ci";
 import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
 import { CgMenuGridO } from "react-icons/cg";
 
-export default function ChaptersForm({courseId}){
+export default function ChaptersForm({courseId, change}){
     const [isCreating, setIsCreating] = useState(false);
     const [formData, setFormData] = useState({title: ""})
     const [chapters, setChapters] = useState([])
@@ -22,7 +22,9 @@ export default function ChaptersForm({courseId}){
             body: JSON.stringify({ updatedChapters }),
           });
       
-          if (!response.ok) {
+          if (response.ok) {
+            change();
+          }else {
             const data = await response.json();
             console.error("Error updating chapter positions:", data.error);
           }

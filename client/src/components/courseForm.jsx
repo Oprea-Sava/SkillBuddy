@@ -6,7 +6,7 @@ import { HiPencil } from "react-icons/hi2";
 import { CiCirclePlus } from "react-icons/ci";
 
 
-export default function CourseForm({label, value, name, courseId}) {
+export default function CourseForm({label, value, name, courseId, change}) {
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({});
     const [img, setImg] = useState(null);
@@ -42,7 +42,7 @@ export default function CourseForm({label, value, name, courseId}) {
                 const blob = await response.blob();
 				const imageUrl = URL.createObjectURL(blob);
 				setImageUrl(imageUrl);
-                navigate(0);
+                change();
             } else {
                 const errorData = await response.json();
 				console.error("Error uploading image:", errorData.error);
@@ -91,7 +91,8 @@ export default function CourseForm({label, value, name, courseId}) {
             if(response.ok) {
                 const data = await response.json();
                 toast.success(data.message);
-                setIsEditing((prev) => !prev)
+                setIsEditing((prev) => !prev);
+                change();
             } else {
                 const data = await response.json();
                 toast.error(data.error);
@@ -128,7 +129,7 @@ export default function CourseForm({label, value, name, courseId}) {
                 {isEditing ? (<div className="edit__cf">
                                 <input className="formInput__cf" id={name} name={name} value={formData[name]} onChange={handleInputChange}/> 
                                 <button className="text submitButton__cf" onClick={handleSubmit}>Submit</button> 
-                            </div>) : (<div className="text">{!value ? (name=="price"? "Free" :`No ${name}`):(name=="price" ? `${formData[name]}$`: formData[name])}</div>) }
+                            </div>) : (<div className="text">{!value ? (name=="price"? "Free" :`No ${name}`):(name=="price" ? `${value}$`: value)}</div>) }
             </form>
         )
             }       

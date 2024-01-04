@@ -12,7 +12,12 @@ export default function CourseDetails(){
     const {courseId} = useParams()
     const [courseData, setCourseData] = useState({});
     const [courseImg, setCourseImg] = useState()
+    const [fetchData, setFetchData] = useState(false)
     const navigate = useNavigate();
+    function handleFetch() {
+        setFetchData(!fetchData);
+        console.log(1);
+    }
     useEffect(() => {
 		const fetchCourseData = async () => {
 			try {
@@ -52,7 +57,7 @@ export default function CourseDetails(){
           };
           fetchCourseData()
           fetchCourseImg();
-    },[]);
+    },[fetchData]);
     const requiredFields = [
         courseData.title,
         courseData.description,
@@ -82,9 +87,9 @@ export default function CourseDetails(){
                                 Customize your course
                             </div>
                             <div className="sectionContent__cd">
-                                <CourseForm label={"Course Title"} value={courseData.title} name="title" courseId={courseId}/>
-                                <CourseForm label={"Course Description"} value={courseData.description} name="description" courseId={courseId}/>
-                                <CourseForm label={"Course Image"} value={courseImg} name="image" courseId={courseId}/>
+                                <CourseForm label={"Course Title"} value={courseData.title} name="title" courseId={courseId} change={()=>handleFetch()}/>
+                                <CourseForm label={"Course Description"} value={courseData.description} name="description" courseId={courseId} change={()=>handleFetch()}/>
+                                <CourseForm label={"Course Image"} value={courseImg} name="image" courseId={courseId} change={()=>handleFetch()}/>
                             </div>
                        </div>
                     </div>
@@ -93,13 +98,13 @@ export default function CourseDetails(){
                             Course Chapters
                         </div>
                         <div className="sectionContent__cd">
-                            <ChaptersForm courseId={courseId}/>
+                            <ChaptersForm courseId={courseId} change={()=>handleFetch()}/>
                         </div>
                         <div className="sectionTitle__cd text">
                             Sell your course
                         </div>
                         <div className="sectionContent__cd">
-                            <CourseForm label={"Course Price"} value={courseData.price} name="price" courseId={courseId}/>
+                            <CourseForm label={"Course Price"} value={courseData.price} name="price" courseId={courseId} change={()=>handleFetch()}/>
                         </div>
 
                     </div>

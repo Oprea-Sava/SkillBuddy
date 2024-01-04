@@ -1,6 +1,5 @@
 .form__chl {
   width: 100%;
-  max-width: 500px;
   background-color: var(--inputBackground);
   min-height: 100px;
   padding: 1rem;

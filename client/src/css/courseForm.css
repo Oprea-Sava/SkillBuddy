@@ -1,6 +1,5 @@
 .form__cf {
   width: 100%;
-  max-width: 500px;
   background-color: var(--inputBackground);
   min-height: 100px;
   padding: 1rem;
@@ -59,7 +58,6 @@
 
 .imgContainer__cf {
   width: 100%;
-  max-height: 300px;
 }
 
 .courseImg__cf {

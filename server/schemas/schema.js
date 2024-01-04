@@ -47,21 +47,18 @@ const courseSchema = new mongoose.Schema({
   // memberLimit: { type: Number },
 });
 
-chapterSchema.pre(
-  "remove",
-  { document: true, query: false },
-  async function (next) {
-    try {
-      const courseId = this.courseId;
-      await mongoose
-        .model("Course")
-        .updateOne({ _id: courseId }, { $pull: { chapters: this._id } });
-      next();
-    } catch (error) {
-      next(error);
-    }
+chapterSchema.pre("updateOne", function (next) {
+  const update = this.getUpdate();
+  if (
+    update.$set &&
+    (update.$set.title === "" ||
+      update.$set.description === "" ||
+      update.$set.videoUrl === "")
+  ) {
+    this.updateOne({}, { $set: { isPublished: false } });
   }
-);
+  next();
+});
 
 const Course = mongoose.model("Course", courseSchema);
 const User = mongoose.model("User", userSchema);

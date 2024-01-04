@@ -1,8 +1,7 @@
 .form__chv {
   width: 100%;
-  max-width: 600px;
   background-color: var(--inputBackground);
-  min-height: 500px;
+  max-height: 500px;
   padding: 1rem;
   box-sizing: border-box;
   border-radius: 10px;
@@ -59,5 +58,5 @@
 
 .video__chv {
   width: 100%;
-  height: 90%;
+  aspect-ratio: 16/9;
 }

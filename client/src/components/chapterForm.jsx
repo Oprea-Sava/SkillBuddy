@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../css/chapterForm.css"
 import { HiPencil } from "react-icons/hi2";
 
-export default function ChapterForm({label, value, name, chapterId}) {
+export default function ChapterForm({label, value, name, chapterId, change}) {
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({});
     const [isVisible, setIsVisible] = useState(false);
@@ -59,6 +59,7 @@ export default function ChapterForm({label, value, name, chapterId}) {
                 const data = await response.json();
                 toast.success(data.message);
                 setIsEditing((prev) => !prev)
+                change();
             } else {
                 const data = await response.json();
                 toast.error(data.error);

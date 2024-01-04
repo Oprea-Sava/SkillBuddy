@@ -39,7 +39,7 @@ html[data-theme="light"] {
   --inputBackground: #e6ecff;
   --primary: #5378f0;
   --secondary: #8aa1f0;
-  --Secondary2: #a8bcff;
+  --secondary2: #a8bcff;
   --accent: #476ef3;
   --accent2: #fafbfe;
   --accent3: #040a20;
@@ -79,16 +79,16 @@ body::-webkit-scrollbar {
   background-color: var(--accent);
 }
 
-.separator{
+.separator {
   height: 300px;
   width: auto;
   object-fit: contain;
 }
 
-.top{
+.top {
   background-image: var(--separatorTop);
 }
 
-.bottom{
+.bottom {
   background-image: var(--separatorBottom);
 }
