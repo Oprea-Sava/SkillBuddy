@@ -3,6 +3,7 @@ import "./css/courseDetails.css";
 import Navbar from "./navbar";
 import Footer from "./footer";
 import { useNavigate, useParams } from "react-router-dom";
+import { HiOutlineExclamationTriangle, HiOutlineTrash } from "react-icons/hi2";
 import { toast } from "react-toastify";
 import CourseForm from "./components/courseForm";
 import { isAuthenticated } from "./auth";
@@ -16,7 +17,6 @@ export default function CourseDetails(){
     const navigate = useNavigate();
     function handleFetch() {
         setFetchData(!fetchData);
-        console.log(1);
     }
     useEffect(() => {
 		const fetchCourseData = async () => {
@@ -58,6 +58,68 @@ export default function CourseDetails(){
           fetchCourseData()
           fetchCourseImg();
     },[fetchData]);
+
+    const handleDelete = async() => {
+        const token = localStorage.getItem("token");
+            if(!token) return
+        try {
+            const response = await fetch(
+                `http://localhost:5000/api/courses/${courseId}`,
+					{
+						method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        },
+					}
+            );
+            if(response.ok) {
+                toast.success("Course deleted successfully");
+                handleBack();
+            }else{
+                toast.error(response.error);
+            }
+        } catch(error) {
+            toast.error("Error deleting course");
+            console.error("Error deleting course: ", error);
+        }
+    }
+
+    const handlePublish = async(value) => {
+        if(value){
+            if (totalFields != completedFields) {
+                toast.error("Course is not completed")
+                return
+            }
+        }
+        const token = localStorage.getItem("token");
+        if(!token) return
+        try {
+            const response = await fetch(
+                `http://localhost:5000/api/courses/${courseId}`,
+					{
+						method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        },
+                        body: JSON.stringify({
+                            isPublished: value,
+                        }),
+					}
+            );
+            if(response.ok) {
+                value ? toast.success("Course published successfully") : toast.success("Course unpublished successfully");
+                handleFetch()
+            }else{
+                toast.error(response.error);
+            }
+        } catch(error) {
+            toast.error("Error updating course");
+            console.error("Error updating course: ", error);
+        }
+    }
+
     const requiredFields = [
         courseData.title,
         courseData.description,
@@ -71,13 +133,19 @@ export default function CourseDetails(){
     return(
         <>
             <Navbar/>
-            
             <div className="container__cd">
-                <div className="title__cd">
-                    <h1 className="text"> Course Setup</h1>
-                    <div className="text">
-                        Complete all fields {completitionText}
+            {!courseData.isPublished && <div className="alert__cd text"> <HiOutlineExclamationTriangle size={20} />This course is unpublished. It will not be visible to other people</div>}
+                <div className="header__cd">
+                    <div className="title__cd">
+                        <h1 className="text"> Course Setup</h1>
+                        <div className="text">
+                            Complete all fields {completitionText}
+                        </div>
                     </div>
+                    <div className="publish__cd">
+                    {courseData.isPublished ? <button className="unPublishButton__cd text" onClick={() => {handlePublish(false)}}>Unpublish</button> : <button className="publishButton__cd text" onClick={() => {handlePublish(true)}}>Publish</button>} 
+                    <button className="deleteButton__cd" onClick={handleDelete}><HiOutlineTrash size={20} /></button>
+                </div>
                 </div>
                 <div className="columnGrid__cd">
                     <div className="column__cd">

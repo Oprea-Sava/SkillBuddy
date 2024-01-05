@@ -300,17 +300,39 @@ router.put("/:courseId", async (req, res) => {
     return res.status(401).json({ error: "Unauthorized" });
   }
   try {
-    const updatedCourse = await Course.findByIdAndUpdate(
-      courseId,
-      { $set: req.body },
-      { new: true }
+    const updatedCourse = await Course.updateOne(
+      { _id: courseId },
+      { $set: req.body }
     );
-    if (!updatedCourse) {
+    if (updatedCourse.nModified === 0) {
       return res.status(404).json({ error: "Course not found" });
     }
     res.status(200).json({ message: "Course updated successfully" });
   } catch {
     res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+router.delete("/:courseId", async (req, res) => {
+  try {
+    const courseId = req.params.courseId;
+    const token = req.headers.authorization.split(" ")[1];
+    const userId = getUserId(token);
+    const course = await Course.findById(courseId);
+    if (userId != course.author) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+    const deletedCourse = await Course.findByIdAndDelete(courseId);
+    if (!deletedCourse) {
+      return res.status(404).json({ message: "Course not found" });
+    }
+    await Chapter.deleteMany({ courseId });
+    return res
+      .status(200)
+      .json({ message: "Course and associated chapters deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 });
 

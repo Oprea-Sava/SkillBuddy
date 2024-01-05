@@ -11,6 +11,45 @@
   gap: 2rem;
 }
 
+.alert__cd {
+  display: flex;
+  align-items: center;
+  background-color: var(--secondary2);
+  height: 30px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.publish__cd {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header__cd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.unPublishButton__cd,
+.publishButton__cd {
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 8px;
+  background-color: var(--secondary2);
+}
+
+.deleteButton__cd {
+  height: 100%;
+  border: 0;
+  padding: 7.5px 10px;
+  border-radius: 8px;
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+}
+
 .columnGrid__cd {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

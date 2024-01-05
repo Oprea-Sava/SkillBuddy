@@ -138,8 +138,8 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
 		<>
 			<div className="courseCard">
 				<div className="courseCardImageHolder" >
-					<img src= {img ? img : placeholder}/>{/* fix aspect ratio */}
-					<div className="coursePrice">{courseData.price}</div>
+					<img src= {img ? img : placeholder}/>
+					<div className="coursePrice"><p>{courseData.price === 0 ? "free" : `${courseData.price}$`}</p></div>
 				</div>
 				<div className="courseCardDetails">
 					<div>
@@ -159,6 +159,9 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
 						</div>
 					</div>
 					<div>{courseData.title}</div>
+					<div>
+					    {courseData.chapters && <div>{courseData.chapters.length} chapters</div>}
+					</div>
 					<div>
 						<button
 							className="buyButton text"

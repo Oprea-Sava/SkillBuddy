@@ -60,6 +60,43 @@ chapterSchema.pre("updateOne", function (next) {
   next();
 });
 
+courseSchema.pre("updateOne", function (next) {
+  const update = this.getUpdate();
+  if (
+    update.$set &&
+    (update.$set.title === "" ||
+      update.$set.description === "" ||
+      update.$set.img === null ||
+      update.$set.price === "")
+  ) {
+    this.updateOne({}, { $set: { isPublished: false } });
+  }
+  next();
+});
+
+chapterSchema.post(["updateOne", "deleteOne"], async function (doc) {
+  const filter = this._conditions;
+  const chapterId = filter._id;
+  const chapter = await mongoose.model("Chapter").findOne({ _id: chapterId });
+  if (chapter) {
+    const courseId = chapter.courseId;
+    const course = await mongoose
+      .model("Course")
+      .findOne({ _id: courseId })
+      .populate("chapters");
+    if (course) {
+      const hasPublishedChapter = course.chapters.some(
+        (chapter) => chapter.isPublished
+      );
+      if (!hasPublishedChapter) {
+        await mongoose
+          .model("Course")
+          .updateOne({ _id: courseId }, { $set: { isPublished: false } });
+      }
+    }
+  }
+});
+
 const Course = mongoose.model("Course", courseSchema);
 const User = mongoose.model("User", userSchema);
 const Chapter = mongoose.model("Chapter", chapterSchema);

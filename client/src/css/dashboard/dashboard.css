@@ -1,18 +1,21 @@
-#dashboardBody{
-    display: flex;
-    justify-content: center;
-    padding: 100px 15% 100px 15%;
-    gap: 50px;
+#dashboardBody {
+  display: flex;
+  justify-content: center;
+  max-width: 1320px;
+  padding: 100px 10% 100px 10%;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 50px;
 }
 
-#dashboardBody>*:last-child{
-    flex:3;
+#dashboardBody > *:last-child {
+  flex: 3;
 }
 
-@media screen and (max-width:760px) {
-    #dashboardBody{
-        flex-direction: column;
-        padding-left: 30px;
-        padding-right: 30px;
-    }    
+@media screen and (max-width: 760px) {
+  #dashboardBody {
+    flex-direction: column;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 }

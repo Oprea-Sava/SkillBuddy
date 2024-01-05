@@ -1,7 +1,6 @@
 .form__chv {
   width: 100%;
   background-color: var(--inputBackground);
-  max-height: 500px;
   padding: 1rem;
   box-sizing: border-box;
   border-radius: 10px;
