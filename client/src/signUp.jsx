@@ -3,6 +3,31 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./css/signUp.css";
 import { isAuthenticated } from "./auth";
+import { PiStudentLight } from "react-icons/pi";
+import { GiBookmarklet } from "react-icons/gi";
+
+function Switch({ checked, change }) {
+	return (
+		<>
+			<div className="switchContainerWrapper">
+				<div
+					className={`switchContainer ${checked ? "checked" : ""}`}
+					onClick={change}
+				>
+					<div className="switch">
+						<div className={`slider ${checked ? "checked" : ""}`}>
+							{checked ? (
+								<GiBookmarklet size={20} />
+							) : (
+								<PiStudentLight size={20} />
+							)}
+						</div>
+					</div>
+				</div>
+			</div>
+		</>
+	);
+}
 
 export default function SignUp() {
 	const [formData, setFormData] = useState({
@@ -31,9 +56,9 @@ export default function SignUp() {
 
 	const handleCheck = (e) => {
 		console.log(e.target.value);
-		setFormData({...formData, isTutor : !formData.isTutor });
+		setFormData({ ...formData, isTutor: !formData.isTutor });
 		console.log(formData);
-	}
+	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -95,15 +120,10 @@ export default function SignUp() {
 				<h1>Create your account</h1>
 				<form id="signUpForm" onSubmit={handleSubmit}>
 					<div className="formGroup__su tutorCheck">
-						<label className="tutorSwitch">
-							<input
-								type="checkbox"
-								name="isTutor"
-								checked={formData.isTutor}
-								onChange={handleCheck}
-							/>
-							<span className="slider"></span>
-						</label>
+						<Switch
+							change={handleCheck}
+							checked={formData.isTutor}
+						/>
 					</div>
 					<div className="formName__su">
 						<div className="formGroup__su">
