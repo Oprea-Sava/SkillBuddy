@@ -52,12 +52,6 @@ function Sidebar({ dataChange }) {
 		fetchUserImg();
 	}, [dataChange]);
 
-	console.log(userData);
-
-	const isTutor = userData.isTutor;
-
-	console.log(isTutor);
-
 	const userDashboardButtons = [
 		{ text: "Dasboard", path: "/dashboard/courses" },
 		{ text: "My Profile", path: "/dashboard/myprofile" },
@@ -76,7 +70,7 @@ function Sidebar({ dataChange }) {
 		{ text: "Log Out", path: "/signin" },
 	];
 
-	const currentDashboardButtons = isTutor ? tutorDashboardButtons : userDashboardButtons;
+	const currentDashboardButtons = userData.isTutor ? tutorDashboardButtons : userDashboardButtons;
 
 	useEffect(() => {
 		currentDashboardButtons.map((button, index) => {
