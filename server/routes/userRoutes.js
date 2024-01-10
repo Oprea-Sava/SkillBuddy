@@ -259,16 +259,11 @@ router.get("/:token", async (req, res) => {
 router.put("/:token", async (req, res) => {
   const userId = getUserId(req.params.token);
   const updatedData = req.body;
-  console.log(updatedData);
-  console.log(userId);
-  //it blows up need work
   try {
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      { $set: updatedData },
-      { new: true }
-    ).select("-password");
-  console.log(updatedUser);
+    const updatedUser = await User.findByIdAndUpdate(userId, updatedData, {
+      new: true,
+    }).select("-password");
+    console.log(updatedUser);
 
     if (!updatedUser) {
       return res.status(404).json({ error: "User not found" });

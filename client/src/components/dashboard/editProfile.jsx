@@ -63,7 +63,7 @@ function EditProfile() {
 				}
 			);
 			if (!responseData.ok) {
-				const errorData = await userDataResponse.json();
+				const errorData = await responseData.json();
 				console.error("Error updating user:", errorData.error);
 				toast.error("Error updating user data");
 			} else {
