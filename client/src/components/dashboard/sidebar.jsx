@@ -100,85 +100,89 @@ function Sidebar({ dataChange }) {
 	}
 
 	return (
-		<div id="sidebarWrapper">
-			<div id="sidebar">
-				<div className="profile">
-					{userImg ? (
-						<img src={userImg} alt="" />
-					) : (
-						<img src={placeholder} alt="" />
-					)}
-					<div className="username text">{userData.username}</div>
-				</div>
-				<div className="navigator">
-					<div>
-						<div className="clusterName text">Dashboard</div>
-						<div className="buttonCluster">
-							{currentDashboardButtons.map((button, index) => (
-								<button
-									className="text"
-									key={index}
-									onClick={() => {
-										handleClick(button.path);
-										resetColor(
-											index + currentDashboardButtons.length
-										);
-									}}
-									style={{
-										color:
-											isActive === index
-												? "var(--accent3)"
-												: "",
-										fontWeight:
-											isActive === index ? "600" : "",
-										fontSize:
-											isActive === index ? "18px" : "",
-									}}
-								>
-									{button.text}
-								</button>
-							))}
+		<>
+		{Object.keys(userData).length && 
+				<div id="sidebarWrapper">
+					<div id="sidebar">
+						<div className="profile">
+							{userImg ? (
+								<img src={userImg} alt="" />
+							) : (
+								<img src={placeholder} alt="" />
+							)}
+							<div className="username text">{userData.username}</div>
+						</div>
+						<div className="navigator">
+							<div>
+								<div className="clusterName text">Dashboard</div>
+								<div className="buttonCluster">
+									{currentDashboardButtons.map((button, index) => (
+										<button
+											className="text"
+											key={index}
+											onClick={() => {
+												handleClick(button.path);
+												resetColor(
+													index + currentDashboardButtons.length
+												);
+											}}
+											style={{
+												color:
+													isActive === index
+														? "var(--accent3)"
+														: "",
+												fontWeight:
+													isActive === index ? "600" : "",
+												fontSize:
+													isActive === index ? "18px" : "",
+											}}
+										>
+											{button.text}
+										</button>
+									))}
+								</div>
+							</div>
+							<div>
+								<div className="clusterName text">Account settings</div>
+								<div className="buttonCluster">
+									{accountButtons.map((button, index) => (
+										<button
+											className="text"
+											key={index + currentDashboardButtons.length}
+											onClick={() => {
+												handleClick(button.path);
+												resetColor(
+													index + currentDashboardButtons.length
+												);
+											}}
+											style={{
+												color:
+													isActive ===
+													index + currentDashboardButtons.length
+														? "var(--accent3)"
+														: "",
+												fontWeight:
+													isActive ===
+													index + currentDashboardButtons.length
+														? "600"
+														: "",
+												fontSize:
+													isActive ===
+													index + currentDashboardButtons.length
+														? "18px"
+														: "",
+											}}
+										>
+											{button.text}
+										</button>
+									))}
+								</div>
+							</div>
 						</div>
 					</div>
-					<div>
-						<div className="clusterName text">Account settings</div>
-						<div className="buttonCluster">
-							{accountButtons.map((button, index) => (
-								<button
-									className="text"
-									key={index + currentDashboardButtons.length}
-									onClick={() => {
-										handleClick(button.path);
-										resetColor(
-											index + currentDashboardButtons.length
-										);
-									}}
-									style={{
-										color:
-											isActive ===
-											index + currentDashboardButtons.length
-												? "var(--accent3)"
-												: "",
-										fontWeight:
-											isActive ===
-											index + currentDashboardButtons.length
-												? "600"
-												: "",
-										fontSize:
-											isActive ===
-											index + currentDashboardButtons.length
-												? "18px"
-												: "",
-									}}
-								>
-									{button.text}
-								</button>
-							))}
-						</div>
-					</div>
 				</div>
-			</div>
-		</div>
+			}
+		</>
 	);
 }
 

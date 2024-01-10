@@ -67,7 +67,7 @@ function EditProfile() {
 				console.error("Error updating user:", errorData.error);
 				toast.error("Error updating user data");
 			} else {
-				toast.success("User data updated successfully!");
+				toast.success("User data updated successfully");
 			  }
 			  if (image) {
 				const imageFormData = new FormData();
@@ -86,7 +86,7 @@ function EditProfile() {
 					console.error("Error uploading image:", errorData.error);
 					toast.error(`Error uploading image: ${errorData.error}`);
 				} else {
-				  toast.success("Image uploaded successfully!");
+				  toast.success("Image uploaded successfully");
 				  setChange(!change);
 				}
 			}
