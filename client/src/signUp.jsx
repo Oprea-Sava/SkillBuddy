@@ -55,9 +55,7 @@ export default function SignUp() {
 	};
 
 	const handleCheck = (e) => {
-		console.log(e.target.value);
 		setFormData({ ...formData, isTutor: !formData.isTutor });
-		console.log(formData);
 	};
 
 	const handleSubmit = async (e) => {
