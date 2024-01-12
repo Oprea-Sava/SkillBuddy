@@ -11,7 +11,7 @@ function EditProfile() {
 		bio:"",
 		phone:""
 	})
-	const [img, setImg] = useState(null);
+	const [image, setImage] = useState(null);
 	const [change, setChange] = useOutletContext();
     useEffect(() => {
 		const fetchUserData = async () => {
@@ -43,12 +43,14 @@ function EditProfile() {
 
 	const handleFileChange = (e) => {
 		const selectedFile = e.target.files[0];
-		setImg(selectedFile);
+		setImage(selectedFile);
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
+			const {img, ...textFormData}  = formData;
+
 			const token = localStorage.getItem("token");
 			const responseData = await fetch(
 				`http://localhost:5000/api/users/${token}`,
@@ -57,19 +59,19 @@ function EditProfile() {
 					headers: {
 						"Content-type": "application/json",
 					},
-					body: JSON.stringify(formData),
+					body: JSON.stringify(textFormData),
 				}
 			);
 			if (!responseData.ok) {
-				const errorData = await userDataResponse.json();
+				const errorData = await responseData.json();
 				console.error("Error updating user:", errorData.error);
 				toast.error("Error updating user data");
 			} else {
-				toast.success("User data updated successfully!");
+				toast.success("User data updated successfully");
 			  }
-			  if (img) {
+			  if (image) {
 				const imageFormData = new FormData();
-				imageFormData.append("image", img, img.name);
+				imageFormData.append("image", image, image.name);
 
 				const imageResponse = await fetch(
 					`http://localhost:5000/api/users/upload/${token}`,
@@ -84,7 +86,7 @@ function EditProfile() {
 					console.error("Error uploading image:", errorData.error);
 					toast.error(`Error uploading image: ${errorData.error}`);
 				} else {
-				  toast.success("Image uploaded successfully!");
+				  toast.success("Image uploaded successfully");
 				  setChange(!change);
 				}
 			}
@@ -116,14 +118,14 @@ function EditProfile() {
 					</div>
 					<div className="profileAvatarButtons">
 						<form className="text submitImage" action="">
-							<label className="text" htmlFor="img">
+							<label className="text" htmlFor="image">
 								Upload
 							</label>
 							<input
 								className="text"
 								type="file"
-								id="img"
-								name="img"
+								id="image"
+								name="image"
 								accept="image/*"
 								hidden
 								onChange={handleFileChange}

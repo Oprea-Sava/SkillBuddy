@@ -252,7 +252,7 @@ router.post("/create", async (req, res) => {
     }
 
     const newCourse = new Course({
-      requestData,
+      title: requestData.title,
       author: userId,
     });
 

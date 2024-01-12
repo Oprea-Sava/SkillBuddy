@@ -75,7 +75,7 @@ export default function CourseDetails(){
             );
             if(response.ok) {
                 toast.success("Course deleted successfully");
-                handleBack();
+                navigate("/")
             }else{
                 toast.error(response.error);
             }

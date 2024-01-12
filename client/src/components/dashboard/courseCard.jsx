@@ -38,13 +38,13 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
               );
               if (!response.ok) {
 				const errorResponse = await response.json();
-                  throw new Error(`Status: ${response.status} ${errorResponse.error}`);
+				throw new Error(`Status: ${response.status} ${errorResponse.error}`);
                 }
                 const blob = await response.blob();
                 const imageUrl = URL.createObjectURL(blob);
                 setImg(imageUrl);
             } catch (error) {
-              console.error('Error fetching user data:', error);
+              console.error('Error fetching course image:', error);
             }
           };
 		const checkWishlist = async (Id) => {
@@ -135,47 +135,49 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
 	}
 
 	return (
-		<>
-			<div className="courseCard">
-				<div className="courseCardImageHolder" >
-					<img src= {img ? img : placeholder}/>
-					<div className="coursePrice"><p>{courseData.price === 0 ? "free" : `${courseData.price}$`}</p></div>
-				</div>
-				<div className="courseCardDetails">
-					<div>
-						<div className="authorName">{author}</div>
-						<div
-							className="bookmark"
-							onClick={() => {
-								setIsActive(!isActive);
-								handleWish();
-							}}
-						>
-							{isActive ? (
-								<FaHeart size={15} />
-							) : (
-								<FaRegHeart size={15} />
-							)}
+		<>	
+		{Object.keys(courseData).length && 
+				<div className="courseCard">
+					<div className="courseCardImageHolder" >
+						<img src= {img ? img : placeholder}/>
+						<div className="coursePrice"><p>{courseData.price === 0 ? "free" : `${courseData.price}$`}</p></div>
+					</div>
+					<div className="courseCardDetails">
+						<div>
+							<div className="authorName">{author}</div>
+							<div
+								className="bookmark"
+								onClick={() => {
+									setIsActive(!isActive);
+									handleWish();
+								}}
+							>
+								{isActive ? (
+									<FaHeart size={15} />
+								) : (
+									<FaRegHeart size={15} />
+								)}
+							</div>
+						</div>
+						<div>{courseData.title}</div>
+						<div>
+							{courseData.chapters && <div>{courseData.chapters.length} chapters</div>}
+						</div>
+						<div>
+							<button
+								className="buyButton text"
+								onClick={() => {
+									handleBuy();
+								}}
+							>
+								Buy Now
+							</button>
 						</div>
 					</div>
-					<div>{courseData.title}</div>
-					<div>
-					    {courseData.chapters && <div>{courseData.chapters.length} chapters</div>}
-					</div>
-					<div>
-						<button
-							className="buyButton text"
-							onClick={() => {
-								handleBuy();
-							}}
-						>
-							Buy Now
-						</button>
-					</div>
-				</div>
 
-				
-			</div>
+					
+				</div>
+		}
 		</>
 	);
 }
