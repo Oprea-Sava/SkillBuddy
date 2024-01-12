@@ -80,6 +80,25 @@ router.get("/retrieve/:token", async (req, res) => {
   }
 });
 
+// route do delete profile img
+
+router.delete("/image/:token", async (req, res) => {
+  const userId = getUserId(req.params.token);
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    await User.updateOne({ _id: userId }, { $unset: { img: 1 } });
+    res.status(200).json({ message: "Image deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting file:", error.message);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 //Route to sign in the user
 router.post("/signIn", async (req, res) => {
   try {
