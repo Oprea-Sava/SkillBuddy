@@ -47,6 +47,16 @@ const courseSchema = new mongoose.Schema({
   // memberLimit: { type: Number },
 });
 
+const courseProgressionSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  chapter: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Chapter",
+    required: true,
+  },
+  isCompleted: { type: Boolean, default: false },
+});
+
 chapterSchema.pre("updateOne", function (next) {
   const update = this.getUpdate();
   if (
@@ -100,4 +110,8 @@ chapterSchema.post(["updateOne", "deleteOne"], async function (doc) {
 const Course = mongoose.model("Course", courseSchema);
 const User = mongoose.model("User", userSchema);
 const Chapter = mongoose.model("Chapter", chapterSchema);
-module.exports = { User, Course, Chapter };
+const CourseProgression = mongoose.model(
+  "CourseProgression",
+  courseProgressionSchema
+);
+module.exports = { User, Course, Chapter, CourseProgression };

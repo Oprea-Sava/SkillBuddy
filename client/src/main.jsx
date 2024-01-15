@@ -22,6 +22,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ThemeProvider } from "./themeContext";
 import ChapterDetails from "./chapterDetails";
+import CourseContent from "./courseContent";
 
 
 const router = createBrowserRouter([
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
 	{
 		path: "courses",
 		element: <CoursesPage />,
+	},
+	{
+		path: "course/:courseId",
+		element: <CourseContent />,
 	},
 	{
 		path: "edit/:courseId",

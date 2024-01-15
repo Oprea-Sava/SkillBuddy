@@ -1,4 +1,4 @@
-.container__cc {
+.container__cr {
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -7,47 +7,44 @@
   padding: 6rem;
 }
 
-.container__cc > * {
+.title__cr,
+.courseBox__cr,
+.formGroup__cr,
+.formInput__cr {
+  width: 100%;
   max-width: 48rem;
 }
 
-.container__cc > div,
-.courseBox__cc,
-.formGroup__cc,
-.formInput__cc {
-  width: 100%;
-}
-
-.container__cc h1 {
+.container__cr h1 {
   font-size: xx-large;
   margin-bottom: 10px;
 }
 
-.courseBox__cc {
+.courseBox__cr {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.formGroup__cc {
+.formGroup__cr {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.formInput__cc {
+.formInput__cr {
   background-color: var(--inputBackground);
   border-radius: 10px;
   border: 2px solid var(--secondary);
   padding: 15px;
 }
 
-.formBottom__cc {
+.formBottom__cr {
   display: flex;
   gap: 10px;
 }
 
-.formBottom__cc > button {
+.formBottom__cr > button {
   height: 40px;
   width: 100px;
   border: 0;
@@ -55,6 +52,6 @@
   background-color: var(--secondary);
 }
 
-.formBottom__cc > button:first-child {
+.formBottom__cr > button:first-child {
   background-color: var(--inputBackground);
 }

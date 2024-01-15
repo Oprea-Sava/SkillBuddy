@@ -36,7 +36,7 @@ function CreateCourse () {
 
 			if (response.ok) {
 				const data = await response.json();
-				toast.success(data.message);
+				toast.sucress(data.message);
 				navigate(`/edit/${data.courseId}`);
 			} else {
 				const data = await response.json();
@@ -59,18 +59,18 @@ function CreateCourse () {
     return(
         <>
             <Navbar/>
-            <div className="container__cc">
-                <div>
+            <div className="container__cr">
+                <div className="title__cr">
                     <h1 className="text">Name your course</h1>
                     <p className="text">What would you like to name your course? Don't worry, you can change this later.</p>
                 </div>
-                <form className="courseBox__cc">
-                    <div className="formGroup__cc">
-                        <label htmlFor="title" className="formLabel__cc text">Course title</label>
-                        <input className="formInput__cc" type="text" name="title" required placeholder="e.g. 'Advanced web development'" onChange={handleChange}/>
-                        <div className="description__cc text">What will you teach in this course?</div>
+                <form className="courseBox__cr">
+                    <div className="formGroup__cr">
+                        <label htmlFor="title" className="formLabel__cr text">Course title</label>
+                        <input className="formInput__cr" type="text" name="title" required placeholder="e.g. 'Advanced web development'" onChange={handleChange}/>
+                        <div className="description__cr text">What will you teach in this course?</div>
                     </div>
-                    <div className="formBottom__cc">
+                    <div className="formBottom__cr">
                         <button onClick={handleCancel} type="button">Cancel</button>
                         <button type="submit" onClick={handleSubmit}>Continue</button>
                     </div>
