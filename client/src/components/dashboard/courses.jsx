@@ -41,8 +41,7 @@ function Courses({ courseType, userSpecific }) {
 					
 					const token = localStorage.getItem("token");
 					const response = await fetch(
-						`http://localhost:5000/api/users/${token}
-						)}`
+						`http://localhost:5000/api/users/${token}`
 					);
 					if (response.ok) {
 						const data = await response.json();

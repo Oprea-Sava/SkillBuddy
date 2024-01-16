@@ -51,8 +51,8 @@ const router = createBrowserRouter([
 		element: <CoursesPage />,
 	},
 	{
-		path: "course/:courseId",
-		element: <CourseContent />,
+		path: "courses/:courseId",
+		element: <AuthRoute><CourseContent /></AuthRoute>,
 	},
 	{
 		path: "edit/:courseId",

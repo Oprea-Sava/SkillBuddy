@@ -242,13 +242,14 @@ router.put("/:token/checkwishlist", async (req, res) => {
 router.get("/:token/courses", async (req, res) => {
   const userId = getUserId(req.params.token);
   const type = toCamelCase(req.query.type);
-
+  console.log(type);
   try {
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
     const courseIds = user[type];
+    console.log(courseIds);
     res.json(courseIds);
   } catch (error) {
     console.error("Error retrieving enrolled course IDs:", error);

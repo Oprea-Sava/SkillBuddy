@@ -20,6 +20,40 @@ function getUserId(token) {
   }
 }
 
+//route to mark a chapter as complete
+app.post("/progression/:chapterId", async (req, res) => {
+  const { chapterId } = req.params;
+  const userId = getUserIdFromToken(req.headers.authorization);
+
+  try {
+    const chapter = await Chapter.findById(chapterId);
+    if (!chapter) {
+      return res.status(404).json({ error: "Chapter not found" });
+    }
+
+    const isEnrolled = await User.exists({
+      _id: userId,
+      enrolledCourses: chapter.courseId,
+    });
+    if (!isEnrolled) {
+      return res
+        .status(403)
+        .json({ error: "User is not enrolled in the course" });
+    }
+
+    await CourseProgression.findOneAndUpdate(
+      { user: userId, chapter: chapterId },
+      { $set: { isCompleted: true } },
+      { upsert: true }
+    );
+
+    res.json({ message: "Chapter marked as completed" });
+  } catch (error) {
+    console.error("Error marking chapter as completed:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 //route to create a chapter
 router.post("/createChapter/:courseId", async (req, res) => {
   try {
