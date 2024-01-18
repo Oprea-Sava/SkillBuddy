@@ -11,6 +11,7 @@ export default function CourseContent() {
     const [chapters, setChapters] = useState();
     const [selectedChapter, setSelectedChapter] = useState(null);
     const [isEnrolled, setIsEnrolled] = useState(false);
+    const [completedChapters, setCompletedChapters] = useState({});
     useEffect(()=>{
         const fetchChapters = async () => {
 			try {
@@ -28,6 +29,12 @@ export default function CourseContent() {
                     if (publishedChapters.length > 0) {
                         setSelectedChapter(publishedChapters[0]);
                     }
+
+                    const newCompletedChapters = {};
+                    for (const chapter of data) {
+                        newCompletedChapters[chapter._id] = await checkChapterCompletion(chapter._id);
+                    }
+                    setCompletedChapters(newCompletedChapters);
 				} else
 					throw new Error(`HTTP error! Status: ${response.status}`);
 			} catch (error) {
@@ -58,8 +65,62 @@ export default function CourseContent() {
         fetchEnrolledCourses();
         fetchChapters()
     },[courseId]);
-    const handleChapterClick = (chapter) => {
+    const handleChapterClick = async (chapter) => {
+        await checkChapterCompletion(chapter._id);
         setSelectedChapter(chapter);
+    };
+
+    const toggleChapterCompletion = async (chapterId, isCompleted) => {
+        const token = localStorage.getItem("token");
+        try {
+            const response = await fetch(
+                `http://localhost:5000/api/courses/progression/${chapterId}`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ isCompleted }),
+                }
+            );
+            if (response.ok) {
+                const message = isCompleted ? 'Chapter marked as completed' : 'Chapter marked as unfinished';
+                toast.success(message);
+                setCompletedChapters(prevState => ({
+                    ...prevState,
+                    [chapterId]: isCompleted
+                }));
+            } else {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+        } catch (error) {
+            const errorMessage = isCompleted ? 'Error marking chapter as completed' : 'Error marking chapter as unfinished';
+            console.error(errorMessage, error);
+            toast.error(errorMessage);
+        }
+    };
+    const checkChapterCompletion = async (chapterId) => {
+        const token = localStorage.getItem("token");
+        try {
+            const response = await fetch(
+                `http://localhost:5000/api/courses/progression/${chapterId}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            if (response.ok) {
+                const data = await response.json();
+                return data.isCompleted;
+            } else {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+        } catch (error) {
+            console.error('Error checking chapter completion:', error);
+        }
     };
     return (
         <>
@@ -72,7 +133,7 @@ export default function CourseContent() {
                                 className={`chapter__cc ${selectedChapter === chapter ? 'selected' : ''} text`}
                                 onClick={() => handleChapterClick(chapter)}
                             >
-                                {selectedChapter === chapter ? <CiPause1 /> : <CiPlay1 />}
+                                {completedChapters[chapter._id] ? <CiCircleCheck /> : (selectedChapter === chapter ? <CiPause1 /> : <CiPlay1 />)}
                                 {chapter.title}
                             </div>
                         ))}
@@ -82,8 +143,14 @@ export default function CourseContent() {
                         <>
                             <iframe src={selectedChapter?.videoUrl || "https://www.youtube.com/embed/tgbNymZ7vqY"} />
                             <div className="chapterInfo__cc">
-                                <div className="chapterTitle__cc text">{selectedChapter?.title}</div>
+                                <div className="chapterTitleWrapper__cc">
+                                    <div className="chapterTitle__cc text">{selectedChapter?.title}</div>
+                                    <button className={`markButton__cc ${completedChapters[selectedChapter?._id] ? 'markUnfinishedButton__cc' : 'markCompletedButton__cc'}`} onClick={() => toggleChapterCompletion(selectedChapter._id, !completedChapters[selectedChapter?._id])}>
+                                    {completedChapters[selectedChapter?._id] ? 'Mark as Unfinished' : 'Mark as Completed'}
+                                    </button>
+                                </div>
                                 <div className="chapterDescription__cc text">{selectedChapter?.description}</div>
+                                
                             </div>
                         </>
                     ) : (

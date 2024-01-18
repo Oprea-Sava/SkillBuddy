@@ -8,7 +8,7 @@ function Courses({ courseType, userSpecific }) {
 	const [courseIds, setCourseIds] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [wishlistChanged, setWishlistChanged] = useState(false);
-	
+	const [userData, setUserData] = useState({});
 	function toCamelCase(inputString) {
 		const words = inputString.split(" ");
 		const firstWord = words[0].toLowerCase();
@@ -24,47 +24,59 @@ function Courses({ courseType, userSpecific }) {
 		setCourseIds([]);
 		const fetchCourseIds = async () => {
 			try {
-				if (!userSpecific) {
-					const response = await fetch(
-						"http://localhost:5000/api/courses/getall"
-					);
-					if (response.ok) {
-						const data = await response.json();
+				const url = userSpecific
+					? `http://localhost:5000/api/users/${localStorage.getItem("token")}`
+					: `http://localhost:5000/api/courses/getall?published=true`;
+
+				const response = await fetch(url);
+				if (response.ok) {
+					const data = await response.json();
+					if (!userSpecific) {
 						setCourseIds(data);
 					} else {
-						toast.error(`HTTP error! Status: ${response.status}`);
-						throw new Error(
-							`HTTP error! Status: ${response.status}`
-						);
+						if (courseType === "Published Courses") {
+							const filteredCourses = data.createdCourses.filter(course => course.isPublished);
+							setCourseIds(filteredCourses);
+							console.log(filteredCourses)
+						  } else if (courseType === "Unpublished Courses") {
+							const filteredCourses = data.createdCourses.filter(course => !course.isPublished);
+							setCourseIds(filteredCourses);
+							console.log(filteredCourses)
+						  }else {
+						const camelCaseType = toCamelCase(courseType);
+						setCourseIds(data[camelCaseType] || []);
+						}
 					}
 				} else {
-					
-					const token = localStorage.getItem("token");
-					const response = await fetch(
-						`http://localhost:5000/api/users/${token}`
+					toast.error(`HTTP error! Status: ${response.status}`);
+					throw new Error(
+						`HTTP error! Status: ${response.status}`
 					);
-					if (response.ok) {
-						const data = await response.json();
-						const camelCaseType = toCamelCase(courseType)
-						setCourseIds(data[camelCaseType]|| []);
-					} else {
-						toast.error(`HTTP error! Status: ${response.status}`);
-						throw new Error(
-							`HTTP error! Status: ${response.status}`
-						);
-					}
 				}
 			} catch (error) {
 				console.error("Error fetching courses:", error);
 			} finally {
-				// setTimeout(()=>{
-				    setIsLoading(false)
-			    // },200)
+				setIsLoading(false);
 			}
 		};
+		const fetchUserData = async () => {
+			try {
+				const token = localStorage.getItem("token");
+				const response = await fetch(
+					`http://localhost:5000/api/users/${token}`
+				);
+				if (!response.ok) {
+					throw new Error(`HTTP error! Status: ${response.status}`);
+				}
+				const data = await response.json();
+				setUserData(data);
+			} catch (error) {
+				console.error("Error fetching user data:", error);
+			}
+		};
+		fetchUserData();
 		fetchCourseIds();
-	}, [wishlistChanged]);
-
+	}, [wishlistChanged, userSpecific, courseType]);
 	return (
 		<>
 			<div className="courses text">
@@ -78,6 +90,7 @@ function Courses({ courseType, userSpecific }) {
 							key={index}
 							onWishlistChange={() => setWishlistChanged(true)}
 							courseType={courseType}
+							user={userData}
 						/>
 					))}
 					</div>)}

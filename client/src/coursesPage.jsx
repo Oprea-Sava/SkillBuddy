@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import "./css/coursesPage.css";
 import Navbar from "./navbar";
 import Footer from "./footer";
 import Courses from "./components/dashboard/courses";
 
 function CoursesPage() {
+	const [publishedCount, setPublishedCount] = useState(0);
+
+  useEffect(() => {
+    const fetchPublishedCount = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/courses/published/count');
+        const data = await response.json();
+        setPublishedCount(data.publishedCoursesCount);
+      } catch (error) {
+        console.error('Error fetching published chapters count:', error);
+      }
+    };
+
+    fetchPublishedCount();
+  }, []);
 	return (
 		<>
 			<Navbar />
@@ -18,7 +33,7 @@ function CoursesPage() {
 								<button className="showInGrid"></button>
 								<button className="showInList"></button>
 								<div className="text">
-									Showing 1-9 of 21 courses
+									{`Showing 1-9 of ${publishedCount} courses`}
 								</div>
 							</div>
 							<div className="filterCourses">

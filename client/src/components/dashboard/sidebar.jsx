@@ -53,14 +53,14 @@ function Sidebar({ dataChange }) {
 	}, [dataChange]);
 
 	const userDashboardButtons = [
-		{ text: "Dasboard", path: "/dashboard/courses" },
+		{ text: "Dashboard", path: "/dashboard/courses" },
 		{ text: "My Profile", path: "/dashboard/myprofile" },
 		{ text: "Your Courses", path: "/dashboard/usercourses" },
 		{ text: "Wishlist", path: "/dashboard/wishlist" },
 		{ text: "Order History", path: "/dashboard/orderhistory" },
 	];
 	const tutorDashboardButtons = [
-		{ text: "Dasboard", path: "/dashboard/courses" },
+		{ text: "Dashboard", path: "/dashboard/courses" },
 		{ text: "My Profile", path: "/dashboard/myprofile" },
 		{ text: "Your Courses", path: "/dashboard/usercourses" },
 	];

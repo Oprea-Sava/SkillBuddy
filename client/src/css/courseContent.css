@@ -30,7 +30,6 @@
 
 .chapterTitle__cc {
   font-size: 1.5rem;
-  margin-bottom: 20px;
 }
 
 .chapter__cc {
@@ -54,4 +53,31 @@
   border-radius: 20px;
   background-color: var(--secondary2);
   padding: 2rem;
+}
+
+.chapterTitleWrapper__cc {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.markButton__cc {
+  margin: 0;
+  border: 0;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.markCompletedButton__cc {
+  background-color: var(--primary);
+  color: white;
+}
+
+.markUnfinishedButton__cc {
+  background-color: var(--secondary);
+  color: black;
 }

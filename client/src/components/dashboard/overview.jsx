@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../../css/dashboard/overview.css";
 import Courses from "./courses";
+import { useOutletContext } from "react-router-dom";
 
 function Overview() {
+	const [change, setChange, userData] = useOutletContext();
 	return (
 		<>
+			{!userData.isTutor ? 
 			<div id="overview">
 				<div className="courseType text">
 					<div>
-						<div>Enrollerd Courses</div>
+						<div>Enrolled Courses</div>
 						<div className="coursesNumber">1</div>
 					</div>
 					<div>
@@ -22,7 +25,11 @@ function Overview() {
 				</div>
 
 				<Courses courseType={"Enrolled Courses"} userSpecific={true}/>
-			</div>
+			</div> :
+			<div id="overview">
+			<Courses courseType={"Created Courses"} userSpecific={true}/>
+		</div>
+			}	
 		</>
 	);
 }

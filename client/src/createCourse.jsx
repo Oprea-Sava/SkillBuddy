@@ -36,7 +36,7 @@ function CreateCourse () {
 
 			if (response.ok) {
 				const data = await response.json();
-				toast.sucress(data.message);
+				toast.success(data.message);
 				navigate(`/edit/${data.courseId}`);
 			} else {
 				const data = await response.json();

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "../../css/dashboard/userCourses.css";
 import Courses from "./courses";
+import { useOutletContext } from "react-router-dom";
 
 function UserCourses() {
-	const [option, setOption] = useState("Enrolled Courses");
-
+	const [change, setChange, userData] = useOutletContext();
+	const [option, setOption] = useState(userData.isTutor ? "Created Courses": "Enrolled Courses");
 	return (
 		<>
 			<div id="userCourses">
@@ -12,26 +13,26 @@ function UserCourses() {
 					<button
 						className="enrolledCourses text"
 						onClick={() => {
-							setOption("Enrolled Courses");
+							setOption(userData.isTutor ? "Created Courses": "Enrolled Courses");
 						}}
 					>
-						Enrolled Courses
+						{userData.isTutor ? "Created Courses": "Enrolled Courses"}
 					</button>
 					<button
 						className="activeCourses text"
 						onClick={() => {
-							setOption("Active Courses");
+							setOption(userData.isTutor ? "Published Courses":"Active Courses");
 						}}
 					>
-						Active Courses
+						{userData.isTutor ? "Published Courses":"Active Courses"}
 					</button>
 					<button
 						className="completedCourses text"
 						onClick={() => {
-							setOption("Completed Courses");
+							setOption(userData.isTutor ? "Unpublished Courses":"Completed Courses");
 						}}
 					>
-						Completed Courses
+						{userData.isTutor ? "Unpublished Courses":"Completed Courses"}
 					</button>
 				</div>
 

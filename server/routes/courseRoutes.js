@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Course, Chapter } = require("../schemas/schema");
+const { Course, Chapter, CourseProgression, User } = require("../schemas/schema");
 const client = require("ssh2-sftp-client");
 const multer = require("multer");
 const config = require("../config");
@@ -20,10 +20,40 @@ function getUserId(token) {
   }
 }
 
-//route to mark a chapter as complete
-app.post("/progression/:chapterId", async (req, res) => {
+//route to count published chapters
+router.get("/published/count", async (req, res) => {
+  try {
+    const count = await Course.countDocuments({ isPublished: true });
+    res.json({ publishedCoursesCount: count });
+  } catch (error) {
+    console.error("Error retrieving the count of published courses:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+//route to check if a specific chapter is completed
+router.get("/progression/:chapterId", async (req, res) => {
   const { chapterId } = req.params;
-  const userId = getUserIdFromToken(req.headers.authorization);
+  const userId = getUserId(req.headers.authorization);
+
+  try {
+    const progression = await CourseProgression.findOne({
+      user: userId,
+      chapter: chapterId
+    });
+
+    res.json({ isCompleted: progression ? progression.isCompleted : false });
+  } catch (error) {
+    console.error("Error checking chapter completion:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+//route to mark a chapter as complete
+router.post("/progression/:chapterId", async (req, res) => {
+  const { chapterId } = req.params;
+  const { isCompleted } = req.body;
+  const userId = getUserId(req.headers.authorization);
 
   try {
     const chapter = await Chapter.findById(chapterId);
@@ -43,7 +73,7 @@ app.post("/progression/:chapterId", async (req, res) => {
 
     await CourseProgression.findOneAndUpdate(
       { user: userId, chapter: chapterId },
-      { $set: { isCompleted: true } },
+      { $set: { isCompleted } },
       { upsert: true }
     );
 
@@ -263,7 +293,17 @@ router.get("/image/:courseId", async (req, res) => {
 
 router.get("/getall", async (req, res) => {
   try {
-    const courses = await Course.find({}, "_id");
+    let query = {};
+    // Check if the 'published' query parameter is provided and set to 'true'
+    if (req.query.published === 'true') {
+      query.isPublished = true;
+    }
+    // Check if the 'creatorId' query parameter is provided
+    if (req.query.creatorId) {
+      query.creator = req.query.creatorId;
+    }
+
+    const courses = await Course.find(query);
     const courseIds = courses.map((course) => course._id);
     res.json(courseIds);
   } catch (error) {
@@ -291,7 +331,7 @@ router.post("/create", async (req, res) => {
     });
 
     const savedCourse = await newCourse.save();
-
+    await User.findByIdAndUpdate(userId, { $push: { createdCourses: savedCourse._id } });
     res.status(201).json({
       message: "Course created successfully",
       courseId: savedCourse._id,
@@ -356,10 +396,11 @@ router.delete("/:courseId", async (req, res) => {
     if (userId != course.author) {
       return res.status(401).json({ error: "Unauthorized" });
     }
-    const deletedCourse = await Course.findByIdAndDelete(courseId);
-    if (!deletedCourse) {
+    const deletedCourse = await Course.deleteOne({ _id: courseId });
+    if (deletedCourse.deletedCount === 0) {
       return res.status(404).json({ message: "Course not found" });
     }
+    await User.findByIdAndUpdate(userId, { $pull: { createdCourses: courseId } });
     await Chapter.deleteMany({ courseId });
     return res
       .status(200)
@@ -371,3 +412,4 @@ router.delete("/:courseId", async (req, res) => {
 });
 
 module.exports = router;
+

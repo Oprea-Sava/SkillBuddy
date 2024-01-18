@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import placeholder from "../../assets/placeholder.png";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { toast } from 'react-toastify';
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
-function CourseCard({ Id, onWishlistChange, courseType }) {
+function CourseCard({ Id, onWishlistChange, courseType, user }) {
 	const [isActive, setIsActive] = useState(false);
 	const [courseData, setCourseData] = useState({});
 	const [author, setAuthor] = useState("")
 	const [img, setImg] = useState();
-
+	const navigate = useNavigate()
 	useEffect(() => {
 		const fetchCourseData = async () => {
 			try {
@@ -136,7 +136,7 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
 
 	return (
 		<>	
-		{Object.keys(courseData).length && 
+		{!!Object.keys(courseData).length && 
 				<div className="courseCard">
 					<div className="courseCardImageHolder" >
 						<img src= {img ? img : placeholder}/>
@@ -164,7 +164,8 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
 							{courseData.chapters && <div>{courseData.chapters.length} chapters</div>}
 						</div>
 						<div>
-							<button
+							{(user._id != courseData.author._id && !(user.enrolledCourses.includes(Id))) &&
+								<button
 								className="buyButton text"
 								onClick={() => {
 									handleBuy();
@@ -172,6 +173,18 @@ function CourseCard({ Id, onWishlistChange, courseType }) {
 							>
 								Buy Now
 							</button>
+							}
+							{console.log(!(user.enrolledCourses.includes(Id)))}
+							{user._id === courseData.author._id &&
+								<button
+								className="buyButton text"
+								onClick={() => {
+									navigate(`/edit/${Id}`)
+								}}
+							>
+								Edit
+							</button>
+							}
 						</div>
 					</div>
 

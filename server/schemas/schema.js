@@ -16,6 +16,7 @@ const userSchema = new mongoose.Schema({
   phone: { type: String },
   enrolledCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
   wishlistedCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
+  createdCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
 });
 
 const chapterSchema = new mongoose.Schema({
@@ -106,6 +107,7 @@ chapterSchema.post(["updateOne", "deleteOne"], async function (doc) {
     }
   }
 });
+
 
 const Course = mongoose.model("Course", courseSchema);
 const User = mongoose.model("User", userSchema);
