@@ -294,13 +294,8 @@ router.get("/image/:courseId", async (req, res) => {
 router.get("/getall", async (req, res) => {
   try {
     let query = {};
-    // Check if the 'published' query parameter is provided and set to 'true'
     if (req.query.published === 'true') {
       query.isPublished = true;
-    }
-    // Check if the 'creatorId' query parameter is provided
-    if (req.query.creatorId) {
-      query.creator = req.query.creatorId;
     }
 
     const courses = await Course.find(query);

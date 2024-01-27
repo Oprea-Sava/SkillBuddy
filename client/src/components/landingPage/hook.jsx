@@ -1,4 +1,4 @@
-import placeholder2 from "../../assets/paceholder2.png";
+import placeholder2 from "../../assets/share.png";
 import ImageCarousel from "./imageCarousel";
 import "../../css/landingPage/hook.css";
 
@@ -9,15 +9,13 @@ function Hook() {
                 <img src={placeholder2} alt="image" />
                 <div className="details">
                     <div className="text hookStatement">
-                        We provide the
-                        <br />
-                        best
-                        <span className="specialText"> online courses</span>
+                    Want to share your knowledge?
+                    <br/>
+                     Join us a
+                        <span className="specialText"> Mentor</span>
                     </div>
                     <div className="text hookReason">
-                        Embark on a Journey of Lifelong Learning and Skill
-                        Development with Our Comprehensive Selection of Online
-                        Courses - Your Gateway to Knowledge, Anytime, Anywhere!
+                    Are you passionate about your field of expertise? Do you want to make a positive impact on others' lives? Join our community of mentors and help shape the next generation of talent. 
                     </div>
                 </div>
             </div>

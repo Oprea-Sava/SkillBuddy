@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import AnimatedNumbers from "react-animated-numbers";
 
 export default function FeatureCard({ Component, Feature, Description, theme }) {
     const lightStyle = {
@@ -13,12 +14,22 @@ export default function FeatureCard({ Component, Feature, Description, theme }) 
 
     const iconContainerStyle = theme === "dark" ? darkStyle : lightStyle;
 
+
 	return (
 		<div className="feature">
 			<div className="iconContainer" style={iconContainerStyle}>{Component}</div>
 			<div className="textContainer">
+				<div className="featureContent text">
+                <AnimatedNumbers
+                    includeComma
+                    transitions={(index) => ({
+                    type: "spring",
+                    duration: index + 0.3,
+                    })}
+                    animateToNumber={Description}
+                />
+                </div>
 				<div className="featureTitle text subtitleText">{Feature}</div>
-				<div className="featureContent text">{Description}</div>
 			</div>
 		</div>
 	);

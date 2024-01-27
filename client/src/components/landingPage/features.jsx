@@ -3,6 +3,8 @@ import "../../css/landingPage/features.css";
 import { FaRegLightbulb } from "react-icons/fa6";
 import { FaEarthAmericas } from "react-icons/fa6";
 import { SlWallet } from "react-icons/sl";
+import { FaBookOpen } from "react-icons/fa";
+import { PiStudentFill } from "react-icons/pi";
 import { useTheme } from "../../themeContext";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger } from "gsap/all";
@@ -62,28 +64,28 @@ function Features() {
 				<div className="firstFeature" ref={firstFeature}>
 					<FeatureCard
 						Component={
-							<FaRegLightbulb size={50} color={iconTheme} />
+							<PiStudentFill size={70} color={iconTheme} />
 						}
-						Feature={"Creativity"}
-						Description={"You can do whatever you want"}
+						Feature={"Students Enrolled"}
+						Description={253085}
 						theme={theme}
 					/>
 				</div>
 				<div className="secondFeature" ref={secondFeature}>
 					<FeatureCard
 						Component={
-							<FaEarthAmericas size={50} color={iconTheme} />
+							<FaBookOpen size={60} color={iconTheme} />
 						}
-						Feature={"Worldwide"}
-						Description={"Mr. 305 Mr. Worldwide"}
+						Feature={"Total Courses"}
+						Description={252}
 						theme={theme}
 					/>
 				</div>
 				<div className="thirdFeature" ref={thirdFeature}>
 					<FeatureCard
-						Component={<SlWallet size={50} color={iconTheme} />}
-						Feature={"Free"}
-						Description={"Almost free"}
+						Component={<FaEarthAmericas size={60} color={iconTheme} />}
+						Feature={"Countries"}
+						Description={127}
 						theme={theme}
 					/>
 				</div>

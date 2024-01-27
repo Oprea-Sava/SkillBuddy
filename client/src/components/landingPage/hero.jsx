@@ -22,8 +22,9 @@ function HeroContainer() {
     return (
         <div id="heroContainer">
             <div ref={textSideRef} className="textSide">
-                <div className="text heroBig">Unlock a World of Skills at SkillBuddy</div>
-                <div className="text heroSmall">Where Learning Meets Community</div>
+                <div className="text heroSmall">The Leader in Online Learning</div>
+                <div className="text heroBig">Engaging & Accessible Online Courses For All</div>
+                <div className="text heroTrusted">Trusted by over 15K Users <br></br>worldwide since 2022</div>
                 <button className="secondary text heroButton">Sign Up</button>
             </div>
             <div className="imageSide">
