@@ -75,6 +75,10 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 	}, []);
 	const handleBuy = async () => {
 		const token = localStorage.getItem("token");
+		if(!token){
+		 navigate("/signup");
+		 return;
+		}
 		try {
 			const response = await fetch(
 				`http://localhost:5000/api/users/${token}/addcourse`,
@@ -135,7 +139,7 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 	}
 
 	return (
-		<>	
+		<>
 		{!!Object.keys(courseData).length && 
 				<div className="courseCard">
 					<div className="courseCardImageHolder" >
@@ -164,7 +168,7 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 							{courseData.chapters && <div>{courseData.chapters.length} chapters</div>}
 						</div>
 						<div>
-							{(user._id != courseData.author._id && !(user.enrolledCourses.includes(Id))) &&
+							{(!Object.keys(user).length || (user._id != courseData.author._id && !(user.isTutor))) &&
 								<button
 								className="buyButton text"
 								onClick={() => {
@@ -174,7 +178,6 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 								Buy Now
 							</button>
 							}
-							{console.log(!(user.enrolledCourses.includes(Id)))}
 							{user._id === courseData.author._id &&
 								<button
 								className="buyButton text"
