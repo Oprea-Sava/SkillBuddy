@@ -195,11 +195,11 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 								>
 									Edit
 								</button>
-							)}
+							}
 						</div>
 					</div>
 				</div>
-			)}
+			}
 		</>
 	);
 }
