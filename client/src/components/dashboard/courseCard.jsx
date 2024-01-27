@@ -176,7 +176,7 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 							)}
 						</div>
 						<div>
-							{(!Object.keys(user).length || (user._id != courseData.author._id && !(user.isTutor))) &&
+							{(!Object.keys(user).length || (!(user.enrolledCourses.includes(Id)) && !(user.isTutor))) &&
 								<button
 								className="buyButton text"
 								onClick={() => {
