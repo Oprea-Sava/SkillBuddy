@@ -36,7 +36,6 @@
   border-radius: 30px;
   display: flex;
   flex-direction: column;
-  border: 1.5px solid var(--accent3);
   box-sizing: border-box;
 }
 
@@ -49,8 +48,9 @@
   z-index: 1;
   width: 90%;
   height: 40%;
+  overflow: auto;
   margin: 5% 0 0 5%;
-  border-radius: 15px;
+  border-radius: 13px;
   display: flex;
   justify-content: end;
   align-items: end;
