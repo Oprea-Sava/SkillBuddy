@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import placeholder from "../../assets/placeholder.png";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
 
 function CourseCard({ Id, onWishlistChange, courseType, user }) {
 	const [isActive, setIsActive] = useState(false);
 	const [courseData, setCourseData] = useState({});
-	const [author, setAuthor] = useState("")
+	const [author, setAuthor] = useState("");
 	const [img, setImg] = useState();
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	useEffect(() => {
 		const fetchCourseData = async () => {
 			try {
@@ -20,8 +20,8 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 					}
 				);
 				if (response.ok) {
-					const data = await response.json(); 
-					setAuthor(data.author.username)
+					const data = await response.json();
+					setAuthor(data.author.username);
 					setCourseData(data);
 				} else
 					throw new Error(`HTTP error! Status: ${response.status}`);
@@ -30,23 +30,26 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 			}
 		};
 		const fetchCourseImg = async () => {
-            try {
-              const response = await fetch(`http://localhost:5000/api/courses/image/${Id}`,
-                {
-                    method: "GET",
-                }
-              );
-              if (!response.ok) {
-				const errorResponse = await response.json();
-				throw new Error(`Status: ${response.status} ${errorResponse.error}`);
-                }
-                const blob = await response.blob();
-                const imageUrl = URL.createObjectURL(blob);
-                setImg(imageUrl);
-            } catch (error) {
-              console.error('Error fetching course image:', error);
-            }
-          };
+			try {
+				const response = await fetch(
+					`http://localhost:5000/api/courses/image/${Id}`,
+					{
+						method: "GET",
+					}
+				);
+				if (!response.ok) {
+					const errorResponse = await response.json();
+					throw new Error(
+						`Status: ${response.status} ${errorResponse.error}`
+					);
+				}
+				const blob = await response.blob();
+				const imageUrl = URL.createObjectURL(blob);
+				setImg(imageUrl);
+			} catch (error) {
+				console.error("Error fetching course image:", error);
+			}
+		};
 		const checkWishlist = async (Id) => {
 			try {
 				const token = localStorage.getItem("token");
@@ -98,8 +101,7 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 					toast.error(`HTTP error! Status: ${response.status}`);
 					throw new Error(`HTTP error! Status: ${response.status}`);
 				}
-			}
-			else{
+			} else {
 				toast.success("Course enrolled successfully!");
 			}
 		} catch (error) {
@@ -109,42 +111,46 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 
 	const handleWish = async () => {
 		const token = localStorage.getItem("token");
-		try{
+		try {
 			const response = await fetch(
 				`http://localhost:5000/api/users/${token}/wishlistcourse`,
 				{
 					method: "PUT",
-					headers:{
+					headers: {
 						"Content-Type": "application/json",
 					},
-					body: JSON.stringify({course: Id}),
+					body: JSON.stringify({ course: Id }),
 				}
-			)
+			);
 			if (!response.ok) {
 				toast.error(`HTTP error! Status: ${response.status}`);
 				throw new Error(`HTTP error! Status: ${response.status}`);
-			} else if(courseType=="Wishlisted Courses"){
-                onWishlistChange();
-            }
-			if(isActive) {
-				toast.success("Course removed from wishlist!");
+			} else if (courseType == "Wishlisted Courses") {
+				onWishlistChange();
 			}
-			else {
+			if (isActive) {
+				toast.success("Course removed from wishlist!");
+			} else {
 				toast.success("Course added to wishlist!");
 			}
-		}
-		catch{
+		} catch {
 			console.error("Error adding course:", error);
 		}
-	}
+	};
 
 	return (
 		<>
 		{!!Object.keys(courseData).length && 
 				<div className="courseCard">
-					<div className="courseCardImageHolder" >
-						<img src= {img ? img : placeholder}/>
-						<div className="coursePrice"><p>{courseData.price === 0 ? "free" : `${courseData.price}$`}</p></div>
+					<div className="courseCardImageHolder">
+						<img src={img ? img : placeholder} />
+						<div className="coursePrice">
+							<p>
+								{courseData.price === 0
+									? "free"
+									: `${courseData.price}$`}
+							</p>
+						</div>
 					</div>
 					<div className="courseCardDetails">
 						<div>
@@ -165,7 +171,9 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 						</div>
 						<div>{courseData.title}</div>
 						<div>
-							{courseData.chapters && <div>{courseData.chapters.length} chapters</div>}
+							{courseData.chapters && (
+								<div>{courseData.chapters.length} chapters</div>
+							)}
 						</div>
 						<div>
 							{(!Object.keys(user).length || (user._id != courseData.author._id && !(user.isTutor))) &&
@@ -180,20 +188,18 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 							}
 							{user._id === courseData.author._id &&
 								<button
-								className="buyButton text"
-								onClick={() => {
-									navigate(`/edit/${Id}`)
-								}}
-							>
-								Edit
-							</button>
-							}
+									className="buyButton text"
+									onClick={() => {
+										navigate(`/edit/${Id}`);
+									}}
+								>
+									Edit
+								</button>
+							)}
 						</div>
 					</div>
-
-					
 				</div>
-		}
+			)}
 		</>
 	);
 }
