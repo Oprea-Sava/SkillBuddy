@@ -30,7 +30,8 @@
 
 .bannerImg__su {
   width: 280px;
-  height: 280px; /* temporary*/
+  height: 280px;
+  /* temporary*/
   border: solid 1px black;
 }
 
@@ -59,7 +60,7 @@
   margin-bottom: 54px;
 }
 
-.switchContainerWrapper{
+.switchContainerWrapper {
   display: flex;
   justify-content: end;
   position: relative;
@@ -98,12 +99,12 @@
 .checked .slider {
   transform: translateX(40px);
   /* background-color: #4caf50; */
-
 }
 
-.signUpBox > h1 {
+.signUpBox>h1 {
   font-size: 30px;
   margin-bottom: 30px;
+  margin-right: 75px;
 }
 
 .formGroup__su {
@@ -129,7 +130,7 @@
   width: 100%;
 }
 
-.formName__su > .formGroup__su {
+.formName__su>.formGroup__su {
   flex: 1;
 }
 
@@ -154,16 +155,45 @@
   gap: 5px;
 }
 
-.formBottom__su > a {
+.formBottom__su>a {
   text-decoration: none;
   color: var(--accent);
+}
+
+@media screen and (max-width: 1288px) and (min-width: 768px){
+  .switchContainerWrapper {
+    justify-content: start;
+    top: 0;
+    margin: 20px 10px 0 0;
+  }
+}
+
+@media screen and (max-width: 628px){
+  .switchContainerWrapper {
+    justify-content: start;
+    top: 0;
+    margin: 20px 10px 0 0;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .banner__su {
     display: none;
   }
+
   .signUpBox {
     width: 100%;
+  }
+}
+
+@media screen and (max-width:1000px) and (min-width:768px){
+  .signUpBox {
+    padding: 0 40px 0 40px;
+  }
+}
+
+@media screen and (max-width:500px){
+  .signUpBox {
+    padding: 0 40px 0 40px;
   }
 }

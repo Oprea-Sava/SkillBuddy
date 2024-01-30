@@ -79,10 +79,11 @@
 }
 
 .formGroupCheck__si,
-.remember__si,
 .forgot__si {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .formGroupCheck__si {
@@ -127,11 +128,18 @@
   justify-content: center;
   margin-top: 1rem;
   gap: 5px;
+  flex-wrap: wrap;
 }
 
 .formBottom__si > a {
   text-decoration: none;
   color: var(--accent);
+}
+
+.remember__si{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 768px) {
@@ -140,5 +148,16 @@
   }
   .signInBox {
     width: 100%;
+  }
+}
+@media screen and (max-width:1000px) and (min-width:768px){
+  .signInBox {
+    padding: 0 40px 0 40px;
+  }
+}
+
+@media screen and (max-width:500px){
+  .signInBox {
+    padding: 0 40px 0 40px;
   }
 }
