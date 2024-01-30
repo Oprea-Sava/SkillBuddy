@@ -21,7 +21,7 @@
 .textSide {
   position: relative;
   margin-left: 70px;
-  left: -800px;
+  left: -50vw;
 }
 
 .textSide > * {

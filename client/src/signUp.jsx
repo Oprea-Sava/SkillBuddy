@@ -91,7 +91,6 @@ export default function SignUp() {
 			}
 		} catch (error) {
 			console.error("Error creating user:", error);
-			// Handle unexpected errors
 		}
 	};
 
@@ -123,7 +122,7 @@ export default function SignUp() {
 							checked={formData.isTutor}
 						/>
 					</div>
-					<div className="formName__su">
+					
 						<div className="formGroup__su">
 							<label className="formLabel__su">First Name</label>
 							<input
@@ -146,7 +145,6 @@ export default function SignUp() {
 								required
 							/>
 						</div>
-					</div>
 					<div className="formGroup__su">
 						<label className="formLabel__su">Username</label>
 						<input

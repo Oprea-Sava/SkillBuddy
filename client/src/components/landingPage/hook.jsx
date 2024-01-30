@@ -1,8 +1,33 @@
 import placeholder2 from "../../assets/share.png";
 import ImageCarousel from "./imageCarousel";
 import "../../css/landingPage/hook.css";
+import { gsap, ScrollTrigger } from "gsap/all";
+import { useEffect } from 'react';
+
 
 function Hook() {
+
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.to(".hookContainer > img", {
+            x: "60vw",
+            duration: 0.5,
+            scrollTrigger: {
+                trigger: ".hookContainer > img",
+                start: "center 90%",
+            }
+        });
+        gsap.to(".details", {
+            x: "15vw",
+            duration: 0.5,
+            scrollTrigger: {
+                trigger: ".hookContainer > img",
+                start: "center 90%",
+            }
+        });
+       
+    }, []);
+
     return (
         <div id="hook">
             <div className="hookContainer">

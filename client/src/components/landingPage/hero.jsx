@@ -10,7 +10,7 @@ function HeroContainer() {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
         gsap.to(".textSide", {
-            x: 800,
+            x: "50vw",
             duration: 0.5,
             scrollTrigger: {
                 trigger: ".textSide",

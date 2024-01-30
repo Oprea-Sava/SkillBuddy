@@ -1,12 +1,10 @@
 import FeatureCard from "./featureCard";
 import "../../css/landingPage/features.css";
-import { FaRegLightbulb } from "react-icons/fa6";
 import { FaEarthAmericas } from "react-icons/fa6";
-import { SlWallet } from "react-icons/sl";
 import { FaBookOpen } from "react-icons/fa";
 import { PiStudentFill } from "react-icons/pi";
 import { useTheme } from "../../themeContext";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "gsap/all";
 
 function Features() {
@@ -59,7 +57,7 @@ function Features() {
 
 	return (
 		<div id="featuresContainer">
-			<div className="text titleText">Features</div>
+			<div className="text titleText">Statistics</div>
 			<div className="features">
 				<div className="firstFeature" ref={firstFeature}>
 					<FeatureCard
@@ -85,7 +83,7 @@ function Features() {
 					<FeatureCard
 						Component={<FaEarthAmericas size={60} color={iconTheme} />}
 						Feature={"Countries"}
-						Description={127}
+						Description={89}
 						theme={theme}
 					/>
 				</div>
