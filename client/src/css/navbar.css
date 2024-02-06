@@ -49,8 +49,9 @@
   top: 0;
   width: 50vw;
   height: 100vh;
-  background-color: var(--accent);
+  background-color: var(--secondary);
   transition: left 0.5s ease-in-out;
+  z-index: 2;
 }
 
 .menu {
