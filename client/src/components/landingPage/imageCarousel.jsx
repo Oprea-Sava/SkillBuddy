@@ -12,21 +12,20 @@ function ImageCarousel() {
         perPage: 3,
         perMove: 1,
         gap: '56px',
-        fixedWidth:'360px',
-        fixedHeight:'400px',
         autoplay: 'true',
         interval: 2000,
         speed:1000,
         focus:'center',
         trimSpace:'false',
         breakpoints: {
+          855:{
+            perPage:2,
+          },
           568:{
             perPage:1,
-            direction:"ttb",
-            height:'360px', // needs adjusments
             paginationDirection:'ttb',
             snap:'true'
-          }
+          },
         }
       }
       }>

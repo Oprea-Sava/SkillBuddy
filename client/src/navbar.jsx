@@ -73,7 +73,7 @@ function Navbar({ dataChange }) {
 		setIsOpen(!isOpen);
 	}
 	const menuStyle = {
-		left: isOpen ? 0 : "-100%",
+		left: isOpen ? 0 : "-120%",
 	};
 
 	return (
@@ -132,40 +132,26 @@ function Navbar({ dataChange }) {
 				)}
 			</div>
 			<nav className="navContainerMenu" style={menuStyle}>
-				<div className="logoMenu">
-					<img src={logo} alt="logo" />
-				</div>
-				<a className="navbarButton text" href="/dashboard">
+
+				<a className="navbarButtonMenu text" href="/dashboard">
 					Home
 				</a>
-				<a className="navbarButton text" href="/courses">
+				<a className="navbarButtonMenu text" href="/courses">
 					Courses
 				</a>
-				<a className="navbarButton text" href="/">
+				<a className="navbarButtonMenu text" href="/">
 					Skill Exchange
 				</a>
-				<a className="navbarButton text" href="/">
+				<a className="navbarButtonMenu text" href="/">
 					About Us
 				</a>
-				<a className="navbarButton text" href="/">
+				<a className="navbarButtonMenu text" href="/">
 					Contact
 				</a>
 				{isAuthenticated() ? (
-					userImg ? (
-						<img
-							className="profileImg"
-							src={userImg}
-							alt=""
-							onClick={goToDashboard}
-						/>
-					) : (
-						<img
-							className="profileImg"
-							src={placeholder}
-							alt=""
-							onClick={goToDashboard}
-						/>
-					)
+					<a className="navbarButtonMenu text" href="/dashboard">
+					Dashboard
+				</a>
 				) : (
 					<button
 						className="secondary signUp text"

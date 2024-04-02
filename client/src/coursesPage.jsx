@@ -6,6 +6,7 @@ import Courses from "./components/dashboard/courses";
 
 function CoursesPage() {
 	const [publishedCount, setPublishedCount] = useState(0);
+	let coursesOnPage = 0;
 
   useEffect(() => {
     const fetchPublishedCount = async () => {
@@ -20,6 +21,14 @@ function CoursesPage() {
 
     fetchPublishedCount();
   }, []);
+
+  if(publishedCount > 12){
+	coursesOnPage = 12;
+  }
+  else{
+	coursesOnPage = publishedCount;
+  }
+
 	return (
 		<>
 			<Navbar />
@@ -33,7 +42,7 @@ function CoursesPage() {
 								<button className="showInGrid"></button>
 								<button className="showInList"></button>
 								<div className="text">
-									{`Showing 1-9 of ${publishedCount} courses`}
+									{`Showing 1-${coursesOnPage} of ${publishedCount} courses`}
 								</div>
 							</div>
 							<div className="filterCourses">
@@ -42,6 +51,7 @@ function CoursesPage() {
 									<option value="2">2</option>
 									<option value="3">3</option>
 									<option value="4">4</option>
+									{}	
 								</select>
 							</div>
 						</div>

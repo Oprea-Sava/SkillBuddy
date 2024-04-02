@@ -19,9 +19,11 @@
 
 .slide {
   background-color: var(--primary);
-  border-radius: 28px;
-  height: 100%;
-  width: 360px;
+  border-radius: 30px;
+  height: auto;
+  width: 100%;
+  max-height: 100%;
+  aspect-ratio: 5/6;
 }
 
 .carouselText {
@@ -33,10 +35,6 @@
 }
 
 @media screen and (max-width: 568px) {
-  .slide.slide {
-    width: 100% !important;
-    height: 350px !important;
-  }
 
   .splide__arrows {
     display: none;
