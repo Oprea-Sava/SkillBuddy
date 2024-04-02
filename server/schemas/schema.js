@@ -108,7 +108,6 @@ chapterSchema.post(["updateOne", "deleteOne"], async function (doc) {
   }
 });
 
-
 const Course = mongoose.model("Course", courseSchema);
 const User = mongoose.model("User", userSchema);
 const Chapter = mongoose.model("Chapter", chapterSchema);

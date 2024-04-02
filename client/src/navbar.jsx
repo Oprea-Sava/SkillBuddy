@@ -15,6 +15,7 @@ function Navbar({ dataChange }) {
 	const { toggleTheme } = useTheme();
 	const [isOpen, setIsOpen] = useState(false);
 	const [userImg, setUserImg] = useState();
+	const [userData, setUserData] = useState({isTutor: false});
 	const navigate = useNavigate();
 	const { theme } = useTheme();
 	const [y, setY] = useState(0);
@@ -45,6 +46,21 @@ function Navbar({ dataChange }) {
 			try {
 				const token = localStorage.getItem("token");
 				const response = await fetch(
+					`http://localhost:5000/api/users/${token}`
+				);
+				if (!response.ok) {
+					throw new Error(`HTTP error! Status: ${response.status}`);
+				}
+				const data = await response.json();
+				setUserData(data);
+			} catch (error) {
+				console.error("Error fetching user data:", error);
+			}
+		};
+		const fetchUserImg = async () => {
+			try {
+				const token = localStorage.getItem("token");
+				const response = await fetch(
 					`http://localhost:5000/api/users/retrieve/${token}`
 				);
 				if (!response.ok) {
@@ -59,6 +75,7 @@ function Navbar({ dataChange }) {
 		};
 		if (isAuthenticated()) {
 			fetchUserData();
+			fetchUserImg();
 		}
 	}, [dataChange]);
 	function goToDashboard() {
@@ -86,11 +103,8 @@ function Navbar({ dataChange }) {
 				<a className="navbarButton text" href="/dashboard">
 					Home
 				</a>
-				<a className="navbarButton text" href="/courses">
-					Courses
-				</a>
-				<a className="navbarButton text" href="/">
-					Skill Exchange
+				<a className="navbarButton text" href={isAuthenticated()? (userData.isTutor ? "/create" : "/courses") : "/courses"}>
+					{userData.isTutor ? "Create a Course" : "Courses"}
 				</a>
 				<a className="navbarButton text" href="/">
 					About Us
@@ -138,9 +152,6 @@ function Navbar({ dataChange }) {
 				</a>
 				<a className="navbarButtonMenu text" href="/courses">
 					Courses
-				</a>
-				<a className="navbarButtonMenu text" href="/">
-					Skill Exchange
 				</a>
 				<a className="navbarButtonMenu text" href="/">
 					About Us

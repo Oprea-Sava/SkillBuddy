@@ -123,7 +123,6 @@ export default function CourseDetails(){
     const requiredFields = [
         courseData.title,
         courseData.description,
-        courseData.price,
         courseData.img,
     ];
     const hasPublishedChapter = courseData.chapters && courseData.chapters.some(chapter => chapter.isPublished);

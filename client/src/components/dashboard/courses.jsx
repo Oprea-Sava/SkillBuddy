@@ -36,15 +36,16 @@ function Courses({ courseType, userSpecific }) {
 					} else {
 						if (courseType === "Published Courses") {
 							const filteredCourses = data.createdCourses.filter(course => course.isPublished);
-							setCourseIds(filteredCourses);
-							console.log(filteredCourses)
+							const courses= filteredCourses.map(course => course._id);
+							setCourseIds(courses);
 						  } else if (courseType === "Unpublished Courses") {
 							const filteredCourses = data.createdCourses.filter(course => !course.isPublished);
-							setCourseIds(filteredCourses);
-							console.log(filteredCourses)
+							const courses= filteredCourses.map(course => course._id);
+							setCourseIds(courses);
 						  }else {
 						const camelCaseType = toCamelCase(courseType);
-						setCourseIds(data[camelCaseType] || []);
+						const courses= data[camelCaseType].map(course => course._id);
+						setCourseIds(courses || []);
 						}
 					}
 				} else {

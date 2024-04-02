@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../css/dashboard/userCourses.css";
 import Courses from "./courses";
 import { useOutletContext } from "react-router-dom";
 
 function UserCourses() {
 	const [change, setChange, userData] = useOutletContext();
-	const [option, setOption] = useState(userData.isTutor ? "Created Courses": "Enrolled Courses");
+	const [option, setOption] = useState('Loading...'); 
+    // Update the option state once userData is available
+    useEffect(() => {
+        if (userData) {
+            setOption(userData.isTutor ? "Created Courses" : "Enrolled Courses");
+        }
+    }, [userData]);
+
 	return (
 		<>
 			<div id="userCourses">

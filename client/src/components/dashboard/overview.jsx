@@ -23,7 +23,6 @@ function Overview() {
 						<div className="coursesNumber">1</div>
 					</div>
 				</div>
-
 				<Courses courseType={"Enrolled Courses"} userSpecific={true}/>
 			</div> :
 			<div id="overview">

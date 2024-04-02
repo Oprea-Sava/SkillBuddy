@@ -111,6 +111,10 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 
 	const handleWish = async () => {
 		const token = localStorage.getItem("token");
+		if(!token){
+			navigate("/signup");
+			return;
+		   }
 		try {
 			const response = await fetch(
 				`http://localhost:5000/api/users/${token}/wishlistcourse`,

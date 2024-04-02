@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const client = require("ssh2-sftp-client");
 const multer = require("multer");
-
+const bcrypt = require("bcrypt");
 const storage = multer.memoryStorage();
 
 const upload = multer({ storage: storage });
@@ -107,7 +107,8 @@ router.post("/signIn", async (req, res) => {
       $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
     });
 
-    if (!user || user.password != password) {
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
@@ -143,14 +144,14 @@ router.post("/signUp", async (req, res) => {
     if (usernameUsed) {
       return res.status(400).json({ error: "Username already in use" });
     }
-
+    const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
       _id,
       firstname,
       lastname,
       username,
       email,
-      password,
+      password: hashedPassword,
       img: "",
       bio: "",
       phone: "",
@@ -166,6 +167,26 @@ router.post("/signUp", async (req, res) => {
     res.status(201).json({ message: "User created successfully", token });
   } catch (error) {
     console.error("Error creating user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+//Route to get carousel user courses
+router.get("/carousel", async (req, res) => {
+  const userId = "655658ebf0b21ddd98b56e33";
+  try {
+    const user = await User.findById(userId)
+      .populate("enrolledCourses")
+      .populate("wishlistedCourses")
+      .populate("createdCourses")
+      .select("-password");
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.json(user.createdCourses);
+  } catch (error) {
+    console.error("Error retrieving user:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
@@ -262,7 +283,11 @@ router.get("/:token", async (req, res) => {
   const userId = getUserId(req.params.token);
 
   try {
-    const user = await User.findById(userId).select("-password");
+    const user = await User.findById(userId)
+      .populate("enrolledCourses")
+      .populate("wishlistedCourses")
+      .populate("createdCourses")
+      .select("-password");
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
