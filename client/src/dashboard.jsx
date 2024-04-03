@@ -4,12 +4,15 @@ import Navbar from "./navbar";
 import Footer from "./footer";
 import Sidebar from "./components/dashboard/sidebar";
 import { Outlet } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function Dashboard() {
 	const [change, setChange] = useState(false);
 	const [userData, setUserData] = useState({});
+	const [isLoading, setIsLoading] = useState(false);
 	useEffect(() => {
 		const fetchUserData = async () => {
+			setIsLoading(true);
 			try {
 				const token = localStorage.getItem("token");
 				const response = await fetch(
@@ -20,6 +23,7 @@ function Dashboard() {
 				}
 				const data = await response.json();
 				setUserData(data);
+				setIsLoading(false)
 			} catch (error) {
 				console.error("Error fetching user data:", error);
 			}
@@ -30,8 +34,13 @@ function Dashboard() {
 		<>
 			<Navbar dataChange={change} />
 			<div id="dashboardBody">
+				{!isLoading? (
+				<>
 				<Sidebar dataChange={change}/>
 				<Outlet context={[change, setChange, userData] }/>
+				</>): (
+					<div className="loaderContainer"><ClipLoader color="#683bd8"/></div>
+				)}
 			</div>
 			<Footer />
 		</>

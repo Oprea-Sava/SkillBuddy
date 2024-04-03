@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import placeholder from "../../assets/placeholder.png";
+import profilePlaceholder from "../../assets/profilePlaceholder.jpg";
 import "../../css/landingPage/imageCarousel.css";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
@@ -82,8 +83,8 @@ function ImageCarousel() {
 					{courses.map((course, index) => (
 
 						 <SplideSlide className="slide">
-             <div className="courseCard">
-					<div className="courseCardImageHolder">
+             <div className="carouselCard">
+					<div className="carouselCardImageHolder">
           {course.img && course.img.data ? (
           <img src={`data:${course.img.contentType};base64,${arrayBufferToBase64(
             course.img.data.data
@@ -91,18 +92,23 @@ function ImageCarousel() {
         ) : (
           <img src={placeholder} alt="Placeholder" />
         )}
-						<div className="coursePrice">
+						
+					</div>
+					<div className="carouselCardDetails">
+          <div>
+
+                <img className="authorImg" src={profilePlaceholder}/>
+                <div className="authorName">TestUser</div>
+						</div>
+						<div>{course.title}</div>
+						<div>
+              <div className="carouselPrice">
 							<p>
 								{course.price === 0
 									? "free"
 									: `${course.price}$`}
 							</p>
 						</div>
-					</div>
-					<div className="courseCardDetails">
-			
-						<div>{course.title}</div>
-						<div>
 							{course.chapters && (
 								<div>{course.chapters.length} chapters</div>
 							)}

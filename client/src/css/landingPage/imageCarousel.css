@@ -33,6 +33,105 @@
   margin: 0 28px 0 28px;
 }
 
+.carouselCard {
+  background-color: var(--primary);
+  width: 100%;
+  height: auto;
+  max-height: 350px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  aspect-ratio: 5/6;
+}
+
+.authorName {
+  font-size: 14px;
+}
+
+.carouselCardImageHolder {
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  height: 50%;
+  overflow: auto;
+  margin: 5% 0 0 5%;
+  border-radius: 13px;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  border: 1.5px solid var(--accent3);
+}
+
+.carouselCardImageHolder > img {
+  height: 100%;
+  width: 100%;
+  border-radius: 13px;
+  overflow: clip;
+  overflow-clip-margin: border-box;
+}
+
+.carouselPrice {
+  font-size: 14px;
+  min-width: auto;
+  right: 10px;
+  bottom: 10px;
+  padding: 8px 15px;
+  border-radius: 10px;
+  background-color: var(--primary);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.carouselPrice > p {
+  position: relative;
+  transform: translateY(1px);
+}
+
+.carouselCardDetails {
+  margin: 25px 5% 0 5%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+.carouselCardDetails > div {
+  flex: 1;
+}
+
+.carouselCardDetails > *:first-child {
+  height: 100%;
+  display: flex;
+  justify-content: start;
+  gap: 1rem;
+  margin: 0 1px 0 1px;
+  align-items: center;
+}
+
+.carouselCardDetails > *:nth-child(2) {
+  height: 100%;
+  display: flex;
+  justify-content: start-content;
+  font-weight: 600;
+  font-size: 18px;
+  align-items: center;
+}
+
+.carouselCardDetails > *:last-child {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.authorImg {
+  height: 30px;
+  width: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 50%;
+}
 @media screen and (max-width: 568px) {
   .splide__arrows {
     display: none;

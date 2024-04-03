@@ -52,7 +52,7 @@ export default function ChaptersForm({courseId, change}){
 			}
 		}; 
         fetchChapters()
-    },[]);
+    },[isCreating]);
 
     useEffect(()=>{
         console.log(chapters)

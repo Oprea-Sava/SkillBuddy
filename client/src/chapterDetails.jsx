@@ -134,7 +134,8 @@ export default function ChapterDetails() {
                     <ChapterForm label="Chapter description" name="description" value={chapterData.description} chapterId={chapterId} change={()=>handleFetch()}/>
                 </div>
                 <div className="column__chd">
-                    <ChapterVideo value={chapterData.videoUrl} chapterId={chapterId}/>
+                    <ChapterVideo value={chapterData.videoUrl} chapterId={chapterId} fetchData={fetchData} 
+    setFetchData={setFetchData}/>
                 </div>
             </div>
         </div>

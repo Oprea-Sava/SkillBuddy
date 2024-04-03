@@ -5,7 +5,7 @@ import "../css/chapterVideo.css"
 import { HiPencil } from "react-icons/hi2";
 
 
-export default function ChapterVideo({value, chapterId}) {
+export default function ChapterVideo({value, chapterId, fetchData, setFetchData}) {
     const [isEditing, setIsEditing] = useState(false)
     const [formData, setFormData] = useState({videoUrl: ""})
     useEffect(() => {
@@ -43,7 +43,7 @@ export default function ChapterVideo({value, chapterId}) {
                 const data = await response.json();
                 toast.success(data.message);
                 setIsEditing((prev) => !prev)
-                navigate(0)
+                setFetchData((prev) => !prev)
             } else {
                 const data = await response.json();
                 toast.error(data.error);
@@ -66,7 +66,7 @@ export default function ChapterVideo({value, chapterId}) {
             {isEditing ? (<div className="edit__chv">
                                 <input className="formInput__chv" id="videoUrl" name="videoUrl" value={formData.videoUrl} onChange={handleInputChange}/> 
                                 <button className="text submitButton__chv" onClick={handleSubmit}>Submit</button> 
-                            </div>) : (<div className="text">{!value ? (`No video`):(value)}</div>)
+                            </div>) : (<div className="text">{!formData.videoUrl ? (`No video`):(formData.videoUrl)}</div>)
             }
         </form>
         </>
