@@ -142,10 +142,14 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 		}
 	};
 
+	function  handleClick(Id) {
+		navigate(`/courses/${Id}`)
+	}
+
 	return (
 		<>
 		{!!Object.keys(courseData).length && 
-				<div className="courseCard">
+				<div className="courseCard" >
 					<div className="courseCardImageHolder">
 						<img src={img ? img : placeholder} />
 						<div className="coursePrice">
@@ -173,7 +177,9 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 								)}
 							</div>
 						</div>
-						<div>{courseData.title}</div>
+						<div onClick={() => {
+					handleClick(Id)
+				}}>{courseData.title}</div>
 						<div>
 							{courseData.chapters && (
 								<div>{courseData.chapters.length} chapters</div>

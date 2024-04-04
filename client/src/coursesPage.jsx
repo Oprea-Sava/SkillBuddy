@@ -39,13 +39,13 @@ function CoursesPage() {
 					<div className="coursesContent">
 						<div className="coursesContentHead">
 							<div className="showFilteredCourses">
-								<button className="showInGrid"></button>
-								<button className="showInList"></button>
+								{/* <button className="showInGrid"></button>
+								<button className="showInList"></button> */}
 								<div className="text">
 									{`Showing 1-${coursesOnPage} of ${publishedCount} courses`}
 								</div>
 							</div>
-							<div className="filterCourses">
+							{/* <div className="filterCourses">
 								<select name="filterCourses">
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -53,7 +53,7 @@ function CoursesPage() {
 									<option value="4">4</option>
 									{}	
 								</select>
-							</div>
+							</div> */}
 						</div>
 						<Courses />
 					</div>

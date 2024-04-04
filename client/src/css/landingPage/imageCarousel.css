@@ -19,7 +19,6 @@
 .slide {
   background-color: var(--primary);
   border-radius: 30px;
-  height: auto;
   width: 100%;
   max-height: 100%;
   aspect-ratio: 5/6;
@@ -36,17 +35,15 @@
 .carouselCard {
   background-color: var(--primary);
   width: 100%;
-  height: auto;
-  max-height: 350px;
+  height: 100%;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  aspect-ratio: 5/6;
 }
 
-.authorName {
-  font-size: 14px;
+.carouselAuthorName {
+  font-size: 20px;
 }
 
 .carouselCardImageHolder {
@@ -90,8 +87,9 @@
 
 .carouselCardDetails {
   margin: 25px 5% 0 5%;
-  height: 60%;
+  height: 50%;
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   gap: 10px;
   padding-bottom: 10px;
@@ -115,7 +113,7 @@
   display: flex;
   justify-content: start-content;
   font-weight: 600;
-  font-size: 18px;
+  font-size: clamp(16px, calc(1rem + ((1vw - 7.68px) * 0.1736)), 18px);
   align-items: center;
 }
 
@@ -126,7 +124,7 @@
   align-items: center;
 }
 .authorImg {
-  height: 30px;
+  height: 40px;
   width: auto;
   aspect-ratio: 1/1;
   object-fit: cover;

@@ -23,7 +23,8 @@ function EditProfile() {
 				throw new Error(`HTTP error! Status: ${response.status}`);
 			  }
 			const data = await response.json();
-			setFormData(data);
+			const { firstname, lastname, username, bio, phone } = data;
+			setFormData({ firstname, lastname, username, bio, phone });
 		  } catch (error) {
 			console.error('Error fetching user data:', error);
 		  }
@@ -48,6 +49,8 @@ function EditProfile() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		console.log(formData);
+		console.log(image)
 		try {
 			const {img, ...textFormData}  = formData;
 
@@ -68,8 +71,8 @@ function EditProfile() {
 				toast.error("Error updating user data");
 			} else {
 				toast.success("User data updated successfully");
-			  }
-			  if (image) {
+			}
+			if (image) {
 				const imageFormData = new FormData();
 				imageFormData.append("image", image, image.name);
 

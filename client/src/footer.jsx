@@ -20,7 +20,7 @@ function Footer() {
                 <div className="columnItems productCollumnItems">
                     <div className="columnItem">Course</div>
                     <div className="columnItem">Placeholder</div>
-                    <div className="columnItem">Skill Exchange</div>
+                    <div className="columnItem">Create a course</div>
                 </div>
             </div>
             <div className="text footerColumn newsletter">

@@ -53,7 +53,13 @@ export default function CourseContent() {
                 );
                 if (response.ok) {
                     const data = await response.json();
-                    setIsEnrolled(data["enrolledCourses"].includes(courseId));
+                    console.log(data["enrolledCourses"]);
+                    for (let course of data["enrolledCourses"]) {
+                        if (course._id === courseId) {
+                            setIsEnrolled(true);
+                            break;
+                        }
+                    }
                 } else {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }

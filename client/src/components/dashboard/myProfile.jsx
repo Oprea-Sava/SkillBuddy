@@ -59,7 +59,7 @@ function MyProfile() {
 						<div>{userData.email}</div>
 					</div>
 					<div className="phoneNmbr">
-						<div>Phone Numebr</div>
+						<div>Phone Number</div>
 						<div>{userData.phone}</div>
 					</div>
 					<div className="bio">
