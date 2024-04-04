@@ -10,6 +10,7 @@ import MyProfile from "./components/dashboard/myProfile";
 import SignIn from "./signIn";
 import SignUp from "./signUp";
 import UserCourses from "./components/dashboard/userCourses";
+import AboutUs from "./aboutUs";
 import Wishlist from "./components/dashboard/wishlist";
 import ErrorPage from "./errorPage";
 import OrderHisory from "./components/dashboard/orderHistory";
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
 	{
 		path: "courses",
 		element: <CoursesPage />,
+	},
+	{
+		path: "aboutUs",
+		element: <AboutUs />,
 	},
 	{
 		path: "courses/:courseId",

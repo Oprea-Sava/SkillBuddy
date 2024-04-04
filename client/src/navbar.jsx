@@ -100,13 +100,13 @@ function Navbar({ dataChange }) {
 				<img className="logoText" src={logoText} alt="SkillBuddy" />
 			</div>
 			<nav className="navContainer">
-				<a className="navbarButton text" href="/dashboard">
+				<a className="navbarButton text" href="/">
 					Home
 				</a>
 				<a className="navbarButton text" href={isAuthenticated()? (userData.isTutor ? "/create" : "/courses") : "/courses"}>
 					{userData.isTutor ? "Create a Course" : "Courses"}
 				</a>
-				<a className="navbarButton text" href="/">
+				<a className="navbarButton text" href="/aboutUs">
 					About Us
 				</a>
 				<a className="navbarButton text" href="/">
