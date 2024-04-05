@@ -7,6 +7,22 @@ import Courses from "./components/dashboard/courses";
 function CoursesPage() {
 	const [publishedCount, setPublishedCount] = useState(0);
 	let coursesOnPage = 0;
+	const [query, setQuery] = useState('');
+	const [results, setResults] = useState([]);
+
+	const handleSearch = async () => {
+		try {
+		const response = await fetch(`http://localhost:5000/api/courses/search?query=${query}`);
+		if (!response.ok) {
+			throw new Error('Network response was not ok');
+		}
+		const data = await response.json();
+		const resultIds = data.map(course => course._id);
+		setResults(resultIds);
+		} catch (error) {
+		console.error('Error fetching search results:', error);
+		}
+	};
 
   useEffect(() => {
     const fetchPublishedCount = async () => {
@@ -18,9 +34,12 @@ function CoursesPage() {
         console.error('Error fetching published chapters count:', error);
       }
     };
-
+	if(!results.length){
     fetchPublishedCount();
-  }, []);
+	} else {
+		setPublishedCount(results.length);
+	}
+  }, [results]);
 
   if(publishedCount > 12){
 	coursesOnPage = 12;
@@ -55,11 +74,22 @@ function CoursesPage() {
 								</select>
 							</div> */}
 						</div>
-						<Courses />
+						<Courses results={results} />
 					</div>
 
 					<div className="coursesSidebar">
-						
+					<input
+						type="text"
+						value={query}
+						onChange={(e) => setQuery(e.target.value)}
+						placeholder="Search..."
+					/>
+					<button onClick={handleSearch}>Search</button>
+					<ul>
+						{results.map(result => (
+						<li key={result._id}>{result.title}</li>
+						))}
+					</ul>
 					</div>
 				</div>
 			</div>

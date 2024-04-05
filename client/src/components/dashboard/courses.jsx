@@ -4,7 +4,7 @@ import "../../css/dashboard/courses.css";
 import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
 
-function Courses({ courseType, userSpecific }) {
+function Courses({ results, courseType, userSpecific }) {
 	const [courseIds, setCourseIds] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [wishlistChanged, setWishlistChanged] = useState(false);
@@ -30,8 +30,14 @@ function Courses({ courseType, userSpecific }) {
 
 				const response = await fetch(url);
 				if (response.ok) {
-					const data = await response.json();
+					let data = await response.json();
 					if (!userSpecific) {
+						if(!!results.length){
+							const commonCourses = data.filter(course => {
+								return results.includes(course);
+							});
+						  data = commonCourses;
+						}
 						setCourseIds(data);
 					} else {
 						if (courseType === "Published Courses") {
@@ -77,7 +83,7 @@ function Courses({ courseType, userSpecific }) {
 		};
 		fetchUserData();
 		fetchCourseIds();
-	}, [wishlistChanged, userSpecific, courseType]);
+	}, [wishlistChanged, userSpecific, courseType, results]);
 	return (
 		<>
 			<div className="courses text">

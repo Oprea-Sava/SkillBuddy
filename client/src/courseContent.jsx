@@ -55,7 +55,13 @@ export default function CourseContent() {
                     const data = await response.json();
                     console.log(data["enrolledCourses"]);
                     for (let course of data["enrolledCourses"]) {
-                        if (course._id === courseId) {
+                        if (course._id === courseId ) {
+                            setIsEnrolled(true);
+                            break;
+                        }
+                    }
+                    for (let course of data["createdCourses"]) {
+                        if (course._id === courseId ) {
                             setIsEnrolled(true);
                             break;
                         }

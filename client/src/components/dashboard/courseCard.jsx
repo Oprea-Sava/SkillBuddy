@@ -9,8 +9,10 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 	const [courseData, setCourseData] = useState({});
 	const [author, setAuthor] = useState("");
 	const [img, setImg] = useState();
+	const [userData, setUserData] = useState({enrolledCourses: []});
 	const navigate = useNavigate();
 	useEffect(() => {
+		setUserData(user);
 		const fetchCourseData = async () => {
 			try {
 				const response = await fetch(
@@ -75,7 +77,7 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 		checkWishlist(Id);
 		fetchCourseData();
 		fetchCourseImg();
-	}, []);
+	}, [user]);
 	const handleBuy = async () => {
 		const token = localStorage.getItem("token");
 		if(!token){
@@ -186,7 +188,7 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 							)}
 						</div>
 						<div>
-							{(!Object.keys(user).length || (!(user.enrolledCourses.includes(Id)) && !(user.isTutor))) &&
+							{(!Object.keys(userData).length || (!userData.enrolledCourses.some(course => course._id === Id) && !(userData.isTutor))) &&
 								<button
 								className="buyButton text"
 								onClick={() => {
@@ -196,7 +198,7 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 								Buy Now
 							</button>
 							}
-							{user._id === courseData.author._id &&
+							{userData._id === courseData.author._id &&
 								<button
 									className="buyButton text"
 									onClick={() => {
