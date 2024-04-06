@@ -3,16 +3,18 @@ import "./css/coursesPage.css";
 import Navbar from "./navbar";
 import Footer from "./footer";
 import Courses from "./components/dashboard/courses";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function CoursesPage() {
 	const [publishedCount, setPublishedCount] = useState(0);
 	let coursesOnPage = 0;
 	const [query, setQuery] = useState('');
 	const [results, setResults] = useState([]);
-
-	const handleSearch = async () => {
+	const [isLoading, setIsLoading] = useState(false);
+	const handleSearch = async (searchQuery) => {
+		setIsLoading(true);
 		try {
-		const response = await fetch(`http://localhost:5000/api/courses/search?query=${query}`);
+		const response = await fetch(`http://localhost:5000/api/courses/search?query=${searchQuery}`);
 		if (!response.ok) {
 			throw new Error('Network response was not ok');
 		}
@@ -21,7 +23,9 @@ function CoursesPage() {
 		setResults(resultIds);
 		} catch (error) {
 		console.error('Error fetching search results:', error);
-		}
+		} finally {
+            setIsLoading(false);
+        }
 	};
 
   useEffect(() => {
@@ -40,13 +44,14 @@ function CoursesPage() {
 		setPublishedCount(results.length);
 	}
   }, [results]);
-
-  if(publishedCount > 12){
-	coursesOnPage = 12;
-  }
-  else{
 	coursesOnPage = publishedCount;
-  }
+  	const handleChange = (e) => {
+	const value = e.target.value;
+	setQuery(value);
+	if (value.length > 0) {
+		handleSearch(value);
+	} else setResults([]);
+};
 
 	return (
 		<>
@@ -74,17 +79,17 @@ function CoursesPage() {
 								</select>
 							</div> */}
 						</div>
-						<Courses results={results} />
+						{isLoading? ( <ClipLoader/>) : (<Courses results={results} />)}
 					</div>
 
 					<div className="coursesSidebar">
-					<input
+					<input className="text"
 						type="text"
 						value={query}
-						onChange={(e) => setQuery(e.target.value)}
+						onChange={handleChange}
 						placeholder="Search..."
 					/>
-					<button onClick={handleSearch}>Search</button>
+
 					<ul>
 						{results.map(result => (
 						<li key={result._id}>{result.title}</li>

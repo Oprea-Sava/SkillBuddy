@@ -48,7 +48,7 @@ function ImageCarousel() {
     }, []);
     return(
       <div className="container">
-      <Splide className="carousel" aria-label="My Favorite Images"
+      <Splide className="carousel" aria-label="Courses Carousel"
       options={{
         type: 'loop',
         perPage: 4,

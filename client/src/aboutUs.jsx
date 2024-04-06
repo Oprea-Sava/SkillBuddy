@@ -2,6 +2,7 @@ import React from "react";
 import "./css/aboutUs.css";
 import Navbar from "./navbar";
 import Footer from "./footer";
+import Banner from "./assets/aboutUs.png";
 
 function AboutUs() {
 	return (
@@ -23,7 +24,7 @@ function AboutUs() {
 					</div>
 				</div>
 				<div className="aboutUsPictureSide">
-					<img src="./assets/aboutUs.svg" alt="placeholder" />
+					<img src={Banner} alt="placeholder" />
 				</div>
 			</div>
 			<Footer />
