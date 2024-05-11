@@ -101,7 +101,7 @@ function Sidebar({ dataChange }) {
 
 	return (
 		<>
-		{Object.keys(userData).length && 
+		{!!Object.keys(userData).length && 
 				<div id="sidebarWrapper">
 					<div id="sidebar">
 						<div className="profile">

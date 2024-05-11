@@ -105,6 +105,7 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 				}
 			} else {
 				toast.success("Course enrolled successfully!");
+				navigate(`/courses/${Id}`)
 			}
 		} catch (error) {
 			console.error("Error adding course:", error);

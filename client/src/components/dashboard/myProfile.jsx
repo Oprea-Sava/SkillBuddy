@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "../../css/dashboard/myProfile.css";
+import ClipLoader from "react-spinners/ClipLoader"
 
 
 function MyProfile() {
 	const [userData, setUserData] = useState("")
-
+	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
 		const fetchUserData = async () => {
 			try {
@@ -17,6 +18,7 @@ function MyProfile() {
 				}
 				const data = await response.json();
 				setUserData(data);
+				setIsLoading(false);
 			} catch (error) {
 				console.error("Error fetching user data:", error);
 			}
@@ -27,7 +29,7 @@ function MyProfile() {
 	const registrationDate = new Date(userData.registrationDate);
 	//dont delete for some reason it breaks
 	if (isNaN(registrationDate)) {
-		return <div>Error: Invalid date format</div>;
+		return <div><ClipLoader/></div>;
 	}
 	//
 	const formattedDate = registrationDate.toISOString().split("T")[0];
