@@ -21,6 +21,14 @@
   gap: 20px;
 }
 
+.notEnrolled{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  font-size: larger;
+}
+
 .content__cc > iframe {
   aspect-ratio: 16/9;
   height: auto;

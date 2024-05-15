@@ -29,7 +29,7 @@ function MyProfile() {
 	const registrationDate = new Date(userData.registrationDate);
 	//dont delete for some reason it breaks
 	if (isNaN(registrationDate)) {
-		return <div><ClipLoader/></div>;
+		return <div className="loaderContainer"><ClipLoader color="#683bd8"/></div>;
 	}
 	//
 	const formattedDate = registrationDate.toISOString().split("T")[0];

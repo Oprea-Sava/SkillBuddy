@@ -166,7 +166,7 @@ export default function CourseContent() {
                             </div>
                         </>
                     ) : (
-                        <div>You are not enrolled in this course.</div>
+                        <div className="notEnrolled text">You are not enrolled in this course.</div>
                     )}
                 </div>
             </div>

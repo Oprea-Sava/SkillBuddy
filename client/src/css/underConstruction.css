@@ -2,9 +2,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 200px 50px 200px 50px;
+    padding: 5% 50px 10% 0px;
 }
 
 .underConstructionContent>img{
-    width: 80%;
+    width: 60vw;
 }

@@ -5,12 +5,14 @@ import profilePlaceholder from "../../assets/profilePlaceholder.jpg";
 import "../../css/landingPage/imageCarousel.css";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+import { useNavigate } from "react-router-dom";
 
 
 function ImageCarousel() {
 
     const [courses, setCourses]= useState([]);
     const [isLoading, setIsLoading]= useState(false);
+    const navigate = useNavigate();
     const arrayBufferToBase64 = buffer => {
       let binary = '';
       let bytes = new Uint8Array(buffer);
@@ -19,6 +21,9 @@ function ImageCarousel() {
       }
       return window.btoa(binary);
     };
+    function handleNavigate(id){
+      navigate(`/courses/${id}`)
+    }
     useEffect(() => {
       const fetchCourseIds = async () => {
         setIsLoading(true);
@@ -100,7 +105,7 @@ function ImageCarousel() {
                 <img className="authorImg" src={profilePlaceholder}/>
                 <div className="carouselAuthorName text">TestUser</div>
 						</div>
-						<div className="text">{course.title}</div>
+						<div className="text" onClick={()=>{handleNavigate(course._id)}}>{course.title}</div>
 						<div>
               <div className="carouselPrice">
 							<p className="text">
