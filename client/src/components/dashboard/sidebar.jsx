@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import "../../css/dashboard/sidebar.css";
-import placeholder from "../../assets/paceholder2.png";
+import placeholder from "../../assets/profilePlaceholder.jpg";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 

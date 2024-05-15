@@ -79,7 +79,7 @@ function CoursesPage() {
 								</select>
 							</div> */}
 						</div>
-						{isLoading? ( <ClipLoader/>) : (<Courses results={results} />)}
+						{isLoading? ( <div className='loaderContainer'><ClipLoader color="#683bd8"/></div>) : (<Courses results={results} />)}
 					</div>
 
 					<div className="coursesSidebar">

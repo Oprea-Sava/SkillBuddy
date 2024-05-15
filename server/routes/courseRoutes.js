@@ -32,7 +32,7 @@ router.get("/search", async (req, res) => {
         $search: {
           text: {
             query: query,
-            path: ["title", "description"],
+            path: ["title"],
           },
         },
       },

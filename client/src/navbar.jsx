@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { isAuthenticated } from "./auth";
 import { useNavigate } from "react-router-dom";
-import placeholder from "./assets/paceholder2.png";
+import placeholder from "./assets/profilePlaceholder.jpg";
 import { useTheme } from "./themeContext";
 
 function Navbar({ dataChange }) {
