@@ -6,7 +6,6 @@ import { useOutletContext } from "react-router-dom";
 function UserCourses() {
 	const [change, setChange, userData] = useOutletContext();
 	const [option, setOption] = useState('Loading...'); 
-    // Update the option state once userData is available
     useEffect(() => {
         if (userData) {
             setOption(userData.isTutor ? "Created Courses" : "Enrolled Courses");

@@ -48,7 +48,7 @@ function ImageCarousel() {
     }, []);
     return(
       <div className="container">
-      <Splide className="carousel" aria-label="My Favorite Images"
+      <Splide className="carousel" aria-label="Courses Carousel"
       options={{
         type: 'loop',
         perPage: 4,
@@ -71,7 +71,7 @@ function ImageCarousel() {
           640: {
             perPage: 1,
           },
-          1024: {
+          1500: {
             perPage: 2,
           },
         
@@ -98,19 +98,19 @@ function ImageCarousel() {
           <div>
 
                 <img className="authorImg" src={profilePlaceholder}/>
-                <div className="authorName">TestUser</div>
+                <div className="carouselAuthorName text">TestUser</div>
 						</div>
-						<div>{course.title}</div>
+						<div className="text">{course.title}</div>
 						<div>
               <div className="carouselPrice">
-							<p>
+							<p className="text">
 								{course.price === 0
 									? "free"
 									: `${course.price}$`}
 							</p>
 						</div>
 							{course.chapters && (
-								<div>{course.chapters.length} chapters</div>
+								<div className="text">{course.chapters.length} lessons</div>
 							)}
 						</div>
 					</div>

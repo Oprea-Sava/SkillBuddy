@@ -1,6 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { Course, Chapter, CourseProgression, User } = require("../schemas/schema");
+const {
+  Course,
+  Chapter,
+  CourseProgression,
+  User,
+} = require("../schemas/schema");
 const client = require("ssh2-sftp-client");
 const multer = require("multer");
 const config = require("../config");
@@ -19,6 +24,25 @@ function getUserId(token) {
     return null;
   }
 }
+router.get("/search", async (req, res) => {
+  const { query } = req.query;
+  try {
+    const results = await Course.aggregate([
+      {
+        $search: {
+          text: {
+            query: query,
+            path: ["title", "description"],
+          },
+        },
+      },
+    ]);
+    res.json(results);
+  } catch (error) {
+    console.error("Error searching courses:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 //route to count published chapters
 router.get("/published/count", async (req, res) => {
@@ -39,7 +63,7 @@ router.get("/progression/:chapterId", async (req, res) => {
   try {
     const progression = await CourseProgression.findOne({
       user: userId,
-      chapter: chapterId
+      chapter: chapterId,
     });
 
     res.json({ isCompleted: progression ? progression.isCompleted : false });
@@ -294,7 +318,7 @@ router.get("/image/:courseId", async (req, res) => {
 router.get("/getall", async (req, res) => {
   try {
     let query = {};
-    if (req.query.published === 'true') {
+    if (req.query.published === "true") {
       query.isPublished = true;
     }
 
@@ -326,7 +350,9 @@ router.post("/create", async (req, res) => {
     });
 
     const savedCourse = await newCourse.save();
-    await User.findByIdAndUpdate(userId, { $push: { createdCourses: savedCourse._id } });
+    await User.findByIdAndUpdate(userId, {
+      $push: { createdCourses: savedCourse._id },
+    });
     res.status(201).json({
       message: "Course created successfully",
       courseId: savedCourse._id,
@@ -395,7 +421,9 @@ router.delete("/:courseId", async (req, res) => {
     if (deletedCourse.deletedCount === 0) {
       return res.status(404).json({ message: "Course not found" });
     }
-    await User.findByIdAndUpdate(userId, { $pull: { createdCourses: courseId } });
+    await User.findByIdAndUpdate(userId, {
+      $pull: { createdCourses: courseId },
+    });
     await Chapter.deleteMany({ courseId });
     return res
       .status(200)
@@ -407,4 +435,3 @@ router.delete("/:courseId", async (req, res) => {
 });
 
 module.exports = router;
-

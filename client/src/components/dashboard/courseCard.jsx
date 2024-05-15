@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 import placeholder from "../../assets/placeholder.png";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CourseCard({ Id, onWishlistChange, courseType, user }) {
 	const [isActive, setIsActive] = useState(false);
 	const [courseData, setCourseData] = useState({});
 	const [author, setAuthor] = useState("");
 	const [img, setImg] = useState();
+	const [userData, setUserData] = useState({enrolledCourses: []});
 	const navigate = useNavigate();
 	useEffect(() => {
+		setUserData(user);
 		const fetchCourseData = async () => {
 			try {
 				const response = await fetch(
@@ -75,7 +77,7 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 		checkWishlist(Id);
 		fetchCourseData();
 		fetchCourseImg();
-	}, []);
+	}, [user]);
 	const handleBuy = async () => {
 		const token = localStorage.getItem("token");
 		if(!token){
@@ -103,6 +105,7 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 				}
 			} else {
 				toast.success("Course enrolled successfully!");
+				navigate(`/courses/${Id}`)
 			}
 		} catch (error) {
 			console.error("Error adding course:", error);
@@ -142,10 +145,14 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 		}
 	};
 
+	function  handleClick(Id) {
+		navigate(`/courses/${Id}`)
+	}
+
 	return (
 		<>
 		{!!Object.keys(courseData).length && 
-				<div className="courseCard">
+				<div className="courseCard" >
 					<div className="courseCardImageHolder">
 						<img src={img ? img : placeholder} />
 						<div className="coursePrice">
@@ -173,14 +180,16 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 								)}
 							</div>
 						</div>
-						<div>{courseData.title}</div>
+						<div onClick={() => {
+					handleClick(Id)
+				}}>{courseData.title}</div>
 						<div>
 							{courseData.chapters && (
 								<div>{courseData.chapters.length} chapters</div>
 							)}
 						</div>
 						<div>
-							{(!Object.keys(user).length || (!(user.enrolledCourses.includes(Id)) && !(user.isTutor))) &&
+							{(!Object.keys(userData).length || (!userData.enrolledCourses.some(course => course._id === Id) && !(userData.isTutor))) &&
 								<button
 								className="buyButton text"
 								onClick={() => {
@@ -190,7 +199,7 @@ function CourseCard({ Id, onWishlistChange, courseType, user }) {
 								Buy Now
 							</button>
 							}
-							{user._id === courseData.author._id &&
+							{userData._id === courseData.author._id &&
 								<button
 									className="buyButton text"
 									onClick={() => {

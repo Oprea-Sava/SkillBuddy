@@ -16,8 +16,6 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.error("MongoDB Connection Error:", err));
 
-// Handle API requests here
-
 app.use("/api/users", userRoutes);
 
 app.use("/api/courses", courseRoutes);

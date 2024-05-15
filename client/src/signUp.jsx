@@ -5,6 +5,9 @@ import "./css/signUp.css";
 import { isAuthenticated } from "./auth";
 import { PiStudentLight } from "react-icons/pi";
 import { GiBookmarklet } from "react-icons/gi";
+import logo from "./assets/logo.svg";
+import logoText from "./assets/logotextL.png";
+import image from "./assets/logInImage.png";
 
 function Switch({ checked, change }) {
 	return (
@@ -97,7 +100,9 @@ export default function SignUp() {
 	return (
 		<div className="container__su text">
 			<div className="banner__su">
-				<div className="bannerImg__su"></div>
+				<div className="bannerImg__su">
+					<img src={image}/>
+				</div>
 				<div className="bannerText__su">
 					<div className="bannerTitle__su">Welcome to SkillBuddy</div>
 					<div className="bannerContent__su">
@@ -109,7 +114,7 @@ export default function SignUp() {
 			</div>
 			<div className="signUpBox">
 				<div className="logo__su">
-					<img src="" alt="logo"></img>
+					<img src={logoText} alt="logo"></img>
 					<div className="home__su">
 						<a href="/">Back To Home</a>
 					</div>

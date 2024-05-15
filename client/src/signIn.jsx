@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./css/signIn.css";
 import { isAuthenticated } from "./auth";
+import logo from "./assets/logo.svg";
+import logoText from "./assets/logotextL.png";
+import image from "./assets/logInImage.png";
 
 export default function SignIn() {
 	const [formData, setFormData] = useState({
@@ -59,7 +62,9 @@ export default function SignIn() {
 	return (
 		<div className="container__si text">
 			<div className="banner__si">
-				<div className="bannerImg__si"></div>
+				<div className="bannerImg__si">
+					<img src={image}/>
+				</div>
 				<div className="bannerText__si">
 					<div className="bannerTitle__si">Welcome to SkillBuddy</div>
 					<div className="bannerContent__si">
@@ -71,7 +76,7 @@ export default function SignIn() {
 			</div>
 			<div className="signInBox">
 				<div className="logo__si">
-					<img src="" alt="logo"></img>
+					<img src={logoText} alt="logo"></img>
 					<div className="home__si">
 						<a href="/">Back To Home</a>
 					</div>

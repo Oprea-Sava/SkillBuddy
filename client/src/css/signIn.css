@@ -21,21 +21,27 @@
 }
 
 .bannerImg__si {
-  width: 280px;
-  height: 280px; /* temporary*/
-  border: solid 1px black;
+  width: 400px;
+  height: 350px;
+}
+
+.bannerImg__si > img {
+  width: 100%;
+  height: 100%;
 }
 
 .bannerTitle__si {
   text-align: center;
   font-size: 28px;
   margin: 20px 0 20px 0;
+  font-weight: 600;
 }
 
 .bannerContent__si {
   max-width: 570px;
   overflow-wrap: break-word;
   text-align: center;
+  line-height: 30px;
 }
 
 .signInBox {
@@ -55,6 +61,10 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 54px;
+}
+
+.logo__si > img {
+  max-width: 200px;
 }
 
 .signInBox > h1 {
@@ -136,7 +146,7 @@
   color: var(--accent);
 }
 
-.remember__si{
+.remember__si {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -150,13 +160,13 @@
     width: 100%;
   }
 }
-@media screen and (max-width:1000px) and (min-width:768px){
+@media screen and (max-width: 1000px) and (min-width: 768px) {
   .signInBox {
     padding: 0 40px 0 40px;
   }
 }
 
-@media screen and (max-width:500px){
+@media screen and (max-width: 500px) {
   .signInBox {
     padding: 0 40px 0 40px;
   }

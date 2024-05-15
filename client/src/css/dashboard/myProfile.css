@@ -1,60 +1,61 @@
-#myProfile{
-    background-color: var(--primary);
+#myProfile {
+  background-color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  padding-bottom: 30px;
+  height: fit-content;
+}
+
+.profileInfoHeader {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  margin-left: 30px;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.profileInfoContainer {
+  width: 100%;
+  min-width: 350px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.profileInfoContainer > * {
+  min-height: 100px;
+  gap: 15px;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profileInfoContainer > * > * {
+  margin: 0 50px 0 30px;
+}
+
+.profileInfoContainer > * :first-child {
+  font-weight: 600;
+}
+
+.bio {
+  grid-column: span 2;
+}
+
+@media screen and (max-width: 1110px) and (min-width: 761px) {
+  .profileInfoContainer {
     display: flex;
     flex-direction: column;
-    border-radius: 20px;
-    padding-bottom: 30px;
+  }
 }
 
-.profileInfoHeader{
-    display: flex;
-    align-items: center;
-    height: 100px;
-    margin-left: 30px;
-    font-size: 1.6rem;
-    font-weight: 600;
-}
-
-.profileInfoContainer{
-    width: 100%;
-    min-width: 350px;
-    display: grid;
-    gap:10px;
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.profileInfoContainer>*{
-    min-height: 100px;
-    gap:15px;
-    width: auto;
+@media screen and (max-width: 560px) {
+  .profileInfoContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-}
-
-.profileInfoContainer>*>*{
-    margin:0 50px 0 30px;
-}
-
-.profileInfoContainer>* :first-child{
-    font-weight: 600;
-}
-
-.bio{
-    grid-column: span 2;
-}
-
-@media screen and (max-width:1110px) and (min-width:761px){
-    .profileInfoContainer{
-        display: flex;
-        flex-direction: column;
-    }
-}
-
-@media screen and (max-width:560px){
-    .profileInfoContainer{
-        display: flex;
-        flex-direction: column;
-        min-width: 0;
-    }
+    min-width: 0;
+  }
 }
