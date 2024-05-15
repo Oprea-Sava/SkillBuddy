@@ -24,7 +24,7 @@ function AboutUs() {
 					</div>
 				</div>
 				<div className="aboutUsPictureSide">
-					<img src="./assets/aboutUs.svg" alt="placeholder" />
+					<img src={aboutUs} alt="placeholder" />
 				</div>
 			</div>
 			<Footer />

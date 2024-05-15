@@ -1,0 +1,10 @@
+.underConstructionContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 200px 50px 200px 50px;
+}
+
+.underConstructionContent>img{
+    width: 80%;
+}

@@ -106,10 +106,10 @@ function Navbar({ dataChange }) {
 				<a className="navbarButton text" href={isAuthenticated()? (userData.isTutor ? "/create" : "/courses") : "/courses"}>
 					{userData.isTutor ? "Create a Course" : "Courses"}
 				</a>
-				<a className="navbarButton text" href="/aboutUs">
+				<a className="navbarButton text" href="/aboutus">
 					About Us
 				</a>
-				<a className="navbarButton text" href="/">
+				<a className="navbarButton text" href="/underconstruction">
 					Contact
 				</a>
 				<DarkModeButton toggleTheme={toggleTheme} />
