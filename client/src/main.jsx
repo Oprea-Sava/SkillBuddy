@@ -24,6 +24,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ThemeProvider } from "./themeContext";
 import ChapterDetails from "./chapterDetails";
 import CourseContent from "./courseContent";
+import UnderConstruction from "./underConstruction";
 
 
 const router = createBrowserRouter([
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
 	{
 		path: "signup",
 		element: <SignUp />,
+	},
+	{
+		path: "underconstruction",
+		element: <UnderConstruction />,
 	},
 ]);
 

@@ -15,3 +15,20 @@
 .aboutUsDetails{
     line-height: 30px;
 }
+
+.aboutUsPictureSide{
+    max-width: 50%;
+}
+
+@media screen and (max-width: 1000px) {
+    .aboutUsContent{
+        flex-direction: column;
+        padding: 200px 50px 50px 50px;
+    }
+    .aboutUsContent>*{
+        padding:0;
+    }
+    .aboutUsPictureSide{
+        max-width: 100%;
+    }
+}
